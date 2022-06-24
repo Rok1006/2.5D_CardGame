@@ -58,3 +58,13 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+
+CardGame/.vscode/
+
+CardGame/Library/
+
+CardGame/Logs/
+
+CardGame/Temp/
+
+CardGame/UserSettings/
