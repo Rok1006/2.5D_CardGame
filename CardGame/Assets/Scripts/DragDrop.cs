@@ -21,17 +21,38 @@ public class DragDrop : MonoBehaviour
                     }
 
                     selectedObject = hit.collider.gameObject;
+                    selectedObject.GetComponent<Player>().isBeingDragged = true;
                     Cursor.visible = false;
                 }
             }
+
+           
             else
             {
-                Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(selectedObject.transform.position).z);
-                Vector3 worldPosition = Camera.main.ScreenToWorldPoint(position);
-                selectedObject.transform.position = new Vector3(worldPosition.x, 1.73f, worldPosition.z);
+                var player = selectedObject.GetComponent<Player>();
+                player.isBeingDragged = false;
+                if (selectedObject.GetComponent<Player>().isOnPlayerBoard == true)
+                {
+                    //Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(selectedObject.transform.position).z);
+                    //Vector3 worldPosition = Camera.main.ScreenToWorldPoint(position);
 
-                selectedObject = null;
-                Cursor.visible = true;
+                    Vector3 position = player.currentPlayerBoard.transform.position;
+                    selectedObject.transform.position = new Vector3(position.x, 1.73f, position.z);
+
+                    selectedObject = null;
+                    Cursor.visible = true;
+                    GameManager.ready++;
+                }
+                if (selectedObject.GetComponent<Player>().isOnPlayerBoard != true)
+                {
+                    //Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(selectedObject.transform.position).z);
+                    Vector3 position = player.currentPos;
+                    //Vector3 worldPosition = Camera.main.ScreenToWorldPoint(position);
+                    selectedObject.transform.position = new Vector3(position.x, 1.73f, position.z);
+
+                    selectedObject = null;
+                    Cursor.visible = true;
+                }
             }
         }
 
