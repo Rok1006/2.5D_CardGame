@@ -6,9 +6,15 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static int gameState;
-   
     public static int ready;
     public Button startButton;
+    public bool playerTurn = false;
+    public bool enemyTurn = true;
+
+
+    //Enemy Spanwer Variables
+    public GameObject[] spawnerLocation;
+
     void Start()
     {
         //GameState 0 = pre game, GameState 1 = after player places all of the player pieces...
@@ -24,12 +30,24 @@ public class GameManager : MonoBehaviour
         }
         // once all the player pieces are placed on board , change the gamestate to 1
 
+        if(gameState == 1 && enemyTurn == true)
+        {
+            var randomSpawner = Random.Range(0, 4);
+            Instantiate(spawnerLocation[randomSpawner].GetComponent<EnemyCardSpawner>().enemyCards[Random.Range(0, 1)], spawnerLocation[randomSpawner].transform.position, spawnerLocation[randomSpawner].transform.rotation);
+            enemyTurn = false;
+            playerTurn = true;
+
+        }
+        if(gameState == 1 && playerTurn == true)
+        {
+            //todo
+        }
 
     }
 
     public void StartGame()
     {
         gameState = 1;
-        Debug.Log("gamestate 1");
+
     }
 }
