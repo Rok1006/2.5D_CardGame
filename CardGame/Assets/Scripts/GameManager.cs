@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public Button startButton;
     public bool playerTurn = false;
     public bool enemyTurn = true;
+    public List<GameObject> cardsOnBoard = new List<GameObject>();
 
 
     //Enemy Spanwer Variables
@@ -33,7 +34,8 @@ public class GameManager : MonoBehaviour
         if(gameState == 1 && enemyTurn == true)
         {
             var randomSpawner = Random.Range(0, 4);
-            Instantiate(spawnerLocation[randomSpawner].GetComponent<EnemyCardSpawner>().enemyCards[Random.Range(0, 1)], spawnerLocation[randomSpawner].transform.position, spawnerLocation[randomSpawner].transform.rotation);
+            var spawnCard = Instantiate(spawnerLocation[randomSpawner].GetComponent<EnemyCardSpawner>().enemyCards[Random.Range(0, 1)], spawnerLocation[randomSpawner].transform.position, spawnerLocation[randomSpawner].transform.rotation) as GameObject;
+            cardsOnBoard.Add(spawnCard);
             enemyTurn = false;
             playerTurn = true;
 
@@ -41,7 +43,11 @@ public class GameManager : MonoBehaviour
         if(gameState == 1 && playerTurn == true)
         {
             //todo
+            Debug.Log("player turn here");
+            playerTurn = false;
+            
         }
+      
 
     }
 
