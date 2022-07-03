@@ -7,7 +7,7 @@ public class DragDrop : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && GameManager.gameState == 0)
         {
             if (selectedObject == null)
             {
@@ -37,19 +37,20 @@ public class DragDrop : MonoBehaviour
                     //Vector3 worldPosition = Camera.main.ScreenToWorldPoint(position);
 
                     Vector3 position = player.currentPlayerBoard.transform.position;
-                    selectedObject.transform.position = new Vector3(position.x, 1.73f, position.z);
+                    selectedObject.transform.position = new Vector3(position.x, 0.9f, position.z);
 
                     selectedObject = null;
                     Cursor.visible = true;
-                    GameManager.ready++;
+                    
                 }
                 if (selectedObject.GetComponent<Player>().isOnPlayerBoard != true)
                 {
                     //Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(selectedObject.transform.position).z);
                     Vector3 position = player.currentPos;
                     //Vector3 worldPosition = Camera.main.ScreenToWorldPoint(position);
-                    selectedObject.transform.position = new Vector3(position.x, 1.73f, position.z);
+                    selectedObject.transform.position = new Vector3(position.x, 0.9f, position.z);
 
+                  
                     selectedObject = null;
                     Cursor.visible = true;
                 }
@@ -69,6 +70,12 @@ public class DragDrop : MonoBehaviour
                     selectedObject.transform.rotation.eulerAngles.y + 90f,
                     selectedObject.transform.rotation.eulerAngles.z));
             }
+        }
+
+
+        if(GameManager.gameState == 1)
+        {
+
         }
     }
 

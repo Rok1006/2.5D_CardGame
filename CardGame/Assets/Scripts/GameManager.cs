@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class GameManager : MonoBehaviour
 {
     public static int gameState;
@@ -33,9 +34,23 @@ public class GameManager : MonoBehaviour
 
         if(gameState == 1 && enemyTurn == true)
         {
-            var randomSpawner = Random.Range(0, 4);
-            var spawnCard = Instantiate(spawnerLocation[randomSpawner].GetComponent<EnemyCardSpawner>().enemyCards[Random.Range(0, 1)], spawnerLocation[randomSpawner].transform.position, spawnerLocation[randomSpawner].transform.rotation) as GameObject;
-            cardsOnBoard.Add(spawnCard);
+            if(cardsOnBoard.Count != 0)
+            {
+               for(int i = 0; i < cardsOnBoard.Count; i++)
+                {
+                    cardsOnBoard[i].GetComponent<EnemyCard>().moveEnemyCardDown();
+                }
+            }
+            for (int i = 0; i < Random.Range(1, 4); i++)
+            {
+                var randomSpawner = Random.Range(0, 4);
+                var randomCard = Random.Range(0, spawnerLocation[randomSpawner].GetComponent<EnemyCardSpawner>().enemyCards.Length);
+                var cardTransform = spawnerLocation[randomSpawner].GetComponent<EnemyCardSpawner>().enemyCards[0].transform;
+                //var spawnCard = Instantiate(spawnerLocation[randomSpawner].GetComponent<EnemyCardSpawner>().enemyCards[Random.Range(0, 1)], spawnerLocation[randomSpawner].transform.position, spawnerLocation[randomSpawner].transform.rotation) as GameObject;
+                var spawnCard = Instantiate(spawnerLocation[randomSpawner].GetComponent<EnemyCardSpawner>().enemyCards[randomCard], spawnerLocation[randomSpawner].transform.position, cardTransform.rotation);
+                cardsOnBoard.Add(spawnCard);
+                Debug.Log("spawning cards");
+            }
             enemyTurn = false;
             playerTurn = true;
 
@@ -43,8 +58,12 @@ public class GameManager : MonoBehaviour
         if(gameState == 1 && playerTurn == true)
         {
             //todo
-            Debug.Log("player turn here");
-            playerTurn = false;
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                playerTurn = false;
+                enemyTurn = true;
+            }
+         
             
         }
       

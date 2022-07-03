@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     public int health;
     public int attack;
     public int defense;
+    public int ability;
 
 
     // Interaction between Player Variables with SphereCast
