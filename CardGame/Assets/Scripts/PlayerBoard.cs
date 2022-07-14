@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerBoard : MonoBehaviour
 {
-    public bool isOccupied;
+   
+    public GameObject whatIsOnThisBoard;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +22,7 @@ public class PlayerBoard : MonoBehaviour
     {
         if(GameManager.gameState == 0 && collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("touched");
+            
             GameManager.ready++;
         }
     }
@@ -30,8 +31,17 @@ public class PlayerBoard : MonoBehaviour
         if (GameManager.gameState == 0 && collision.gameObject.CompareTag("Player"))
         {
             GameManager.ready--;
+            whatIsOnThisBoard = null;   
         }
     }
- 
+    private void OnTriggerStay(Collider collision)
+    {
+        if (GameManager.gameState == 0 && collision.gameObject.CompareTag("Player"))
+        {
+           
+            whatIsOnThisBoard = collision.gameObject;
+        }
+    }
+
 
 }

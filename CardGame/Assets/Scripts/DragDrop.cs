@@ -3,7 +3,10 @@ using UnityEngine;
 public class DragDrop : MonoBehaviour
 {
 
-    private GameObject selectedObject;
+    public GameObject selectedObject;
+    public GameObject selectedObject2;
+    private Vector3 position1;
+    private Vector3 position2;
 
     private void Update()
     {
@@ -37,7 +40,7 @@ public class DragDrop : MonoBehaviour
                     //Vector3 worldPosition = Camera.main.ScreenToWorldPoint(position);
 
                     Vector3 position = player.currentPlayerBoard.transform.position;
-                    selectedObject.transform.position = new Vector3(position.x, 0.9f, position.z);
+                    selectedObject.transform.position = new Vector3(position.x, 0.131f, position.z);
 
                     selectedObject = null;
                     Cursor.visible = true;
@@ -48,7 +51,7 @@ public class DragDrop : MonoBehaviour
                     //Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(selectedObject.transform.position).z);
                     Vector3 position = player.currentPos;
                     //Vector3 worldPosition = Camera.main.ScreenToWorldPoint(position);
-                    selectedObject.transform.position = new Vector3(position.x, 0.9f, position.z);
+                    selectedObject.transform.position = new Vector3(position.x, 0.131f, position.z);
 
                   
                     selectedObject = null;
@@ -57,7 +60,7 @@ public class DragDrop : MonoBehaviour
             }
         }
 
-        if (selectedObject != null)
+        if (selectedObject != null && GameManager.gameState == 0)
         {
             Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(selectedObject.transform.position).z);
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(position);
@@ -71,12 +74,68 @@ public class DragDrop : MonoBehaviour
                     selectedObject.transform.rotation.eulerAngles.z));
             }
         }
-
-
-        if(GameManager.gameState == 1)
+        if (Input.GetMouseButtonDown(0) && GameManager.gameState == 1 && selectedObject != null && selectedObject2 != null)
         {
+            Vector3 temp = selectedObject.transform.position;
+            selectedObject.transform.position = selectedObject2.transform.position;
+            selectedObject2.transform.position = temp;
+            selectedObject = null;
+            selectedObject2 = null;
+
 
         }
+            if (Input.GetMouseButtonDown(0) && GameManager.gameState == 1 && selectedObject != null)
+        {
+
+
+            if (selectedObject2 == null)
+            {
+                RaycastHit hit = CastRay();
+
+                if (hit.collider != null)
+                {
+                    if (!hit.collider.CompareTag("Player"))
+                    {
+                        return;
+                    }
+
+                    selectedObject2 = hit.collider.gameObject;
+                    position2 = selectedObject2.transform.position;
+                    selectedObject2.GetComponent<Renderer>().material.color = Color.blue;
+                }
+
+            }
+
+
+
+        }
+
+        if (Input.GetMouseButtonDown(0) &&  GameManager.gameState == 1 && selectedObject == null)
+        {
+           
+            
+            if (selectedObject == null)
+            {
+                RaycastHit hit = CastRay();
+
+                if (hit.collider != null)
+                {
+                    if (!hit.collider.CompareTag("Player"))
+                    {
+                        return;
+                    }
+
+                    selectedObject = hit.collider.gameObject;
+                    position1 = selectedObject.transform.position;
+                    selectedObject.GetComponent<Renderer>().material.color = Color.green;
+                }
+                
+            }
+          
+
+           
+        }
+       
     }
 
     private RaycastHit CastRay()

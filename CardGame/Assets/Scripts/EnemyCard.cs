@@ -22,6 +22,11 @@ public class EnemyCard : MonoBehaviour
 
     public void moveEnemyCardDown()
     {
-        transform.DOMove(this.gameObject.transform.position - new Vector3(0,0,2.5f) , 2.5f);
+        transform.DOMove(this.gameObject.transform.position - new Vector3(0,0,2.5f) , 0.7f);
+    }
+
+    public void Attack()
+    {
+
     }
 }

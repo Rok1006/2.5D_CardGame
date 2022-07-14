@@ -5,10 +5,10 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     //Interaction with Drag and Drop Variables
-    [HideInInspector] public bool isBeingDragged;
-    [HideInInspector] public bool isOnPlayerBoard;
-    [HideInInspector] public GameObject currentPlayerBoard;
-    [HideInInspector] public Vector3 currentPos;
+    public bool isBeingDragged;
+    public bool isOnPlayerBoard;
+    public GameObject currentPlayerBoard;
+    public Vector3 currentPos;
 
 
 
@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
         if (isBeingDragged)
         {
             RaycastHit hit;
-            Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down) * 100, out hit);
+            Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward) * 100, out hit);
 
             if (hit.collider.CompareTag("PlayerBoard"))
             {
