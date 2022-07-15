@@ -189,18 +189,27 @@ public class GameManager : MonoBehaviour
             {
                 if(row3[i].GetComponent<EnemyBoard>().whatIsOnBoard == null)
                 {
+                    row2[i].GetComponent<EnemyBoard>().whatIsOnBoard.GetComponent<EnemyCard>().isMoving = true;
                     row2[i].GetComponent<EnemyBoard>().whatIsOnBoard.GetComponent<EnemyCard>().moveEnemyCardDown();
+                    
                 }
+                
             }
         }
         for (int i = 0; i < row2.Length; i++)
         {
             if (row1[i].GetComponent<EnemyBoard>().whatIsOnBoard != null)
             {
-                if (row2[i].GetComponent<EnemyBoard>().whatIsOnBoard == null)
+                if (row2[i].GetComponent<EnemyBoard>().whatIsOnBoard == null )
                 {
+                    row1[i].GetComponent<EnemyBoard>().whatIsOnBoard.GetComponent<EnemyCard>().isMoving = true;
                     row1[i].GetComponent<EnemyBoard>().whatIsOnBoard.GetComponent<EnemyCard>().moveEnemyCardDown();
+                    
                 }
+            }
+            if(row2[i].GetComponent<EnemyBoard>().whatIsOnBoard != null && row2[i].GetComponent<EnemyBoard>().whatIsOnBoard.GetComponent<EnemyCard>().isMoving == true)
+            {
+                row1[i].GetComponent<EnemyBoard>().whatIsOnBoard.GetComponent<EnemyCard>().moveEnemyCardDown();
             }
         }
     }

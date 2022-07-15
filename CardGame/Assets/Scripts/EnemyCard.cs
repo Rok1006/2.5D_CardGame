@@ -6,7 +6,7 @@ using DG.Tweening;
 public class EnemyCard : MonoBehaviour
 {
     public ScriptableObject Stats;
-
+    public bool isMoving = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +22,11 @@ public class EnemyCard : MonoBehaviour
 
     public void moveEnemyCardDown()
     {
-        transform.DOMove(this.gameObject.transform.position - new Vector3(0,0,2.5f) , 0.7f);
+        transform.DOMove(this.gameObject.transform.position - new Vector3(0, 0, 2.5f), 0.7f).OnComplete(() => {
+            isMoving = false;
+        });
+
+
     }
 
     public void Attack()
