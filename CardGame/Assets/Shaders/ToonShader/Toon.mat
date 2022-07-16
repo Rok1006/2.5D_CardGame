@@ -20,11 +20,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_7E2D298A:
-        m_Texture: {fileID: 2800000, guid: db8b799eb6b9a47c9b0ca860ce9b1cb7, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4a463bdc07c034bc8ba197bee53f416e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_E0AC4CA3:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: c4a830ae99fd6428b851b0f5cb39003e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -40,18 +40,18 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_151DC8A0: -0.8
+    - Vector1_151DC8A0: -9.8
     - Vector1_6047CCCC: 1.1
-    - Vector1_981346A1: 200
+    - Vector1_981346A1: 22
     m_Colors:
-    - Color_20D45144: {r: 25.688938, g: 0.80698234, b: 0.80698234, a: 0.41960785}
-    - Color_5986F6FF: {r: 13.283019, g: 13.283019, b: 13.283019, a: 1}
+    - Color_20D45144: {r: 0.921126, g: 0.71676016, b: 0.20421189, a: 0.41960785}
+    - Color_5986F6FF: {r: 0.56765074, g: 0.56765074, b: 0.56765074, a: 1}
     - Color_7c1e6aa6ddc641edb2378c5c5f75a9a9: {r: 1, g: 1, b: 1, a: 1}
-    - Color_9E1D8E83: {r: 1, g: 0.20669474, b: 0, a: 1}
-    - _L1_color: {r: 0.7809684, g: 0.7809684, b: 0.7809684, a: 0.49361768}
-    - _L1_dir: {r: 0.8763755, g: -0.23717785, b: -0.41918105, a: 0}
-    - _L2_color: {r: 0, g: 0, b: 0, a: 1}
-    - _L2_dir: {r: 0, g: 1, b: 0, a: 0}
+    - Color_9E1D8E83: {r: 1, g: 0.7944876, b: 0.740566, a: 1}
+    - _L1_color: {r: 0.697338, g: 0.5315966, b: 0.7463476, a: 0.7607004}
+    - _L1_dir: {r: 0.7536001, g: 0.657289, b: -0.00761972, a: 0}
+    - _L2_color: {r: 0.51345426, g: 0.37687638, b: 0.21555388, a: 0.45830616}
+    - _L2_dir: {r: 0.8791729, g: -0.095579214, b: 0.46681866, a: 0}
     - _L3_color: {r: 0, g: 0, b: 0, a: 1}
     - _L3_dir: {r: 0, g: 1, b: 0, a: 0}
     - _L4_color: {r: 0, g: 0, b: 0, a: 1}
