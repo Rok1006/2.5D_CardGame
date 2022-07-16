@@ -1603,6 +1603,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a52661de852a942969dab1b76739062d, type: 3}
+--- !u!1 &1651026760 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a52661de852a942969dab1b76739062d, type: 3}
+  m_PrefabInstance: {fileID: 1651026759}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1651026761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651026760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12f42549500eb4107b4492f9faac370d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: aac25d27103274579a3e82df6844fdf6, type: 2}
+  instanceMaterial: 0
+  meshCenter: {x: 0, y: 0, z: 0}
+  maxLights: 6
+  raycast: 1
+  raycastMask:
+    serializedVersion: 2
+    m_Bits: 1
+  raycastFadeSpeed: 10
 --- !u!1 &1795815452
 GameObject:
   m_ObjectHideFlags: 0
