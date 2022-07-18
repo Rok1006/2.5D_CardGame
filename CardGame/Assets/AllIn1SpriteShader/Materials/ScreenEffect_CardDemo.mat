@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BackGround
+  m_Name: ScreenEffect_CardDemo
   m_Shader: {fileID: 4800000, guid: a36b7719ff0465b42ab1407d67672c5f, type: 3}
-  m_ShaderKeywords: POSTERIZE_ON WAVEUV_ON
+  m_ShaderKeywords: FADE_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -40,8 +40,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FadeTex:
-        m_Texture: {fileID: 2800000, guid: 7aad8c583ef292e48b06af0d1f2fab97, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Texture: {fileID: 2800000, guid: 5d0f9766d1de44448a0612c4f3e96044, type: 3}
+        m_Scale: {x: -1, y: -1}
         m_Offset: {x: 0, y: 0}
     - _GlowTex:
         m_Texture: {fileID: 0}
@@ -69,7 +69,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Alpha: 1
-    - _AlphaCutoffValue: 0.25
+    - _AlphaCutoffValue: 0
     - _AlphaOutlineBlend: 1
     - _AlphaOutlineGlow: 5
     - _AlphaOutlineMinAlpha: 0
@@ -80,7 +80,7 @@ Material:
     - _BlurIntensity: 10
     - _Brightness: 0
     - _ChromAberrAlpha: 0.4
-    - _ChromAberrAmount: 0
+    - _ChromAberrAmount: 1
     - _ClipUvDown: 0
     - _ClipUvLeft: 0
     - _ClipUvRight: 0
@@ -96,16 +96,16 @@ Material:
     - _ColorSwapBlueLuminosity: 0.5
     - _ColorSwapGreenLuminosity: 0.5
     - _ColorSwapRedLuminosity: 0.5
-    - _Contrast: 0
+    - _Contrast: 1
     - _CullingOption: 0
     - _DistortAmount: 0.5
     - _DistortTexXSpeed: 5
     - _DistortTexYSpeed: 5
-    - _EditorDrawers: 7
-    - _FadeAmount: -0.1
-    - _FadeBurnGlow: 2
-    - _FadeBurnTransition: 0.075
-    - _FadeBurnWidth: 0.025
+    - _EditorDrawers: 6
+    - _FadeAmount: 0.534
+    - _FadeBurnGlow: 24
+    - _FadeBurnTransition: 0.26
+    - _FadeBurnWidth: 0
     - _FishEyeUvAmount: 0.35
     - _FlickerAlpha: 0
     - _FlickerFreq: 0.2
@@ -132,7 +132,7 @@ Material:
     - _HandDrawnAmount: 10
     - _HandDrawnSpeed: 5
     - _HitEffectBlend: 1
-    - _HitEffectGlow: 5
+    - _HitEffectGlow: 1
     - _HologramBlend: 1
     - _HologramMaxAlpha: 0.75
     - _HologramMinAlpha: 0.1
@@ -171,8 +171,8 @@ Material:
     - _OverlayGlow: 1
     - _PinchUvAmount: 0.35
     - _PixelateSize: 32
-    - _PosterizeGamma: 1.82
-    - _PosterizeNumColors: 32.7
+    - _PosterizeGamma: 0.75
+    - _PosterizeNumColors: 8
     - _PosterizeOutline: 0
     - _RandomSeed: 0
     - _RectSize: 1
@@ -186,21 +186,21 @@ Material:
     - _ShakeUvX: 1.5
     - _ShakeUvY: 1
     - _ShineGlow: 1
-    - _ShineLocation: 0.409
+    - _ShineLocation: 0.5
     - _ShineRotate: 0
     - _ShineWidth: 0.1
-    - _TextureScrollXSpeed: 1
+    - _TextureScrollXSpeed: 1.2
     - _TextureScrollYSpeed: 0
     - _TwistUvAmount: 1
     - _TwistUvPosX: 0.5
     - _TwistUvPosY: 0.5
     - _TwistUvRadius: 0.75
-    - _WaveAmount: 0.8
-    - _WaveSpeed: 1.5
+    - _WaveAmount: 7
+    - _WaveSpeed: 10
     - _WaveStrength: 7.5
-    - _WaveX: 0.587
-    - _WaveY: 0.971
-    - _ZTestMode: 8
+    - _WaveX: 0
+    - _WaveY: 0.5
+    - _ZTestMode: 4
     - _ZWrite: 0
     - _ZoomUvAmount: 0.5
     m_Colors:
@@ -215,7 +215,7 @@ Material:
     - _ColorSwapBlue: {r: 1, g: 1, b: 1, a: 1}
     - _ColorSwapGreen: {r: 1, g: 1, b: 1, a: 1}
     - _ColorSwapRed: {r: 1, g: 1, b: 1, a: 1}
-    - _FadeBurnColor: {r: 1, g: 1, b: 0, a: 1}
+    - _FadeBurnColor: {r: 1, g: 1, b: 0.6650944, a: 1}
     - _GlowColor: {r: 1, g: 1, b: 1, a: 1}
     - _GradBotLeftCol: {r: 0, g: 0, b: 1, a: 1}
     - _GradBotRightCol: {r: 0, g: 1, b: 0, a: 1}
