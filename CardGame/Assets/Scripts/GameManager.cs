@@ -62,8 +62,8 @@ public class GameManager : MonoBehaviour
         }
         if(gameState == 1 && playerTurn == true)
         {
-            //todo
-
+            //player move -> player attack -> end turn
+            gameState = 2;
             if (Input.GetKeyDown(KeyCode.A))
             {
                 playerTurn = false;
@@ -111,11 +111,12 @@ public class GameManager : MonoBehaviour
 
     private void EnemyAttack(List<GameObject> enemy)
     {
-        Debug.Log("attacking");
+        
         for(int i = 0; i < enemy.Count; i++)
         {
             enemy[i].GetComponent<EnemyCard>().Attack();
         }
+        enemy.Clear();
        
     }
 
@@ -144,7 +145,7 @@ public class GameManager : MonoBehaviour
                     //var spawnCard = Instantiate(spawnerLocation[randomSpawner].GetComponent<EnemyCardSpawner>().enemyCards[Random.Range(0, 1)], spawnerLocation[randomSpawner].transform.position, spawnerLocation[randomSpawner].transform.rotation) as GameObject;
                     var spawnCard = Instantiate(spawnerLocation[randomSpawner].GetComponent<EnemyCardSpawner>().enemyCards[randomCard], spawnerLocation[randomSpawner].transform.position + new Vector3(0,0.6f,0), cardTransform.rotation);
                     cardsOnBoard.Add(spawnCard);
-                    Debug.Log("spawning cards");
+                    
                 }
             //}
             
@@ -182,7 +183,7 @@ public class GameManager : MonoBehaviour
 
     public void MoveCard()
     {
-        Debug.Log("moving");
+        
         for(int i = 0; i < row2.Length; i++)
         {
             if(row2[i].GetComponent<EnemyBoard>().whatIsOnBoard != null)

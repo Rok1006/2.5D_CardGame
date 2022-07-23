@@ -74,8 +74,10 @@ public class DragDrop : MonoBehaviour
                     selectedObject.transform.rotation.eulerAngles.z));
             }
         }
-        if (Input.GetMouseButtonDown(0) && GameManager.gameState == 1 && selectedObject != null && selectedObject2 != null)
+       
+        if (Input.GetMouseButtonDown(0) && GameManager.gameState == 2 && selectedObject != null && selectedObject2 != null)
         {
+            
             Vector3 temp = selectedObject.transform.position;
             selectedObject.transform.position = selectedObject2.transform.position;
             selectedObject2.transform.position = temp;
@@ -84,12 +86,12 @@ public class DragDrop : MonoBehaviour
 
 
         }
-            if (Input.GetMouseButtonDown(0) && GameManager.gameState == 1 && selectedObject != null)
-        {
-
-
-            if (selectedObject2 == null)
+            if (Input.GetMouseButtonDown(0) && GameManager.gameState == 2 && selectedObject != null)
             {
+
+
+                if (selectedObject2 == null)
+                {
                 RaycastHit hit = CastRay();
 
                 if (hit.collider != null)
@@ -101,16 +103,16 @@ public class DragDrop : MonoBehaviour
 
                     selectedObject2 = hit.collider.gameObject;
                     position2 = selectedObject2.transform.position;
-                    selectedObject2.GetComponent<Renderer>().material.color = Color.blue;
+                    
                 }
+
+                }
+
+
 
             }
 
-
-
-        }
-
-        if (Input.GetMouseButtonDown(0) &&  GameManager.gameState == 1 && selectedObject == null)
+        if (Input.GetMouseButtonDown(0) &&  GameManager.gameState == 2 && selectedObject == null)
         {
            
             
@@ -127,7 +129,7 @@ public class DragDrop : MonoBehaviour
 
                     selectedObject = hit.collider.gameObject;
                     position1 = selectedObject.transform.position;
-                    selectedObject.GetComponent<Renderer>().material.color = Color.green;
+                    
                 }
                 
             }

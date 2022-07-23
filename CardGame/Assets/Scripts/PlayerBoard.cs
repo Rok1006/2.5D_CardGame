@@ -33,12 +33,23 @@ public class PlayerBoard : MonoBehaviour
             GameManager.ready--;
             whatIsOnThisBoard = null;   
         }
+        if (GameManager.gameState == 2 && collision.gameObject.CompareTag("Player"))
+        {
+           
+            whatIsOnThisBoard = null;
+        }
+
     }
     private void OnTriggerStay(Collider collision)
     {
         if (GameManager.gameState == 0 && collision.gameObject.CompareTag("Player"))
         {
            
+            whatIsOnThisBoard = collision.gameObject;
+        }
+        if (GameManager.gameState == 2 && collision.gameObject.CompareTag("Player"))
+        {
+
             whatIsOnThisBoard = collision.gameObject;
         }
     }
