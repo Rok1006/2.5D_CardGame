@@ -4,19 +4,16 @@ using UnityEngine;
 
 public class PlayerBoard : MonoBehaviour
 {
-   
+    //1 passive1 2 passive2 3 attack1 4 attack2
+    public int id;
+ 
     public GameObject whatIsOnThisBoard;
+   
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+  
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 
     private void OnTriggerEnter(Collider collision)
     {
@@ -40,6 +37,7 @@ public class PlayerBoard : MonoBehaviour
         }
 
     }
+  
     private void OnTriggerStay(Collider collision)
     {
         if (GameManager.gameState == 0 && collision.gameObject.CompareTag("Player"))
@@ -51,6 +49,7 @@ public class PlayerBoard : MonoBehaviour
         {
 
             whatIsOnThisBoard = collision.gameObject;
+       
         }
     }
 

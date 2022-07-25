@@ -6,11 +6,14 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject[] players;
+    public GameObject[] playerBoard;
     public static int gameState;
     public static int ready;
     public Button startButton;
-    public bool playerTurn = false;
-    public bool enemyTurn = true;
+    public Button playerTurnButton;
+    public static bool playerTurn = false;
+    public static bool enemyTurn = true;
     public List<GameObject> cardsOnBoard = new List<GameObject>();
     public GameObject[] row1, row2, row3;
     public bool canEnemyAttack;
@@ -32,7 +35,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(ready == 4)
+        if(ready == 4 && gameState == 0)
         {
             startButton.gameObject.SetActive(true);
         }
@@ -64,6 +67,8 @@ public class GameManager : MonoBehaviour
         {
             //player move -> player attack -> end turn
             gameState = 2;
+            Debug.Log(gameState);
+            playerTurnButton.gameObject.SetActive(true);
             if (Input.GetKeyDown(KeyCode.A))
             {
                 playerTurn = false;
@@ -72,6 +77,7 @@ public class GameManager : MonoBehaviour
          
             
         }
+       
       
 
     }
@@ -79,6 +85,14 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         gameState = 1;
+        startButton.gameObject.SetActive(false);
+
+    }
+    public void PlayerTurnButton()
+    {
+        gameState = 3;
+        playerTurnButton.gameObject.SetActive(false);
+        Debug.Log(gameState);
 
     }
     private List<GameObject> CanEnemyAttack()
@@ -119,7 +133,15 @@ public class GameManager : MonoBehaviour
         enemy.Clear();
        
     }
-
+    public List<GameObject> ReturnPlayer()
+    {
+        List<GameObject> players = new List<GameObject>();
+        for(int i = 0; i < 4; i++)
+        {
+            players.Add(playerBoard[i].GetComponent<PlayerBoard>().whatIsOnThisBoard);
+        }
+        return players;
+    }
     private void SpawnCard()
     {
        // CheckEmptyRow();
