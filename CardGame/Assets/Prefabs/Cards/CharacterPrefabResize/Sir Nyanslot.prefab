@@ -390,7 +390,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 559250841
   m_SortingLayer: 1
-  m_SortingOrder: 3
+  m_SortingOrder: 4
   m_Sprite: {fileID: 7839472567634266479, guid: 16eed0aedc73b4fe1bccce2a389636f3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -657,7 +657,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 559250841
   m_SortingLayer: 1
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 2495864320845663737, guid: 74c04af2d913048849bd4e47476bf50e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -694,9 +694,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3518642455853096810}
+  - component: {fileID: 888655080}
+  - component: {fileID: 888655079}
+  - component: {fileID: 888655081}
   m_Layer: 0
   m_Name: Sir Nyanslot
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -718,6 +721,60 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!54 &888655080
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3518642455853096811}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &888655079
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3518642455853096811}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.813489, y: 7.1807184, z: 1}
+  m_Center: {x: -0.033522844, y: 0.40999013, z: 1.070385e-15}
+--- !u!114 &888655081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3518642455853096811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebbe3da98c86e96419f34b51b6945f1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBeingDragged: 0
+  isOnPlayerBoard: 0
+  currentPlayerBoard: {fileID: 0}
+  currentPos: {x: 0, y: 0, z: 0}
+  health: 0
+  attack: 0
+  defense: 0
+  ability: 0
+  sphereRadius: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  gameManager: {fileID: 0}
 --- !u!1 &3518642455962872530
 GameObject:
   m_ObjectHideFlags: 0
@@ -1220,7 +1277,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 559250841
   m_SortingLayer: 1
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: -2841824987865295149, guid: 16eed0aedc73b4fe1bccce2a389636f3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1500,7 +1557,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 559250841
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: -1055838944753552286, guid: 16eed0aedc73b4fe1bccce2a389636f3, type: 3}
   m_Color: {r: 0.7647059, g: 0.9254902, b: 0.8053419, a: 1}
   m_FlipX: 0
