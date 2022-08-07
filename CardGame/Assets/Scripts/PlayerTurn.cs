@@ -21,10 +21,7 @@ public class PlayerTurn : MonoBehaviour
             PlayerSkill(playerList);
 
 
-            GameManager.gameState = 1;
-            GameManager.playerTurn = false;
-            GameManager.enemyTurn = true;
-            Debug.Log(GameManager.gameState);
+           
 
         }
     }
@@ -32,11 +29,19 @@ public class PlayerTurn : MonoBehaviour
 
     private void PlayerSkill(List<GameObject> list)
     {
+
         for (int i = 0; i < list.Count; i++)
         {
             var player = list[i].GetComponent<PlayerSkill>();
+            player.UpdatePlayerList(playerList);
             player.Attack();
             player.Passive();
         }
+
+        GameManager.gameState = 1;
+        GameManager.playerTurn = false;
+        GameManager.enemyTurn = true;
+        Debug.Log(GameManager.gameState);
+        playerList.Clear();
     }
 }

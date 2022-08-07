@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
         if (isBeingDragged)
         {
             RaycastHit hit;
-            Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward) * 100, out hit);
+            Physics.Raycast(transform.position, transform.TransformDirection(Vector3.up * -1) * 100, out hit);
 
             if (hit.collider.CompareTag("PlayerBoard"))
             {
@@ -67,5 +67,20 @@ public class Player : MonoBehaviour
                 //todo
             }
         }
+    }
+
+    public void AddHealth(int getHealth)
+    {
+        this.health = health + getHealth;
+    }
+
+    public void AddDefense(int getDefense)
+    {
+        this.defense = defense + getDefense;
+    }
+
+    public void AddAttack(int getAttack)
+    {
+        this.attack = attack + getAttack;
     }
 }

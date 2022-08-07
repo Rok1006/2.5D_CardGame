@@ -31,7 +31,7 @@ public class EnemyCard : MonoBehaviour
             isMoving = false;
         });
         */
-        isMoving = false;
+       
 
     }
 

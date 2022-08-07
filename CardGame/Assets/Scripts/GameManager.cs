@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 
 public class GameManager : MonoBehaviour
@@ -20,11 +21,13 @@ public class GameManager : MonoBehaviour
     public List<GameObject> enemy = new List<GameObject>();
 
     private bool enemyAttackDone = false;
+    private int counter = 4;
 
     public bool isRow3Empty;
     public bool isRow2Empty;
     //Enemy Spanwer Variables
-    public GameObject[] spawnerLocation;
+    public List<GameObject> referenceSpawner = new List<GameObject>();
+    public List<GameObject> spawnerLoc = new List<GameObject>();
 
     void Start()
     {
@@ -35,18 +38,19 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(ready == 4 && gameState == 0)
+        if (ready == 4 && gameState == 0)
         {
             startButton.gameObject.SetActive(true);
         }
         // once all the player pieces are placed on board , change the gamestate to 1
 
-        if(gameState == 1 && enemyTurn == true)
+        if (gameState == 1 && enemyTurn == true)
         {
             //enemy attack -> advance -> spawn
             CanEnemyAttack();
             if (canEnemyAttack == true)
             {
+                Debug.Log("can attack");
                 canEnemyAttack = false;
                 EnemyAttack(enemy);
                 MoveCard();
@@ -55,15 +59,16 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+                Debug.Log("cant attack");
                 MoveCard();
                 SpawnCard();
             }
-           
+
             enemyTurn = false;
             playerTurn = true;
 
         }
-        if(gameState == 1 && playerTurn == true)
+        if (gameState == 1 && playerTurn == true)
         {
             //player move -> player attack -> end turn
             gameState = 2;
@@ -74,11 +79,11 @@ public class GameManager : MonoBehaviour
                 playerTurn = false;
                 enemyTurn = true;
             }
-         
-            
+
+
         }
-       
-      
+
+
 
     }
 
@@ -98,7 +103,7 @@ public class GameManager : MonoBehaviour
     private List<GameObject> CanEnemyAttack()
     {
         var counter = 0;
-        
+
         for (int i = 0; i < row3.Length; i++)
         {
             if (row3[i].GetComponent<EnemyBoard>().whatIsOnBoard == null)
@@ -111,32 +116,32 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if(counter == 5)
+        if (counter == 5)
         {
             canEnemyAttack = false;
         }
         else
         {
             canEnemyAttack = true;
-           
+
         }
         return enemy;
     }
 
     private void EnemyAttack(List<GameObject> enemy)
     {
-        
-        for(int i = 0; i < enemy.Count; i++)
+
+        for (int i = 0; i < enemy.Count; i++)
         {
             enemy[i].GetComponent<EnemyCard>().Attack();
         }
         enemy.Clear();
-       
+
     }
     public List<GameObject> ReturnPlayer()
     {
         List<GameObject> players = new List<GameObject>();
-        for(int i = 0; i < 4; i++)
+        for (int i = 0; i < 4; i++)
         {
             players.Add(playerBoard[i].GetComponent<PlayerBoard>().whatIsOnThisBoard);
         }
@@ -144,47 +149,45 @@ public class GameManager : MonoBehaviour
     }
     private void SpawnCard()
     {
-       // CheckEmptyRow();
-       // if(isRow3Empty == true)
-      //  {
-         //   Debug.Log("empty1");
-        //    if(isRow2Empty == true)
-         //   {
-           //     Debug.Log("empty2");
-                /*if (cardsOnBoard.Count != 0)
-                {
-                    for (int i = 0; i < cardsOnBoard.Count; i++)
-                    {
-                        cardsOnBoard[i].GetComponent<EnemyCard>().moveEnemyCardDown();
-                    }
-                }
-                */
-                for (int i = 0; i < Random.Range(1, 4); i++)
-                {
-                    var randomSpawner = Random.Range(0, 4);
-                    var randomCard = Random.Range(0, spawnerLocation[randomSpawner].GetComponent<EnemyCardSpawner>().enemyCards.Length);
-                    var cardTransform = spawnerLocation[randomSpawner].GetComponent<EnemyCardSpawner>().enemyCards[0].transform;
-                    //var spawnCard = Instantiate(spawnerLocation[randomSpawner].GetComponent<EnemyCardSpawner>().enemyCards[Random.Range(0, 1)], spawnerLocation[randomSpawner].transform.position, spawnerLocation[randomSpawner].transform.rotation) as GameObject;
-                    var spawnCard = Instantiate(spawnerLocation[randomSpawner].GetComponent<EnemyCardSpawner>().enemyCards[randomCard], spawnerLocation[randomSpawner].transform.position + new Vector3(0,0.6f,0), cardTransform.rotation);
-                    cardsOnBoard.Add(spawnCard);
-                    
-                }
-            //}
-            
-        //}
+        for (int i = 0; i < Random.Range(1, 4); i++)
+        {
+            var randomSpawner = Random.Range(0, counter);
+            var randomCard = Random.Range(0, spawnerLoc[randomSpawner].GetComponent<EnemyCardSpawner>().enemyCards.Length);
+            var cardTransform = spawnerLoc[randomSpawner].GetComponent<EnemyCardSpawner>().enemyCards[0].transform;
+            //var spawnCard = Instantiate(spawnerLocation[randomSpawner].GetComponent<EnemyCardSpawner>().enemyCards[Random.Range(0, 1)], spawnerLocation[randomSpawner].transform.position, spawnerLocation[randomSpawner].transform.rotation) as GameObject;
+            if (spawnerLoc[randomSpawner].GetComponent<EnemyBoard>().whatIsOnBoard == null)
+            {
+                var spawnCard = Instantiate(spawnerLoc[randomSpawner].GetComponent<EnemyCardSpawner>().enemyCards[randomCard], spawnerLoc[randomSpawner].transform.position + new Vector3(0, 1.6f, 0), cardTransform.rotation);
+                cardsOnBoard.Add(spawnCard);
+                spawnerLoc.RemoveAt(randomSpawner);
+                counter--;
+            }
+            if(spawnerLoc[randomSpawner].GetComponent<EnemyBoard>().whatIsOnBoard != null)
+            {
+                spawnerLoc.RemoveAt(randomSpawner);
+                counter--;
+            }
+
+
+
+
+        }
+        counter = 4;
+        spawnerLoc = referenceSpawner.ToList();
+
     }
 
     private void CheckEmptyRow()
     {
         var counter = 0;
-        for(int i = 0; i < row3.Length; i++)
+        for (int i = 0; i < row3.Length; i++)
         {
-            if(row3[i].GetComponent<EnemyBoard>().whatIsOnBoard == null)
+            if (row3[i].GetComponent<EnemyBoard>().whatIsOnBoard == null)
             {
                 counter++;
             }
         }
-        if(counter == 5)
+        if (counter == 5)
         {
             isRow3Empty = true;
         }
@@ -199,41 +202,51 @@ public class GameManager : MonoBehaviour
         if (counter2 == 5)
         {
             isRow2Empty = true;
-            
+
         }
     }
 
     public void MoveCard()
     {
-        
-        for(int i = 0; i < row2.Length; i++)
+
+
+        for (int i = 0; i < row2.Length; i++)
         {
-            if(row2[i].GetComponent<EnemyBoard>().whatIsOnBoard != null)
+            if (row2[i].GetComponent<EnemyBoard>().whatIsOnBoard != null)
             {
-                if(row3[i].GetComponent<EnemyBoard>().whatIsOnBoard == null)
+                if (row3[i].GetComponent<EnemyBoard>().whatIsOnBoard == null)
                 {
                     row2[i].GetComponent<EnemyBoard>().whatIsOnBoard.GetComponent<EnemyCard>().isMoving = true;
                     row2[i].GetComponent<EnemyBoard>().whatIsOnBoard.GetComponent<EnemyCard>().moveEnemyCardDown();
-                    
+
                 }
-                
+
             }
         }
-        for (int i = 0; i < row2.Length; i++)
+        for (int i = 0; i < row1.Length; i++)
         {
             if (row1[i].GetComponent<EnemyBoard>().whatIsOnBoard != null)
             {
-                if (row2[i].GetComponent<EnemyBoard>().whatIsOnBoard == null )
+                if (row2[i].GetComponent<EnemyBoard>().whatIsOnBoard == null)
                 {
-                    row1[i].GetComponent<EnemyBoard>().whatIsOnBoard.GetComponent<EnemyCard>().isMoving = true;
+
+                    //row1[i].GetComponent<EnemyBoard>().whatIsOnBoard.GetComponent<EnemyCard>().isMoving = true;
                     row1[i].GetComponent<EnemyBoard>().whatIsOnBoard.GetComponent<EnemyCard>().moveEnemyCardDown();
-                    
+
                 }
             }
-            if(row2[i].GetComponent<EnemyBoard>().whatIsOnBoard != null && row2[i].GetComponent<EnemyBoard>().whatIsOnBoard.GetComponent<EnemyCard>().isMoving == true)
-            {
-                row1[i].GetComponent<EnemyBoard>().whatIsOnBoard.GetComponent<EnemyCard>().moveEnemyCardDown();
-            }
+            /* if (row2[i].GetComponent<EnemyBoard>().whatIsOnBoard != null && row2[i].GetComponent<EnemyBoard>().whatIsOnBoard.GetComponent<EnemyCard>().isMoving == true)
+             {
+
+                 row1[i].GetComponent<EnemyBoard>().whatIsOnBoard.GetComponent<EnemyCard>().moveEnemyCardDown();
+                 row3[i].GetComponent<EnemyBoard>().whatIsOnBoard.GetComponent<EnemyCard>().isMoving = false;
+             }
+            */
+
         }
+
+
+
     }
+
 }

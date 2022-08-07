@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerSkill : MonoBehaviour
 {
+    public List<GameObject> playerList = new List<GameObject>();
+    public Player player;
     public string name;
     public bool isOnPassive1;
     public bool isOnPassive2;
@@ -11,47 +13,86 @@ public class PlayerSkill : MonoBehaviour
     public bool isOnAttack1;
     public bool isOnAttack2;
     public GameObject[] row3;
-    public float health;
-    public float attackPoint;
+
+
+    private int NyanslotCounter = 0;
     // Start is called before the first frame update
     void Start()
     {
-        //initialize base stats
+        player = gameObject.GetComponent<Player>();
+        
     }
 
     // Update is called once per frame
     public void Attack()
-    { /*
-        if(isOnAttack1 == true)
+    {
+        if (isOnAttack1 == true)
         {
-            for(int i = 0; i < 3; i++)
+
+            if(name == "Nyanslot")
             {
-                row3[i].GetComponent<EnemyBoard>().whatIsOnBoard.GetComponent<EnemyCard>().health -= attackPoint;
+                if(NyanslotCounter <= 2)
+                {
+                    
+                    NyanslotCounter++;
+                }
             }
         }
-        if (isOnAttack2 == true)
-        {
-            for (int i = 1; i < 4; i++)
-            {
-                row3[i].GetComponent<EnemyBoard>().whatIsOnBoard.GetComponent<EnemyCard>().health -= attackPoint;
-            }
-        }
-        */
-        Debug.Log("attack");
     }
 
     public void Passive()
     {
         if (isOnPassive1 == true)
         {
-            health = 5;
-            attackPoint = 2;
+            if(name == "Nyanslot")
+            {
+                player.AddDefense(5);
+            }
+            if(name == "BlowBerry")
+            {
+                player.AddAttack(1);
+                player.AddHealth(5);
+            }
+            if(name == "Pate")
+            {
+                playerList[2].GetComponent<Player>().health += Random.Range(5, 11);
+                playerList[3].GetComponent<Player>().health += Random.Range(1, 6);
+            }
+            if (name == "Zwei")
+            {
+                Debug.Log("vision range + 1");
+            }
         }
         if (isOnPassive2 == true)
         {
-            health = 5;
-            attackPoint = 2;
+            if (name == "Nyanslot")
+            {
+                player.AddDefense(5);
+            }
+            if (name == "BlowBerry")
+            {
+                player.AddAttack(1);
+                player.AddHealth(5);
+            }
+            if (name == "Pate")
+            {
+                playerList[2].GetComponent<Player>().health += Random.Range(5, 11);
+                playerList[3].GetComponent<Player>().health += Random.Range(1, 6);
+            }
+            if (name == "Zwei")
+            {
+                Debug.Log("vision range + 1");
+            }
         }
+    }
+
+    public void UpdatePlayerList(List<GameObject> newPlayerList)
+    {
+        if(playerList != null)
+        {
+            playerList.Clear();
+        }
+        playerList = newPlayerList;
     }
 
     private void OnTriggerEnter(Collider other)
