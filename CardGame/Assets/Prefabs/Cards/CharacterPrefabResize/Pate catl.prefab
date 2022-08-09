@@ -251,7 +251,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 559250841
   m_SortingLayer: 1
-  m_SortingOrder: 3
+  m_SortingOrder: 4
   m_Sprite: {fileID: 7839472567634266479, guid: 16eed0aedc73b4fe1bccce2a389636f3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -293,7 +293,7 @@ Transform:
   m_LocalScale: {x: 4.9554467, y: 7.465524, z: 1}
   m_Children: []
   m_Father: {fileID: 2035297432779605072}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2035297431977919773
 SpriteRenderer:
@@ -400,7 +400,7 @@ Transform:
   - {fileID: 2035297432337054956}
   - {fileID: 2035297433055098300}
   m_Father: {fileID: 2035297432779605072}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2035297432337054946
 GameObject:
@@ -831,6 +831,8 @@ GameObject:
   - component: {fileID: 178273014}
   - component: {fileID: 178273013}
   - component: {fileID: 178273015}
+  - component: {fileID: 6663599122300588611}
+  - component: {fileID: 364699757}
   m_Layer: 0
   m_Name: Pate catl
   m_TagString: Player
@@ -849,6 +851,7 @@ Transform:
   m_LocalPosition: {x: -5.6577954, y: 2.93, z: -0.91226864}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
+  - {fileID: 4331935077630324122}
   - {fileID: 2035297431977919763}
   - {fileID: 2035297432022310343}
   - {fileID: 2035297433217821692}
@@ -909,6 +912,58 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   gameManager: {fileID: 0}
+--- !u!114 &6663599122300588611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035297432779605073}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 712ce25c54b4e431393de984aec3de05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: 0
+  foxGroundPt: {fileID: 0}
+  foxMagicCircle: {fileID: 1491536778875062093, guid: 96eb90ee0997b408f9758bb348930319, type: 3}
+  otherMagicCircle: {fileID: 250664975036291911, guid: 2df9ce0fff181471ca1bc88a40633b75, type: 3}
+  enemyMagicCircle: {fileID: 731993673338514391, guid: 9c5ffeeb7e7d04faba2de51e31c1d565, type: 3}
+  healPt: {fileID: 6262216904429108979, guid: 37aaeeca4f04549e9aba4a4c04897e07, type: 3}
+  theEnemy: {fileID: 0}
+  target: {fileID: 0}
+  playerCharacter:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  enemy:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  gdPt: []
+  effectPos: 0
+  force: 12
+  shootSpeed: 12
+--- !u!114 &364699757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035297432779605073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3134caee3e5142446a0fb9106148412e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerList: []
+  player: {fileID: 0}
+  name: Pate
+  isOnPassive1: 0
+  isOnPassive2: 0
+  isOnAttack1: 0
+  isOnAttack2: 0
+  row3: []
 --- !u!1 &2035297432844354171
 GameObject:
   m_ObjectHideFlags: 0
@@ -1320,7 +1375,7 @@ Transform:
   - {fileID: 2035297431634574874}
   - {fileID: 2035297433322499215}
   m_Father: {fileID: 2035297432779605072}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2035297433322499212
 GameObject:
@@ -1759,3 +1814,33 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &8568100423444024279
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4331935077630324122}
+  m_Layer: 0
+  m_Name: GroundPt
+  m_TagString: Untagged
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4331935077630324122
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8568100423444024279}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -3.68, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2035297432779605072}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

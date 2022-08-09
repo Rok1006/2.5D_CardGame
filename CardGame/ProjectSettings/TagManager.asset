@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerBoard
   - EnemyCard
+  - BombGuy
   layers:
   - Default
   - TransparentFX
