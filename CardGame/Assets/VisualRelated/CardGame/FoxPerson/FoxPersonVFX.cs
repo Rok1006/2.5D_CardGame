@@ -13,6 +13,9 @@ public class FoxPersonVFX : MonoBehaviour
 {
     public enum AbilityState{MAIN, PASSIVE};
     public AbilityState currentState = AbilityState.MAIN;
+    [Header("Detect")]
+    public List<GameObject> enemy = new List<GameObject>();
+    public List<GameObject> gdPt = new List<GameObject>();
     [Header("OBJ")]
     public GameObject foxGroundPt; //plz create a ground pt for all cards
     [SerializeField]private GameObject foxMagicCircle;
@@ -23,8 +26,6 @@ public class FoxPersonVFX : MonoBehaviour
     public GameObject target; 
     // public GameObject theCharacter; //passive
     public List<GameObject> playerCharacter = new List<GameObject>();
-    public List<GameObject> enemy = new List<GameObject>();
-    public List<GameObject> gdPt = new List<GameObject>();
 
     [Header("Values")]
     [SerializeField]private int effectPos = 0; //0

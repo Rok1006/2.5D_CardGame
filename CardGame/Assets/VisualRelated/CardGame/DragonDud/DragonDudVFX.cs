@@ -17,12 +17,13 @@ public class DragonDudVFX : MonoBehaviour
 {
     public enum AbilityState{CATMODE, DRAGONMODE, PASSIVE};
     public AbilityState currentState = AbilityState.CATMODE;
-    [Header("OBJ")]
-   // public GameObject theSlash;
-    public GameObject center; //the pos in front of player card
+    [Header("Detect")]
     public GameObject leftEnemy;
     public GameObject rightEnemy;
     public GameObject frontEnemy;
+    [Header("OBJ")]
+   // public GameObject theSlash;
+    public GameObject center; //the pos in front of player card
     public GameObject singleSlashPrefab; //assign the prefab
     public GameObject doubleSlashPrefab; //assign the prefab
     public GameObject Tail;

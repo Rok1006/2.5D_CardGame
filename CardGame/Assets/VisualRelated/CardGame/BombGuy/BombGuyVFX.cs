@@ -17,15 +17,16 @@ public class BombGuyVFX : MonoBehaviour
 {
     public enum AbilityState{MAIN, PASSIVE};
     public AbilityState currentState = AbilityState.MAIN;
+    [Header("Detect")]
+    public List<GameObject> enemy = new List<GameObject>();
+    public List<GameObject> berry = new List<GameObject>();
+    public List<GameObject> enemySparks = new List<GameObject>();
     [Header("OBJ")]
     public GameObject smallBerry;  //prefab
     public GameObject bigBerry;  //prefab
     public GameObject mainEmitPt;
     public GameObject passiveEmitPt;
     public GameObject trail;
-    public List<GameObject> enemy = new List<GameObject>();
-    public List<GameObject> berry = new List<GameObject>();
-    public List<GameObject> enemySparks = new List<GameObject>();
 
     private GameObject enemySparks1;
     private GameObject enemySparks2;

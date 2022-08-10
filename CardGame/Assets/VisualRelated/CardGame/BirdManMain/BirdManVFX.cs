@@ -17,11 +17,12 @@ public class BirdManVFX : MonoBehaviour
 {
     public enum AbilityState{MAIN, PASSIVE};
     public AbilityState currentState = AbilityState.MAIN;
+    [Header("Detect")]
+    public GameObject firstEnemy;
+    public GameObject secondEnemy;
     [Header("OBJ")]
     public GameObject theBird; //Another object prefab 
     public GameObject top; //the pos on top of player card
-    public GameObject firstEnemy;
-    public GameObject secondEnemy;
     public GameObject bird; //the bird mesh inside theBird
     public GameObject buildUP; //prefab
 
