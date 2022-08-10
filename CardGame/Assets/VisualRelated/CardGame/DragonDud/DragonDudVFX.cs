@@ -18,7 +18,7 @@ public class DragonDudVFX : MonoBehaviour
     public enum AbilityState{CATMODE, DRAGONMODE, PASSIVE};
     public AbilityState currentState = AbilityState.CATMODE;
     [Header("OBJ")]
-    public GameObject theSlash;
+   // public GameObject theSlash;
     public GameObject center; //the pos in front of player card
     public GameObject leftEnemy;
     public GameObject rightEnemy;
