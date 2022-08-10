@@ -216,8 +216,8 @@ public class GameManager : MonoBehaviour
             {
                 if (row3[i].GetComponent<EnemyBoard>().whatIsOnBoard == null)
                 {
-                    row2[i].GetComponent<EnemyBoard>().whatIsOnBoard.GetComponent<EnemyCard>().isMoving = true;
-                    row2[i].GetComponent<EnemyBoard>().whatIsOnBoard.GetComponent<EnemyCard>().moveEnemyCardDown();
+                    row2[i].GetComponent<EnemyBoard>().whatIsOnBoard.GetComponent<CardSpawner>().isMoving = true;
+                    row2[i].GetComponent<EnemyBoard>().whatIsOnBoard.GetComponent<CardSpawner>().moveEnemyCardDown();
 
                 }
 
@@ -231,7 +231,7 @@ public class GameManager : MonoBehaviour
                 {
 
                     //row1[i].GetComponent<EnemyBoard>().whatIsOnBoard.GetComponent<EnemyCard>().isMoving = true;
-                    row1[i].GetComponent<EnemyBoard>().whatIsOnBoard.GetComponent<EnemyCard>().moveEnemyCardDown();
+                    row1[i].GetComponent<EnemyBoard>().whatIsOnBoard.GetComponent<CardSpawner>().moveEnemyCardDown();
 
                 }
             }
