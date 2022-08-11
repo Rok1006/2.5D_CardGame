@@ -21,6 +21,7 @@ public class DragonDudVFX : MonoBehaviour
     public GameObject leftEnemy;
     public GameObject rightEnemy;
     public GameObject frontEnemy;
+    public List<GameObject> slash = new List<GameObject>();
     [Header("OBJ")]
    // public GameObject theSlash;
     public GameObject center; //the pos in front of player card
@@ -32,7 +33,6 @@ public class DragonDudVFX : MonoBehaviour
     Animator tailAnim;
 
     int index = 0;
-    public List<GameObject> slash = new List<GameObject>();
     private GameObject previousTarget;
     private GameObject currentTarget;
     bool move = false;
