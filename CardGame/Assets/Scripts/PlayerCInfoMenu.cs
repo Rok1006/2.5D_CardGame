@@ -43,12 +43,12 @@ public class PlayerCInfoMenu : MonoBehaviour
         for(int i = 0;i<pos.Length;i++){
                 if(scroll_pos < pos[i] + (distance/2) && scroll_pos > pos[i] - (distance/2)){
                     transform.GetChild(i).localScale = Vector2.Lerp(transform.GetChild(i).localScale, new Vector2(1.826994f,3.954711f),0.1f);
-                    transform.GetChild(i).transform.GetChild(2).gameObject.SetActive(false); //the black cover on top
+                    transform.GetChild(i).transform.GetChild(3).gameObject.SetActive(false); //the black cover on top
                     //NOcover
                     for(int a = 0;a < pos.Length; a++){
                         if(a!=i){ //if not the one viewing
                             transform.GetChild(a).localScale = Vector2.Lerp(transform.GetChild(a).localScale, new Vector2(1.498135f,3.242863f),0.1f);
-                            transform.GetChild(a).transform.GetChild(2).gameObject.SetActive(true); //the black cover on top
+                            transform.GetChild(a).transform.GetChild(3).gameObject.SetActive(true); //the black cover on top
                         }
                     }
                 }

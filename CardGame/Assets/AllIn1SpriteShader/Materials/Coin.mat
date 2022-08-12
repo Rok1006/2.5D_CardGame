@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Icon
+  m_Name: Coin
   m_Shader: {fileID: 4800000, guid: a36b7719ff0465b42ab1407d67672c5f, type: 3}
-  m_ShaderKeywords: DOODLE_ON POSTERIZE_ON WAVEUV_ON
+  m_ShaderKeywords: POSTERIZE_ON WAVEUV_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -78,7 +78,7 @@ Material:
     - _BillboardY: 0
     - _BlurHD: 0
     - _BlurIntensity: 10
-    - _Brightness: -1
+    - _Brightness: 0
     - _ChromAberrAlpha: 0.4
     - _ChromAberrAmount: 1
     - _ClipUvDown: 0
@@ -96,12 +96,12 @@ Material:
     - _ColorSwapBlueLuminosity: 0.5
     - _ColorSwapGreenLuminosity: 0.5
     - _ColorSwapRedLuminosity: 0.5
-    - _Contrast: 2.29
+    - _Contrast: 1
     - _CullingOption: 0
     - _DistortAmount: 0.5
     - _DistortTexXSpeed: 5
     - _DistortTexYSpeed: 5
-    - _EditorDrawers: 7
+    - _EditorDrawers: 6
     - _FadeAmount: -0.1
     - _FadeBurnGlow: 2
     - _FadeBurnTransition: 0.075
@@ -129,14 +129,14 @@ Material:
     - _GreyscaleBlend: 1
     - _GreyscaleLuminosity: 0
     - _GreyscaleOutline: 0
-    - _HandDrawnAmount: 2.1
-    - _HandDrawnSpeed: 4.02
+    - _HandDrawnAmount: 10
+    - _HandDrawnSpeed: 5
     - _HitEffectBlend: 1
     - _HitEffectGlow: 5
-    - _HologramBlend: 0.043
-    - _HologramMaxAlpha: 0
-    - _HologramMinAlpha: 0
-    - _HologramStripesAmount: 0.011
+    - _HologramBlend: 1
+    - _HologramMaxAlpha: 0.75
+    - _HologramMinAlpha: 0.1
+    - _HologramStripesAmount: 0.1
     - _HologramStripesSpeed: 4.5
     - _HologramUnmodAmount: 0
     - _HsvBright: 1
@@ -153,7 +153,7 @@ Material:
     - _MotionBlurDist: 1.25
     - _MyDstMode: 10
     - _MySrcMode: 5
-    - _NegativeAmount: 0
+    - _NegativeAmount: 1
     - _OffsetUvX: 0
     - _OffsetUvY: 0
     - _OnlyInnerOutline: 0
@@ -171,22 +171,22 @@ Material:
     - _OverlayGlow: 1
     - _PinchUvAmount: 0.35
     - _PixelateSize: 32
-    - _PosterizeGamma: 0.94
-    - _PosterizeNumColors: 6.9
+    - _PosterizeGamma: 0.75
+    - _PosterizeNumColors: 8
     - _PosterizeOutline: 0
     - _RandomSeed: 0
     - _RectSize: 1
     - _RotateUvAmount: 0
     - _RoundWaveSpeed: 2
     - _RoundWaveStrength: 0.7
-    - _ShadowAlpha: 0.5
-    - _ShadowX: 0.1
-    - _ShadowY: -0.05
+    - _ShadowAlpha: 0.551
+    - _ShadowX: -0.42
+    - _ShadowY: 0.013
     - _ShakeUvSpeed: 2.5
     - _ShakeUvX: 1.5
     - _ShakeUvY: 1
     - _ShineGlow: 1
-    - _ShineLocation: 0
+    - _ShineLocation: 0.5
     - _ShineRotate: 0
     - _ShineWidth: 0.1
     - _TextureScrollXSpeed: 1
@@ -195,12 +195,12 @@ Material:
     - _TwistUvPosX: 0.5
     - _TwistUvPosY: 0.5
     - _TwistUvRadius: 0.75
-    - _WaveAmount: 2.2
-    - _WaveSpeed: 4.4
-    - _WaveStrength: 2
-    - _WaveX: 0.439
-    - _WaveY: 0.598
-    - _ZTestMode: 8
+    - _WaveAmount: 6.8
+    - _WaveSpeed: 1.7
+    - _WaveStrength: 1.7
+    - _WaveX: 0.215
+    - _WaveY: 0.768
+    - _ZTestMode: 4
     - _ZWrite: 0
     - _ZoomUvAmount: 0.5
     m_Colors:
