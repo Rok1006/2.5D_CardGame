@@ -95,6 +95,74 @@ public class PlayerSkill : MonoBehaviour
 
             }
         }
+
+        if(isOnAttack2 == true)
+        {
+            if (name == "Nyanslot")
+            {
+                var enemyDetect = gameObject.GetComponent<DragonDudVFX>();
+                if (row3[2].GetComponent<EnemyBoard>().whatIsOnBoard != null)
+                {
+                    enemyDetect.leftEnemy = row3[2].GetComponent<EnemyBoard>().whatIsOnBoard.gameObject;
+                }
+                else
+                {
+                    Debug.Log("empty");
+                }
+                if (row3[4].GetComponent<EnemyBoard>().whatIsOnBoard != null)
+                {
+                    enemyDetect.rightEnemy = row3[4].GetComponent<EnemyBoard>().whatIsOnBoard.gameObject;
+                }
+                else
+                {
+                    Debug.Log("empty");
+                }
+                if (row3[3].GetComponent<EnemyBoard>().whatIsOnBoard != null)
+                {
+                    enemyDetect.frontEnemy = row3[3].GetComponent<EnemyBoard>().whatIsOnBoard.gameObject;
+                }
+                else
+                {
+                    Debug.Log("empty");
+                }
+
+                if (NyanslotCounter <= 2)
+                {
+                    if (enemyDetect.leftEnemy != null && enemyDetect.rightEnemy != null)
+                    {
+
+                        Debug.Log("using skill");
+                        gameObject.GetComponent<DragonDudVFX>().StartCoroutine("Attack");
+                        //NyanslotCounter++;
+                    }
+
+                }
+            }
+
+
+
+            if (name == "Zwei")
+            {
+                var enemyDetect = gameObject.GetComponent<BirdManVFX>();
+                if (row3[3].GetComponent<EnemyBoard>().whatIsOnBoard != null && row2[3].GetComponent<EnemyBoard>().whatIsOnBoard != null)
+                {
+
+                    enemyDetect.firstEnemy = row3[3].GetComponent<EnemyBoard>().whatIsOnBoard.gameObject;
+                    enemyDetect.secondEnemy = row2[3].GetComponent<EnemyBoard>().whatIsOnBoard.gameObject;
+                }
+                else
+                {
+                    Debug.Log("bird cant attack sadge");
+                }
+
+                if (enemyDetect.firstEnemy != null && enemyDetect.secondEnemy != null)
+                {
+                    enemyDetect.StartCoroutine("Attack");
+                }
+
+
+            }
+        }
     }
     public void Passive()
     {
