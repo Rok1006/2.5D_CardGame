@@ -133,7 +133,7 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < enemy.Count; i++)
         {
-            enemy[i].GetComponent<EnemyCard>().Attack();
+            enemy[i].GetComponent<CardSpawner>().Attack();
         }
         enemy.Clear();
 

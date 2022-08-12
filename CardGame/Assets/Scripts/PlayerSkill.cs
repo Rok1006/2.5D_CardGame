@@ -13,6 +13,7 @@ public class PlayerSkill : MonoBehaviour
     public bool isOnAttack1;
     public bool isOnAttack2;
     public GameObject[] row3;
+    public GameObject[] row2;
 
 
     private int NyanslotCounter = 0;
@@ -29,17 +30,72 @@ public class PlayerSkill : MonoBehaviour
         if (isOnAttack1 == true)
         {
 
-            if(name == "Nyanslot")
+            if (name == "Nyanslot")
             {
-                if(NyanslotCounter <= 2)
+                var enemyDetect = gameObject.GetComponent<DragonDudVFX>();
+                if (row3[0].GetComponent<EnemyBoard>().whatIsOnBoard != null)
+                {
+                    enemyDetect.leftEnemy = row3[0].GetComponent<EnemyBoard>().whatIsOnBoard.gameObject;
+                }
+                else
+                {
+                    Debug.Log("empty");
+                }
+                if (row3[2].GetComponent<EnemyBoard>().whatIsOnBoard != null)
+                {
+                    enemyDetect.rightEnemy = row3[2].GetComponent<EnemyBoard>().whatIsOnBoard.gameObject;
+                }
+                else
+                {
+                    Debug.Log("empty");
+                }
+                if (row3[1].GetComponent<EnemyBoard>().whatIsOnBoard != null)
+                {
+                    enemyDetect.frontEnemy = row3[1].GetComponent<EnemyBoard>().whatIsOnBoard.gameObject;
+                }
+                else
+                {
+                    Debug.Log("empty");
+                }
+
+                if (NyanslotCounter <= 2)
+                {
+                    if (enemyDetect.leftEnemy != null && enemyDetect.rightEnemy != null)
+                    {
+
+                        Debug.Log("using skill");
+                        gameObject.GetComponent<DragonDudVFX>().StartCoroutine("Attack");
+                        //NyanslotCounter++;
+                    }
+
+                }
+            }
+
+
+
+            if (name == "Zwei")
+            {
+                var enemyDetect = gameObject.GetComponent<BirdManVFX>();
+                if (row3[1].GetComponent<EnemyBoard>().whatIsOnBoard != null && row2[1].GetComponent<EnemyBoard>().whatIsOnBoard != null)
                 {
                     
-                    NyanslotCounter++;
+                    enemyDetect.firstEnemy = row3[1].GetComponent<EnemyBoard>().whatIsOnBoard.gameObject;
+                    enemyDetect.secondEnemy = row2[1].GetComponent<EnemyBoard>().whatIsOnBoard.gameObject;
                 }
+                else
+                {
+                    Debug.Log("bird cant attack sadge");
+                }
+
+                if(enemyDetect.firstEnemy != null && enemyDetect.secondEnemy != null)
+                {
+                    enemyDetect.StartCoroutine("Attack");
+                }
+
+
             }
         }
     }
-
     public void Passive()
     {
         if (isOnPassive1 == true)

@@ -93,13 +93,13 @@ public class DragonDudVFX : MonoBehaviour
                     //fisrt enemy shake and attacked reaction
                     leftEnemy.GetComponent<SpriteRenderer>().color = Color.green; //Sample
                     enemySparks1.SetActive(true);
-                    EnemyAnim1.SetBool("stun",true);
+                   // EnemyAnim1.SetBool("stun",true);
                 }
                 if(slash.Count>0&&slash[1]!=null && slash[1].transform.position.z>=rightEnemy.transform.position.z){   //arrive at first enemy
                     //fisrt enemy shake and attacked reaction
                     rightEnemy.GetComponent<SpriteRenderer>().color = Color.green; //Sample
                     enemySparks2.SetActive(true);
-                    EnemyAnim2.SetBool("stun",true);
+                    //EnemyAnim2.SetBool("stun",true);
                     Invoke("ResetAttack",.1f);
                     Invoke("OffHitEffect",3f);
                 }
@@ -110,7 +110,7 @@ public class DragonDudVFX : MonoBehaviour
                     frontEnemy.GetComponent<SpriteRenderer>().color = Color.green; //Sample
                     enemySparks3.SetActive(true);
                     darkExplo.SetActive(true);
-                    EnemyAnim3.SetBool("stun",true);
+                    //EnemyAnim3.SetBool("stun",true);
                     Invoke("ResetAttack",.1f);
                     Invoke("OffHitEffect",1f);
                 }
@@ -133,7 +133,7 @@ public class DragonDudVFX : MonoBehaviour
             sc.target = leftEnemy;
             sc.speed = catSpeed;
             yield return new WaitForSeconds(.5f);
-            EnemyAnim1.SetBool("stun",false);
+            //EnemyAnim1.SetBool("stun",false);
             GameObject s2 = Instantiate(singleSlashPrefab, center.transform.position, Quaternion.identity);
             slash.Add(s2);
             var sc2 = s2.GetComponent<Slash>();
@@ -159,9 +159,9 @@ public class DragonDudVFX : MonoBehaviour
     void ResetAttack(){
         slash.Clear();
         slash.TrimExcess();
-        EnemyAnim1.SetBool("stun",false);
-        EnemyAnim2.SetBool("stun",false);
-        EnemyAnim3.SetBool("stun",false);
+       // EnemyAnim1.SetBool("stun",false);
+      // EnemyAnim2.SetBool("stun",false);
+       // EnemyAnim3.SetBool("stun",false);
         
     }
     void OffHitEffect(){
