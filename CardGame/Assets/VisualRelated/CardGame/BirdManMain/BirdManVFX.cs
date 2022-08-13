@@ -94,15 +94,15 @@ public class BirdManVFX : MonoBehaviour
                 }
                 if(theBird.transform.position==target.transform.position && target == firstEnemy){   //arrive at first enemy
                     //fisrt enemy shake and attacked reaction
-                    firstEnemy.GetComponent<SpriteRenderer>().color = Color.green; //Sample
-                    enemySparks.SetActive(true);
-                    EnemyAnim1.SetBool("stun",true);
+                    //firstEnemy.GetComponent<SpriteRenderer>().color = Color.green; //Sample
+                   // enemySparks.SetActive(true);
+                    //EnemyAnim1.SetBool("stun",true);
                 }
                 if(theBird.transform.position==target.transform.position && target == secondEnemy){   //arrive at first enemy
                     //fisrt enemy shake and attacked reaction
-                    secondEnemy.GetComponent<SpriteRenderer>().color = Color.green; //Sample
-                    enemySparks2.SetActive(true);
-                    EnemyAnim2.SetBool("stun",true);
+                    //secondEnemy.GetComponent<SpriteRenderer>().color = Color.green; //Sample
+                    //enemySparks2.SetActive(true);
+                   // EnemyAnim2.SetBool("stun",true);
                     birdAnim.SetTrigger("Normal");//disappear
 
                     Invoke("ResetAttack", .5f);
@@ -171,8 +171,8 @@ public class BirdManVFX : MonoBehaviour
         bird.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
         sparks.SetActive(false);
         sparks2.SetActive(false);
-        enemySparks.SetActive(false);
-        enemySparks2.SetActive(false);
+      //  enemySparks.SetActive(false);
+       // enemySparks2.SetActive(false);
         buildUP.SetActive(false);
     }
 }
