@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> enemy = new List<GameObject>();
 
     private bool enemyAttackDone = false;
-    private int counter = 4;
+    private int counter = 3;
 
     public bool isRow3Empty;
     public bool isRow2Empty;
@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (counter == 5)
+        if (counter == 4)
         {
             canEnemyAttack = false;
         }
@@ -149,9 +149,10 @@ public class GameManager : MonoBehaviour
     }
     private void SpawnCard()
     {
-        for (int i = 0; i < Random.Range(1, 4); i++)
+        var random = Random.Range(1, 4);
+        for (int i = 0; i < random; i++)
         {
-            var randomSpawner = Random.Range(0, counter);
+            var randomSpawner = Random.Range(0, counter + 1);
             var randomCard = Random.Range(0, spawnerLoc[randomSpawner].GetComponent<EnemyCardSpawner>().enemyCards.Length);
             var cardTransform = spawnerLoc[randomSpawner].GetComponent<EnemyCardSpawner>().enemyCards[0].transform;
             //var spawnCard = Instantiate(spawnerLocation[randomSpawner].GetComponent<EnemyCardSpawner>().enemyCards[Random.Range(0, 1)], spawnerLocation[randomSpawner].transform.position, spawnerLocation[randomSpawner].transform.rotation) as GameObject;
@@ -162,7 +163,7 @@ public class GameManager : MonoBehaviour
                 spawnerLoc.RemoveAt(randomSpawner);
                 counter--;
             }
-            if(spawnerLoc[randomSpawner].GetComponent<EnemyBoard>().whatIsOnBoard != null)
+            else if(spawnerLoc[randomSpawner].GetComponent<EnemyBoard>().whatIsOnBoard != null)
             {
                 spawnerLoc.RemoveAt(randomSpawner);
                 counter--;
@@ -172,8 +173,9 @@ public class GameManager : MonoBehaviour
 
 
         }
-        counter = 4;
+        counter = 3;
         spawnerLoc = referenceSpawner.ToList();
+        Debug.Log("copied");
 
     }
 
@@ -187,7 +189,7 @@ public class GameManager : MonoBehaviour
                 counter++;
             }
         }
-        if (counter == 5)
+        if (counter == 4)
         {
             isRow3Empty = true;
         }
@@ -199,7 +201,7 @@ public class GameManager : MonoBehaviour
                 counter2++;
             }
         }
-        if (counter2 == 5)
+        if (counter2 == 4)
         {
             isRow2Empty = true;
 
