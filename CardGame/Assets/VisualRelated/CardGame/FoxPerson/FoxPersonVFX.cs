@@ -83,6 +83,7 @@ public class FoxPersonVFX : MonoBehaviour
             sc._force = force;
             sc.target = target;
             Invoke("ResetAttack",.5f);
+
         }
     }
     public void MagicCircleCreate(GameObject prefab, GameObject target, float deathTime){
@@ -91,11 +92,12 @@ public class FoxPersonVFX : MonoBehaviour
         sc._deathTime = deathTime;
     }
     void DetectEnemyGdPt(){ //get random 1 enemy groundpt
-        if(enemy.Count>0){ //put it in a way that it reassign new enemy's efect
+        //if(enemy.Count>0){ //put it in a way that it reassign new enemy's efect
             int r = Random.Range(0,enemy.Count);
-            gdPt.Add(enemy[r].transform.GetChild(effectPos).gameObject);
-            theEnemy = enemy[r];
-        }
+
+        gdPt.Add(enemy[r].transform.GetChild(effectPos).gameObject);
+        theEnemy = enemy[r];
+       // }
     }
     void RandomPlayer(){ //get random 1 enemy groundpt
         if(playerCharacter.Count>0){ //put it in a way that it reassign new enemy's efect
@@ -123,8 +125,11 @@ public class FoxPersonVFX : MonoBehaviour
         }
     }
     void ResetAttack(){
+        Debug.Log("reset time");
         gdPt.Clear();
         gdPt.TrimExcess();
+        enemy.Clear();
+        enemy.TrimExcess();
         //enemy
         //playerCharacter
     }

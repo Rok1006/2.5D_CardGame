@@ -94,6 +94,12 @@ public class PlayerSkill : MonoBehaviour
 
 
             }
+            if (name == "Pate")
+            {
+                var enemyDetect = gameObject.GetComponent<FoxPersonVFX>();
+                enemyDetect.currentState = FoxPersonVFX.AbilityState.MAIN;
+                enemyDetect.StartCoroutine("Attack");
+            }
         }
 
         if(isOnAttack2 == true)
@@ -131,8 +137,10 @@ public class PlayerSkill : MonoBehaviour
                     if (enemyDetect.leftEnemy != null && enemyDetect.rightEnemy != null)
                     {
 
-                        Debug.Log("using skill");
-                        gameObject.GetComponent<DragonDudVFX>().StartCoroutine("Attack");
+                       
+                        var cat = gameObject.GetComponent<DragonDudVFX>();
+                        cat.currentState = DragonDudVFX.AbilityState.CATMODE;
+                        cat.StartCoroutine("Attack");
                         //NyanslotCounter++;
                     }
 
@@ -162,6 +170,15 @@ public class PlayerSkill : MonoBehaviour
 
 
             }
+
+            if(name == "Pate")
+            {
+                var enemyDetect = gameObject.GetComponent<FoxPersonVFX>();
+                enemyDetect.currentState = FoxPersonVFX.AbilityState.MAIN;
+                enemyDetect.StartCoroutine("Attack");
+
+                //need to add actual healing
+            }
         }
     }
     public void Passive()
@@ -170,6 +187,10 @@ public class PlayerSkill : MonoBehaviour
         {
             if(name == "Nyanslot")
             {
+                var cat = gameObject.GetComponent<DragonDudVFX>();
+                cat.currentState = DragonDudVFX.AbilityState.PASSIVE;
+                cat.StartCoroutine("Attack");
+               
                 player.AddDefense(5);
             }
             if(name == "BlowBerry")
@@ -179,8 +200,35 @@ public class PlayerSkill : MonoBehaviour
             }
             if(name == "Pate")
             {
-                playerList[2].GetComponent<Player>().health += Random.Range(5, 11);
-                playerList[3].GetComponent<Player>().health += Random.Range(1, 6);
+
+                var fox = gameObject.GetComponent<FoxPersonVFX>();
+                fox.currentState = FoxPersonVFX.AbilityState.PASSIVE;
+                for (int i = 0; i < row3.Length; i++)
+                {
+                    if(row3[i].GetComponent<EnemyBoard>().whatIsOnBoard != null)
+                    {
+                        fox.enemy.Add(row3[i].GetComponent<EnemyBoard>().whatIsOnBoard.gameObject);
+                    }
+
+                }
+
+                if(fox.enemy.Count == 0)
+                {
+                    Debug.Log("fox can't fight :(");
+                }
+                else
+                {
+                   
+                    fox.StartCoroutine("Attack");
+
+                
+                }
+
+               
+                
+
+                //playerList[2].GetComponent<Player>().health += Random.Range(5, 11);
+                //playerList[3].GetComponent<Player>().health += Random.Range(1, 6);
             }
             if (name == "Zwei")
             {

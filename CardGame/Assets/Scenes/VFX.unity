@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.011815878, g: 0.017788123, b: 0.030594839, a: 1}
+  m_IndirectSpecularColor: {r: 0.011815833, g: 0.017788017, b: 0.030594671, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -385,10 +385,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  theBird: {fileID: 921533601}
-  top: {fileID: 943399875}
   firstEnemy: {fileID: 1421458606}
   secondEnemy: {fileID: 1871197903}
+  theBird: {fileID: 921533601}
+  top: {fileID: 943399875}
   bird: {fileID: 7755387722768406992}
   buildUP: {fileID: 1533815124}
   effectPos: 0
@@ -10548,7 +10548,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &446314479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10562,17 +10562,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  theSlash: {fileID: 559137221}
-  center: {fileID: 2113108365}
   leftEnemy: {fileID: 1421458606}
   rightEnemy: {fileID: 1871197903}
   frontEnemy: {fileID: 1377418577}
+  slash: []
+  center: {fileID: 2113108365}
   singleSlashPrefab: {fileID: 7510095588636630182, guid: 5256cacd2dd774b0c979c591a4100094, type: 3}
   doubleSlashPrefab: {fileID: 1128042784565577519, guid: 87b3efe1389ec437d97b1658ea68f12e, type: 3}
   Tail: {fileID: 1438725864}
   tailSparks: {fileID: 944888741}
   lightDust: {fileID: 539779559}
-  slash: []
   effectPos: 0
   darkExploPos: 2
   catSpeed: 12
@@ -10914,7 +10913,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 712ce25c54b4e431393de984aec3de05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 0
+  currentState: 1
+  enemy:
+  - {fileID: 1871197903}
+  - {fileID: 1421458606}
+  - {fileID: 1377418577}
+  gdPt: []
   foxGroundPt: {fileID: 143186251}
   foxMagicCircle: {fileID: 1491536778875062093, guid: 96eb90ee0997b408f9758bb348930319, type: 3}
   otherMagicCircle: {fileID: 250664975036291911, guid: 2df9ce0fff181471ca1bc88a40633b75, type: 3}
@@ -10926,11 +10930,6 @@ MonoBehaviour:
   - {fileID: 1386074053}
   - {fileID: 1578331637}
   - {fileID: 1537264342}
-  enemy:
-  - {fileID: 1871197903}
-  - {fileID: 1421458606}
-  - {fileID: 1377418577}
-  gdPt: []
   effectPos: 0
   force: 12
   shootSpeed: 12
@@ -22204,7 +22203,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1963252028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22218,17 +22217,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  smallBerry: {fileID: 8076777465292878520, guid: b80d7ead22a6345648877c6e006dceac, type: 3}
-  bigBerry: {fileID: 2367660616556339475, guid: 558093b4e24d5447797a2f5afc14279e, type: 3}
-  mainEmitPt: {fileID: 468216492}
-  passiveEmitPt: {fileID: 824918002}
-  trail: {fileID: 1588157967}
   enemy:
   - {fileID: 1421458606}
   - {fileID: 1871197903}
   - {fileID: 1377418577}
   berry: []
   enemySparks: []
+  smallBerry: {fileID: 8076777465292878520, guid: b80d7ead22a6345648877c6e006dceac, type: 3}
+  bigBerry: {fileID: 2367660616556339475, guid: 558093b4e24d5447797a2f5afc14279e, type: 3}
+  mainEmitPt: {fileID: 468216492}
+  passiveEmitPt: {fileID: 824918002}
+  trail: {fileID: 1588157967}
   count: 0
   effectPos: 0
   force: 18
