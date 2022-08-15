@@ -91,15 +91,15 @@ public class DragonDudVFX : MonoBehaviour
             case AbilityState.CATMODE:  //Main: CAT MODE
                 if(slash.Count>0&&slash[0]!=null && slash[0].transform.position.z>=leftEnemy.transform.position.z){   //arrive at first enemy
                     //fisrt enemy shake and attacked reaction
-                    leftEnemy.GetComponent<SpriteRenderer>().color = Color.green; //Sample
+                   // leftEnemy.GetComponent<SpriteRenderer>().color = Color.green; //Sample
                     enemySparks1.SetActive(true);
-                   // EnemyAnim1.SetBool("stun",true);
+                    EnemyAnim1.SetTrigger("stun");
                 }
                 if(slash.Count>0&&slash[1]!=null && slash[1].transform.position.z>=rightEnemy.transform.position.z){   //arrive at first enemy
                     //fisrt enemy shake and attacked reaction
-                    rightEnemy.GetComponent<SpriteRenderer>().color = Color.green; //Sample
+                    //rightEnemy.GetComponent<SpriteRenderer>().color = Color.green; //Sample
                     enemySparks2.SetActive(true);
-                    //EnemyAnim2.SetBool("stun",true);
+                    EnemyAnim2.SetTrigger("stun");
                     Invoke("ResetAttack",.1f);
                     Invoke("OffHitEffect",3f);
                 }
@@ -107,10 +107,10 @@ public class DragonDudVFX : MonoBehaviour
             case AbilityState.DRAGONMODE:  //Main: DRAGON MODE
                 if(slash.Count>0&&slash[0]!=null && slash[0].transform.position.z>=frontEnemy.transform.position.z){   //arrive at first enemy
                     //fisrt enemy shake and attacked reaction
-                    frontEnemy.GetComponent<SpriteRenderer>().color = Color.green; //Sample
+                   // frontEnemy.GetComponent<SpriteRenderer>().color = Color.green; //Sample
                     enemySparks3.SetActive(true);
                     darkExplo.SetActive(true);
-                    //EnemyAnim3.SetBool("stun",true);
+                    EnemyAnim3.SetTrigger("stun");
                     Invoke("ResetAttack",.1f);
                     Invoke("OffHitEffect",1f);
                 }
@@ -159,12 +159,12 @@ public class DragonDudVFX : MonoBehaviour
     void ResetAttack(){
         slash.Clear();
         slash.TrimExcess();
-       // EnemyAnim1.SetBool("stun",false);
-      // EnemyAnim2.SetBool("stun",false);
-       // EnemyAnim3.SetBool("stun",false);
         
     }
     void OffHitEffect(){
+        EnemyAnim1.SetTrigger("normal");
+        EnemyAnim2.SetTrigger("normal");
+        EnemyAnim3.SetTrigger("normal");
         enemySparks1.SetActive(false);
         enemySparks2.SetActive(false);
         enemySparks3.SetActive(false);
