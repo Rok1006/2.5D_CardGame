@@ -20,8 +20,9 @@ public class BirdManVFX : MonoBehaviour
     [Header("Detect")]
     public GameObject firstEnemy;
     public GameObject secondEnemy;
+    private GameObject theBird;
     [Header("OBJ")]
-    public GameObject theBird; //Another object prefab 
+    public GameObject theBirdPrefab; //Another object prefab 
     public GameObject top; //the pos on top of player card
     public GameObject bird; //the bird mesh inside theBird
     public GameObject buildUP; //prefab
@@ -53,18 +54,6 @@ public class BirdManVFX : MonoBehaviour
 
     void Start()
     {
-        rb = theBird.GetComponent<Rigidbody>();
-        theBird.transform.position = this.transform.position;
-        tr = bird.GetComponent<TrailRenderer>();
-        tr.enabled = false;
-        mr = bird.GetComponent<MeshRenderer>();
-        mr.enabled = false;
-        sparks = theBird.transform.GetChild(0).gameObject;
-        sparks.SetActive(false);
-        sparks2 = theBird.transform.GetChild(1).gameObject;
-        sparks2.SetActive(false);
-        bird.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
-        birdAnim = bird.GetComponent<Animator>();
         buildUP.SetActive(false);
         // ABT ENEMY
         if(firstEnemy!=null&&secondEnemy!=null){
@@ -92,20 +81,18 @@ public class BirdManVFX : MonoBehaviour
                 if(move){
                     Move();
                 }
-                if(theBird.transform.position==target.transform.position && target == firstEnemy){   //arrive at first enemy
-                    //fisrt enemy shake and attacked reaction
-                    //firstEnemy.GetComponent<SpriteRenderer>().color = Color.green; //Sample
-                   // enemySparks.SetActive(true);
-                    //EnemyAnim1.SetBool("stun",true);
-                }
-                if(theBird.transform.position==target.transform.position && target == secondEnemy){   //arrive at first enemy
-                    //fisrt enemy shake and attacked reaction
-                    //secondEnemy.GetComponent<SpriteRenderer>().color = Color.green; //Sample
-                    //enemySparks2.SetActive(true);
-                   // EnemyAnim2.SetBool("stun",true);
-                    birdAnim.SetTrigger("Normal");//disappear
-
-                    Invoke("ResetAttack", .5f);
+                if(theBird!=null){
+                    if(theBird.transform.position==target.transform.position && target == firstEnemy){   //arrive at first enemy
+                        //fisrt enemy shake and attacked reaction
+                        enemySparks.SetActive(true);
+                        EnemyAnim1.SetTrigger("stun");
+                    }
+                    if(theBird.transform.position==target.transform.position && target == secondEnemy){   //arrive at first enemy
+                        //fisrt enemy shake and attacked reaction
+                        enemySparks2.SetActive(true);
+                        EnemyAnim2.SetTrigger("stun");
+                        Invoke("ResetAttack", .5f);
+                    }
                 }
             break;
             case AbilityState.PASSIVE:  //Passive
@@ -123,12 +110,12 @@ public class BirdManVFX : MonoBehaviour
         yield return new WaitForSeconds(0);
         if(currentState == AbilityState.MAIN){
 //Phase0----------------------------------------------------------
+        BirdCreate(theBirdPrefab);
         buildUP.SetActive(true);
         speed = ph0Speed; //2
         previousTarget = theBird;
         target = top;
         move = true;
-        //StartCoroutine("Appear");
         Invoke("Appear", 2f);
 //Phase1----------------------------------------------------------
         yield return new WaitForSeconds(shootWaitTime);  //1
@@ -152,6 +139,24 @@ public class BirdManVFX : MonoBehaviour
             //sth here
         }
     }
+    public void BirdCreate(GameObject prefab){
+        GameObject b = Instantiate(prefab, this.transform.position, Quaternion.identity);
+        theBird = b;
+        rb = theBird.GetComponent<Rigidbody>();
+        theBird.transform.position = this.transform.position;
+        sparks = theBird.transform.GetChild(0).gameObject;
+        sparks.SetActive(false);
+        sparks2 = theBird.transform.GetChild(1).gameObject;
+        sparks2.SetActive(false);
+        //Child
+        bird = theBird.transform.GetChild(3).gameObject;
+        tr = bird.GetComponent<TrailRenderer>();
+        tr.enabled = false;
+        mr = bird.GetComponent<MeshRenderer>();
+        mr.enabled = false;
+        bird.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
+        birdAnim = bird.GetComponent<Animator>();
+    }
     void Appear(){
         bird.transform.rotation = Quaternion.Euler(184f, 0f, 0f);
         mr.enabled = true;
@@ -160,19 +165,26 @@ public class BirdManVFX : MonoBehaviour
     }
 
     void ResetAttack(){
-        theBird.transform.position = this.transform.position;
+        EnemyAnim1.SetTrigger("normal");
+        EnemyAnim2.SetTrigger("normal");
+        Destroy(theBird);
+        theBird = null;
         speed = ph0Speed;
         previousTarget = theBird;
         target = top;
         move = false;
-        mr.enabled = false;
-        tr.enabled = false; 
-        birdAnim.SetTrigger("Normal");
-        bird.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
-        sparks.SetActive(false);
-        sparks2.SetActive(false);
-      //  enemySparks.SetActive(false);
-       // enemySparks2.SetActive(false);
         buildUP.SetActive(false);
     }
 }
+
+/*
+theBird.transform.position = this.transform.position;
+ // mr.enabled = false;
+        // tr.enabled = false; 
+        //birdAnim.SetTrigger("Normal");
+        //bird.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
+        // sparks.SetActive(false);
+        // sparks2.SetActive(false);
+      //  enemySparks.SetActive(false);
+       // enemySparks2.SetActive(false);
+*/

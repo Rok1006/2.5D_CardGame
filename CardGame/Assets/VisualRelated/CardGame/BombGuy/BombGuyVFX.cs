@@ -42,11 +42,15 @@ public class BombGuyVFX : MonoBehaviour
 
     void Start()
     {
-        DetectSparks();
+        //DetectSparks();
         trail.SetActive(false);
     }
     public void DetectSparks(){
         if(enemy.Count>0){ //put it in a way that it reassign new enemy's efect
+        enemySparks.Clear();
+        enemySparks.TrimExcess();
+        berry.Clear();
+        berry.TrimExcess();
             enemySparks.Add(enemy[0].transform.GetChild(effectPos).gameObject);
             enemySparks.Add(enemy[1].transform.GetChild(effectPos).gameObject);
             enemySparks.Add(enemy[2].transform.GetChild(effectPos).gameObject);
@@ -66,16 +70,17 @@ public class BombGuyVFX : MonoBehaviour
 //---------------------------------
         switch(currentState){
             case AbilityState.MAIN:  //Main
-            if(berry.Count>0){
+            if(berry.Count>0&&enemy.Count>0){
                 for(int i = 0; i<berry.Count;i++){ //try use while
-                    if(berry[i].transform.position==enemy[i].transform.position){
-                        enemy[i].GetComponent<SpriteRenderer>().color = Color.green;
+                    if(berry[i]!=null && berry[i].transform.position==enemy[i].transform.position){
+                        //enemy[i].GetComponent<SpriteRenderer>().color = Color.green;
                         enemySparks[i].SetActive(true);
-                        enemy[i].GetComponent<Animator>().SetBool("stun",true);
-                        continue;
+                        enemy[i].GetComponent<Animator>().SetTrigger("normal");
+                        enemy[i].GetComponent<Animator>().SetTrigger("stun");
+                        //continue;
                     }
                 }    
-                if(berry[2].transform.position==enemy[2].transform.position){
+                if(berry[2]!=null&&berry[2].transform.position==enemy[2].transform.position){
                     Debug.Log("Done");
                     Invoke("ResetAttack",.1f);
                     Invoke("OffHitEffect",1f);
@@ -115,8 +120,8 @@ public class BombGuyVFX : MonoBehaviour
         sc._force = force;
     }
     void ResetAttack(){
-        berry.Clear();
-        berry.TrimExcess();
+        // berry.Clear();
+        // berry.TrimExcess();
         // enemy.Clear();
         // enemy.TrimExcess();
     }
@@ -124,11 +129,11 @@ public class BombGuyVFX : MonoBehaviour
         enemySparks[0].SetActive(false);
         enemySparks[1].SetActive(false);
         enemySparks[2].SetActive(false);
-        enemy[0].GetComponent<Animator>().SetBool("stun",false);
-        enemy[1].GetComponent<Animator>().SetBool("stun",false);
-        enemy[2].GetComponent<Animator>().SetBool("stun",false);
-        enemySparks.Clear();
-        enemySparks.TrimExcess();
+        // enemy[0].GetComponent<Animator>().SetBool("stun",false);
+        // enemy[1].GetComponent<Animator>().SetBool("stun",false);
+        // enemy[2].GetComponent<Animator>().SetBool("stun",false);
+        // enemySparks.Clear();
+        // enemySparks.TrimExcess();
         // berry.Clear();
         // berry.TrimExcess();
     }

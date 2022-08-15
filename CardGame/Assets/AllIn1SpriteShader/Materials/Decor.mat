@@ -200,7 +200,7 @@ Material:
     - _WaveStrength: 5.4
     - _WaveX: 0.743
     - _WaveY: 0.5
-    - _ZTestMode: 8
+    - _ZTestMode: 4
     - _ZWrite: 0
     - _ZoomUvAmount: 0.5
     m_Colors:

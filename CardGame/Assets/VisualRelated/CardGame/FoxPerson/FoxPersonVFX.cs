@@ -22,8 +22,8 @@ public class FoxPersonVFX : MonoBehaviour
     [SerializeField]private GameObject otherMagicCircle;
     [SerializeField]private GameObject enemyMagicCircle;
     public GameObject healPt; //the ball prefab
-    public GameObject theEnemy; //passive
-    public GameObject target; 
+    private GameObject theEnemy; //passive
+    private GameObject target; 
     // public GameObject theCharacter; //passive
     public List<GameObject> playerCharacter = new List<GameObject>();
 
@@ -36,8 +36,7 @@ public class FoxPersonVFX : MonoBehaviour
     bool move = false; 
     
     void Start()
-    {
-        
+    { 
     }
     // public void DetectEnemy(GameObject enemy1, GameObject enemy2){ //get first row enemy
     //     firstEnemy = enemy1;
@@ -93,8 +92,7 @@ public class FoxPersonVFX : MonoBehaviour
     }
     void DetectEnemyGdPt(){ //get random 1 enemy groundpt
         //if(enemy.Count>0){ //put it in a way that it reassign new enemy's efect
-            int r = Random.Range(0,enemy.Count);
-
+        int r = Random.Range(0,enemy.Count);
         gdPt.Add(enemy[r].transform.GetChild(effectPos).gameObject);
         theEnemy = enemy[r];
        // }
@@ -130,7 +128,6 @@ public class FoxPersonVFX : MonoBehaviour
         gdPt.TrimExcess();
         enemy.Clear();
         enemy.TrimExcess();
-        //enemy
         //playerCharacter
     }
 }
