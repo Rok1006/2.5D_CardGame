@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerTurn : MonoBehaviour
 {
+
+    public float timer = 3;
+    public int counter = 0;
     public GameManager gameManager;
     public List<GameObject> playerList = new List<GameObject>();
     // Start is called before the first frame update
@@ -15,33 +18,49 @@ public class PlayerTurn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (GameManager.gameState == 3)
         {
-            playerList = gameManager.ReturnPlayer();
-            PlayerSkill(playerList);
+            timer -= Time.deltaTime;
 
-
+         
+            if(timer < 0)
+            {
+                playerList = gameManager.ReturnPlayer();
+                Debug.Log("asdf");
+                PlayerSkill(playerList, counter);
+                counter++;
+                timer = 3;
+            }
+            
            
+          
+
+
 
         }
     }
 
 
-    private void PlayerSkill(List<GameObject> list)
+    private void PlayerSkill(List<GameObject> list , int number)
     {
 
-        for (int i = 0; i < list.Count; i++)
+        if (counter < 4)
         {
-            var player = list[i].GetComponent<PlayerSkill>();
+            var player = list[number].GetComponent<PlayerSkill>();
             player.UpdatePlayerList(playerList);
             player.Attack();
             player.Passive();
-        }
+            
 
-        GameManager.gameState = 1;
-        GameManager.playerTurn = false;
-        GameManager.enemyTurn = true;
-        Debug.Log(GameManager.gameState);
-        playerList.Clear();
+        }
+        else
+        {
+            GameManager.gameState = 1;
+            GameManager.playerTurn = false;
+            GameManager.enemyTurn = true;
+            Debug.Log(GameManager.gameState);
+            playerList.Clear();
+        }
     }
 }
