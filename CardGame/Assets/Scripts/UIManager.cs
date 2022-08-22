@@ -8,10 +8,12 @@ public class UIManager : MonoBehaviour
     [Header("Hover")]
     [SerializeField]private GameObject hover1;
     [SerializeField]private GameObject hover2;
+    [SerializeField]private GameObject PlayerCInfo;
     void Start()
     {
         hover1.SetActive(false);
         hover2.SetActive(false);
+        PlayerCInfo.SetActive(false);
     }
     public void Hover1(){
         hover1.SetActive(true);
@@ -28,7 +30,10 @@ public class UIManager : MonoBehaviour
         //shows item collected
     }
     public void CardInfo(){
-        //open 4 card info alligned to the pos of players cards on the board
+        PlayerCInfo.SetActive(true);
+    }
+    public void CardInfoClose(){
+        PlayerCInfo.SetActive(false);
     }
 
 }
