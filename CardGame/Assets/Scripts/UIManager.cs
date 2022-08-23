@@ -2,18 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
     [Header("Hover")]
     [SerializeField]private GameObject hover1;
     [SerializeField]private GameObject hover2;
+    [Header("PlayerCardInfo")]
     [SerializeField]private GameObject PlayerCInfo;
+    [Header("Inventory")]
+    [SerializeField]private GameObject InventoryUI;
+    [SerializeField]private GameObject redIcon;
+    public TextMeshProUGUI num;
+
     void Start()
     {
         hover1.SetActive(false);
         hover2.SetActive(false);
         PlayerCInfo.SetActive(false);
+        InventoryUI.SetActive(false);
     }
     public void Hover1(){
         hover1.SetActive(true);
@@ -27,7 +35,10 @@ public class UIManager : MonoBehaviour
     }
     //Button Function
     public void Inventory(){
-        //shows item collected
+        InventoryUI.SetActive(true);
+    }
+    public void InventoryClose(){
+        InventoryUI.SetActive(false);
     }
     public void CardInfo(){
         PlayerCInfo.SetActive(true);
