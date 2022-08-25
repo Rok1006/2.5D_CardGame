@@ -197,6 +197,10 @@ public class PlayerSkill : MonoBehaviour
             {
                 player.AddAttack(1);
                 player.AddHealth(5);
+                var berry = gameObject.GetComponent<BombGuyVFX>();
+                berry.currentState = BombGuyVFX.AbilityState.PASSIVE;
+                berry.StartCoroutine("Attack");
+                Debug.Log("berry heal");
             }
             if(name == "Pate")
             {
@@ -245,6 +249,10 @@ public class PlayerSkill : MonoBehaviour
             {
                 player.AddAttack(1);
                 player.AddHealth(5);
+                var berry = gameObject.GetComponent<BombGuyVFX>();
+                berry.currentState = BombGuyVFX.AbilityState.PASSIVE;
+                berry.StartCoroutine("Attack");
+                Debug.Log("berry heal");
             }
             if (name == "Pate")
             {
