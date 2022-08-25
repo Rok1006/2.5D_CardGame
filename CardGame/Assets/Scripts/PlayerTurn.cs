@@ -31,7 +31,13 @@ public class PlayerTurn : MonoBehaviour
                 PlayerSkill(playerList, counter);
                 counter++;
                 timer = 3;
+
+                if(counter > 4)
+                {
+                    counter = 0;
+                }
             }
+
             
            
           
