@@ -64,7 +64,7 @@ public class FoxPersonVFX : MonoBehaviour
         if(currentState == AbilityState.MAIN){
             DetectPlayerGdPt();
             MagicCircleCreate(foxMagicCircle, foxGroundPt,5.5f);
-            Debug.Log("hi");//issue: why so many instanciated
+            //Debug.Log("hi");//issue: why so many instanciated
             yield return new WaitForSeconds(.5f);
             MagicCircleCreate(otherMagicCircle, gdPt[0],4.5f);
             MagicCircleCreate(otherMagicCircle, gdPt[1],4.5f);

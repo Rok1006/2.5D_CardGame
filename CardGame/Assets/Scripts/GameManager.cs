@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     public GameObject[] row1, row2, row3;
     public bool canEnemyAttack;
     public List<GameObject> enemy = new List<GameObject>();
+   
+    private float timer = 0.2f;
 
     private bool enemyAttackDone = false;
     private int counter = 3;
@@ -38,6 +40,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
         if (ready == 4 && gameState == 0)
         {
             startButton.gameObject.SetActive(true);
@@ -54,14 +57,14 @@ public class GameManager : MonoBehaviour
                 canEnemyAttack = false;
                 EnemyAttack(enemy);
                 MoveCard();
-                SpawnCard();
+                //SpawnCard();
 
             }
             else
             {
                 Debug.Log("cant attack");
                 MoveCard();
-                SpawnCard();
+                //SpawnCard();
             }
 
             enemyTurn = false;
@@ -149,6 +152,7 @@ public class GameManager : MonoBehaviour
     }
     private void SpawnCard()
     {
+        Debug.Log(spawnerLoc.Count + "list");
         var random = Random.Range(1, 4);
         for (int i = 0; i < random; i++)
         {
@@ -211,13 +215,14 @@ public class GameManager : MonoBehaviour
     public void MoveCard()
     {
 
-
+        
         for (int i = 0; i < row2.Length; i++)
         {
             if (row2[i].GetComponent<EnemyBoard>().whatIsOnBoard != null)
             {
                 if (row3[i].GetComponent<EnemyBoard>().whatIsOnBoard == null)
                 {
+
                     row2[i].GetComponent<EnemyBoard>().whatIsOnBoard.GetComponent<CardSpawner>().isMoving = true;
                     row2[i].GetComponent<EnemyBoard>().whatIsOnBoard.GetComponent<CardSpawner>().moveEnemyCardDown();
 
@@ -225,6 +230,14 @@ public class GameManager : MonoBehaviour
 
             }
         }
+
+        Invoke("MoveCard2", 0.1f);
+
+
+    }
+
+    public void MoveCard2()
+    {
         for (int i = 0; i < row1.Length; i++)
         {
             if (row1[i].GetComponent<EnemyBoard>().whatIsOnBoard != null)
@@ -245,10 +258,14 @@ public class GameManager : MonoBehaviour
              }
             */
 
+
         }
 
 
 
+        Invoke("SpawnCard", 0.2f);
     }
+
+   
 
 }

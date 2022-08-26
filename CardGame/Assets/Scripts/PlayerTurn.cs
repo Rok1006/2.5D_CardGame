@@ -27,7 +27,7 @@ public class PlayerTurn : MonoBehaviour
             if(timer < 0)
             {
                 playerList = gameManager.ReturnPlayer();
-                Debug.Log("asdf");
+                
                 PlayerSkill(playerList, counter);
                 counter++;
                 timer = 3;
