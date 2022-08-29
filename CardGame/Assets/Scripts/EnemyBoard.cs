@@ -18,7 +18,7 @@ public class EnemyBoard : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(transform.position , transform.up , out hit)){
 
-            if(hit.collider.gameObject.tag == "EnemyCard")
+            if(hit.collider.gameObject.tag == "EnemyCard" || hit.collider.gameObject.tag == "ItemCard")
             {
                 whatIsOnBoard = hit.collider.gameObject;
             }

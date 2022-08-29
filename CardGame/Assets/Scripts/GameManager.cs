@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] row1, row2, row3;
     public bool canEnemyAttack;
     public List<GameObject> enemy = new List<GameObject>();
+    public GameObject itemSpanwer;
    
     private float timer = 0.2f;
 
@@ -113,9 +114,15 @@ public class GameManager : MonoBehaviour
             {
                 counter++;
             }
-            if (row3[i].GetComponent<EnemyBoard>().whatIsOnBoard != null)
+            if (row3[i].GetComponent<EnemyBoard>().whatIsOnBoard != null )
             {
-                enemy.Add(row3[i].GetComponent<EnemyBoard>().whatIsOnBoard);
+                if (row3[i].GetComponent<EnemyBoard>().whatIsOnBoard.gameObject.tag == "EnemyCard")
+                {
+
+
+                    enemy.Add(row3[i].GetComponent<EnemyBoard>().whatIsOnBoard);
+
+                }
             }
         }
 
@@ -173,13 +180,17 @@ public class GameManager : MonoBehaviour
                 counter--;
             }
 
-
+           
 
 
         }
+        for (int j = 0; j < spawnerLoc.Count; j++)
+        {
+            Instantiate(itemSpanwer, spawnerLoc[j].transform.position + new Vector3(0, 1.6f, 0), itemSpanwer.transform.rotation);
+        }
         counter = 3;
         spawnerLoc = referenceSpawner.ToList();
-        Debug.Log("copied");
+      
 
     }
 
@@ -215,6 +226,21 @@ public class GameManager : MonoBehaviour
     public void MoveCard()
     {
 
+        for (int i = 0; i < row3.Length; i++)
+        {
+
+            if (row3[i].GetComponent<EnemyBoard>().whatIsOnBoard != null)
+            {
+                if (row3[i].GetComponent<EnemyBoard>().whatIsOnBoard.gameObject.tag == "ItemCard")
+                {
+                    row3[i].GetComponent<EnemyBoard>().whatIsOnBoard.GetComponent<ItemSpawner>().UsedByPlayer();
+                }
+            }
+        }
+
+        Invoke("MoveCard2", 0.1f);
+    }
+    public void MoveCard2() { 
         
         for (int i = 0; i < row2.Length; i++)
         {
@@ -222,21 +248,29 @@ public class GameManager : MonoBehaviour
             {
                 if (row3[i].GetComponent<EnemyBoard>().whatIsOnBoard == null)
                 {
+                    if (row2[i].GetComponent<EnemyBoard>().whatIsOnBoard.gameObject.tag == "EnemyCard")
+                    {
 
-                    row2[i].GetComponent<EnemyBoard>().whatIsOnBoard.GetComponent<CardSpawner>().isMoving = true;
-                    row2[i].GetComponent<EnemyBoard>().whatIsOnBoard.GetComponent<CardSpawner>().moveEnemyCardDown();
+
+                        row2[i].GetComponent<EnemyBoard>().whatIsOnBoard.GetComponent<CardSpawner>().isMoving = true;
+                        row2[i].GetComponent<EnemyBoard>().whatIsOnBoard.GetComponent<CardSpawner>().moveEnemyCardDown();
+                    }
+                    else
+                    {
+                        row2[i].GetComponent<EnemyBoard>().whatIsOnBoard.GetComponent<ItemSpawner>().MoveItemCardDown();
+                    }
 
                 }
 
             }
         }
 
-        Invoke("MoveCard2", 0.1f);
+        Invoke("MoveCard3", 0.1f);
 
 
     }
 
-    public void MoveCard2()
+    public void MoveCard3()
     {
         for (int i = 0; i < row1.Length; i++)
         {
@@ -246,7 +280,14 @@ public class GameManager : MonoBehaviour
                 {
 
                     //row1[i].GetComponent<EnemyBoard>().whatIsOnBoard.GetComponent<EnemyCard>().isMoving = true;
-                    row1[i].GetComponent<EnemyBoard>().whatIsOnBoard.GetComponent<CardSpawner>().moveEnemyCardDown();
+                    if (row1[i].GetComponent<EnemyBoard>().whatIsOnBoard.gameObject.tag == "EnemyCard")
+                    {
+                        row1[i].GetComponent<EnemyBoard>().whatIsOnBoard.GetComponent<CardSpawner>().moveEnemyCardDown();
+                    }
+                    else
+                    {
+                        row1[i].GetComponent<EnemyBoard>().whatIsOnBoard.GetComponent<ItemSpawner>().MoveItemCardDown();
+                    }
 
                 }
             }

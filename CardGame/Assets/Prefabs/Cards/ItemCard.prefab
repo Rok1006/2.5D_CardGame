@@ -953,9 +953,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1623541838932277193}
+  - component: {fileID: 381727020}
+  - component: {fileID: -1183464819850302720}
+  - component: {fileID: 2142818132308567854}
   m_Layer: 0
   m_Name: ItemCard
-  m_TagString: Untagged
+  m_TagString: ItemCard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -969,7 +972,7 @@ Transform:
   m_GameObject: {fileID: 1623541838932277206}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
   - {fileID: 1623541837509179286}
   - {fileID: 1623541838912094797}
@@ -977,6 +980,56 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &381727020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623541838932277206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d7013e6e1a06524e9b9675c8e72a591, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemList:
+  - {fileID: 11400000, guid: faf9921f3e1a6ca4ea4eb5e6c61a5643, type: 2}
+  - {fileID: 11400000, guid: 0525f7adbd4b78b4ab75ad5d1938722c, type: 2}
+  - {fileID: 11400000, guid: 09f375b03dbcbd449aab8d1b7e22627a, type: 2}
+  - {fileID: 11400000, guid: 183e973f169da2e4cb45cc8093573f03, type: 2}
+  - {fileID: 11400000, guid: 639b259bf8e82de478883ae8abdb7008, type: 2}
+  - {fileID: 11400000, guid: 480154f723883844db02ab011cedd817, type: 2}
+  itemName: {fileID: 1623541837801440046}
+  itemImage: {fileID: 1623541838790391846}
+--- !u!54 &-1183464819850302720
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623541838932277206}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &2142818132308567854
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623541838932277206}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.648527, y: 7.347695, z: 0.2788313}
+  m_Center: {x: -0.10698676, y: 0.24584611, z: 0.03123482}
 --- !u!1 &1623541839262461292
 GameObject:
   m_ObjectHideFlags: 0
