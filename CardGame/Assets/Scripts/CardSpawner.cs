@@ -8,15 +8,13 @@ public class CardSpawner : MonoBehaviour
 {
     public CardInfo cardInfo;
     public CardInfo[] enemyStorage;
-
-
-
     public bool isMoving = false;
     public SpriteRenderer enemySprite;
     public int health;
     public TextMeshProUGUI name;
     public TextMeshProUGUI attackValue;
     public TextMeshProUGUI defenseValue;
+
     void Start()
     {
         var randomCard = Random.Range(0, enemyStorage.Length);
@@ -26,11 +24,8 @@ public class CardSpawner : MonoBehaviour
         name.text = cardInfo.name.ToString();
         attackValue.text = this.health.ToString();
         
-
-
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(health <= 0)
@@ -38,8 +33,6 @@ public class CardSpawner : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-  
 
     public void moveEnemyCardDown()
     {
@@ -50,12 +43,11 @@ public class CardSpawner : MonoBehaviour
             isMoving = false;
         });
         */
-
-
     }
 
     public void Attack()
     {
         Debug.Log("attacking");
     }
+
 }

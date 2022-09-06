@@ -45,14 +45,17 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: EnemyCards
+  - name: R3
+    uniqueID: 2654483955
+    locked: 0
+  - name: R2
+    uniqueID: 1188187479
+    locked: 0
+  - name: R1
     uniqueID: 1180998937
     locked: 0
   - name: PlayerCards
     uniqueID: 559250841
-    locked: 0
-  - name: ItemCards
-    uniqueID: 1188187479
     locked: 0
   - name: CardBack
     uniqueID: 78116785

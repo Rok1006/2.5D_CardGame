@@ -6,13 +6,13 @@ public class EnemyBoard : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject whatIsOnBoard;
+    public int rowNum;
     
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         RaycastHit hit;
@@ -28,6 +28,8 @@ public class EnemyBoard : MonoBehaviour
         {
             whatIsOnBoard = null;
         }
+        
+        whatIsOnBoard.GetComponent<CardLayers>().ChangeLayers(rowNum);
 
     }
 }
