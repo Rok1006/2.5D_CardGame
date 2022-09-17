@@ -26,6 +26,8 @@ public class BirdManVFX : MonoBehaviour
     public GameObject top; //the pos on top of player card
     public GameObject bird; //the bird mesh inside theBird
     public GameObject buildUP; //prefab
+    [SerializeField] private GameObject effectCircle;
+    Animator ec;
 
     private GameObject previousTarget;
     private GameObject target;
@@ -55,6 +57,7 @@ public class BirdManVFX : MonoBehaviour
     void Start()
     {
         buildUP.SetActive(false);
+        ec = effectCircle.GetComponent<Animator>();
         // ABT ENEMY
         if(firstEnemy!=null&&secondEnemy!=null){
             enemySparks = firstEnemy.transform.GetChild(effectPos).gameObject;
@@ -94,11 +97,19 @@ public class BirdManVFX : MonoBehaviour
                         Invoke("ResetAttack", .5f);
                     }
                 }
+                ec.SetTrigger("Main");
             break;
             case AbilityState.PASSIVE:  //Passive
-
+                ec.SetTrigger("Passive");
             break;
         } 
+         if(this.gameObject.GetComponent<PlayerSkill>().isOnAttack1||this.gameObject.GetComponent<PlayerSkill>().isOnAttack2){
+            ec.SetBool("Main", true);
+            ec.SetBool("Passive", false);
+        }else if(this.gameObject.GetComponent<PlayerSkill>().isOnPassive1||this.gameObject.GetComponent<PlayerSkill>().isOnPassive2){
+            ec.SetBool("Passive", true);
+            ec.SetBool("Main", false);
+        }
     }
 
     void Move(){

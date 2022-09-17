@@ -31,6 +31,8 @@ public class DragonDudVFX : MonoBehaviour
     public GameObject tailSparks;
     public GameObject lightDust;
     Animator tailAnim;
+    [SerializeField] private GameObject effectCircle;
+    Animator ec;
 
     int index = 0;
     private GameObject previousTarget;
@@ -56,6 +58,7 @@ public class DragonDudVFX : MonoBehaviour
         tailAnim = Tail.GetComponent<Animator>();
         tailSparks.SetActive(false);
         lightDust.SetActive(false);
+        ec = effectCircle.GetComponent<Animator>();
         //abt Enemy
         if(leftEnemy!=null&&rightEnemy!=null){
             EnemyAnim1 = leftEnemy.GetComponent<Animator>();
@@ -103,6 +106,7 @@ public class DragonDudVFX : MonoBehaviour
                     Invoke("ResetAttack",.1f);
                     Invoke("OffHitEffect",3f);
                 }
+                ec.SetTrigger("Main");
             break;
             case AbilityState.DRAGONMODE:  //Main: DRAGON MODE
                 if(slash.Count>0&&slash[0]!=null && slash[0].transform.position.z>=frontEnemy.transform.position.z){   //arrive at first enemy
@@ -114,12 +118,21 @@ public class DragonDudVFX : MonoBehaviour
                     Invoke("ResetAttack",.1f);
                     Invoke("OffHitEffect",1f);
                 }
+                ec.SetTrigger("Main");
             break;
             case AbilityState.PASSIVE:  //PASSIVE
                 if(Tail.activeSelf){
                     Invoke("TailDown",4f);//this exccute before next round
                 }
+                ec.SetTrigger("Passive");
             break;
+        }
+         if(this.gameObject.GetComponent<PlayerSkill>().isOnAttack1||this.gameObject.GetComponent<PlayerSkill>().isOnAttack2){
+            ec.SetBool("Main", true);
+            ec.SetBool("Passive", false);
+        }else if(this.gameObject.GetComponent<PlayerSkill>().isOnPassive1||this.gameObject.GetComponent<PlayerSkill>().isOnPassive2){
+            ec.SetBool("Passive", true);
+            ec.SetBool("Main", false);
         }
     }
 

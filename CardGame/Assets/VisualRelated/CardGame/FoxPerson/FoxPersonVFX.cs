@@ -24,6 +24,8 @@ public class FoxPersonVFX : MonoBehaviour
     public GameObject healPt; //the ball prefab
     private GameObject theEnemy; //passive
     private GameObject target; 
+    [SerializeField] private GameObject effectCircle;
+    Animator ec;
     // public GameObject theCharacter; //passive
     public List<GameObject> playerCharacter = new List<GameObject>();
 
@@ -37,6 +39,7 @@ public class FoxPersonVFX : MonoBehaviour
     
     void Start()
     { 
+        ec = effectCircle.GetComponent<Animator>();
     }
     // public void DetectEnemy(GameObject enemy1, GameObject enemy2){ //get first row enemy
     //     firstEnemy = enemy1;
@@ -51,11 +54,18 @@ public class FoxPersonVFX : MonoBehaviour
 //---------------------------------
         switch(currentState){
             case AbilityState.MAIN:  //Main
-
+                ec.SetTrigger("Main");
             break;
             case AbilityState.PASSIVE: 
-
+                ec.SetTrigger("Passive");
             break;
+        }
+         if(this.gameObject.GetComponent<PlayerSkill>().isOnAttack1||this.gameObject.GetComponent<PlayerSkill>().isOnAttack2){
+            ec.SetBool("Main", true);
+            ec.SetBool("Passive", false);
+        }else if(this.gameObject.GetComponent<PlayerSkill>().isOnPassive1||this.gameObject.GetComponent<PlayerSkill>().isOnPassive2){
+            ec.SetBool("Passive", true);
+            ec.SetBool("Main", false);
         }
     }
     

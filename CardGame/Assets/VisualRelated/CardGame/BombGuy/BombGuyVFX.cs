@@ -31,6 +31,8 @@ public class BombGuyVFX : MonoBehaviour
     private GameObject enemySparks1;
     private GameObject enemySparks2;
     private GameObject enemySparks3;
+    [SerializeField] private GameObject effectCircle;
+    Animator ec;
 
     int index = 0;
     public int count = 1;
@@ -44,6 +46,7 @@ public class BombGuyVFX : MonoBehaviour
     {
         //DetectSparks();
         trail.SetActive(false);
+        ec = effectCircle.GetComponent<Animator>();
     }
     public void DetectSparks(){
         if(enemy.Count>0){ //put it in a way that it reassign new enemy's efect
@@ -87,13 +90,23 @@ public class BombGuyVFX : MonoBehaviour
                     break;
                 }    
             }
+            //Anim
+            ec.SetTrigger("Main");
             break;
             case AbilityState.PASSIVE:  //Passive
                 if(trail.activeSelf){
                     Invoke("OffTrail", 5f);
                 }
+            ec.SetTrigger("Passive");
             break;
         } 
+        if(this.gameObject.GetComponent<PlayerSkill>().isOnAttack1||this.gameObject.GetComponent<PlayerSkill>().isOnAttack2){
+            ec.SetBool("Main", true);
+            ec.SetBool("Passive", false);
+        }else if(this.gameObject.GetComponent<PlayerSkill>().isOnPassive1||this.gameObject.GetComponent<PlayerSkill>().isOnPassive2){
+            ec.SetBool("Passive", true);
+            ec.SetBool("Main", false);
+        }
     }
     IEnumerator Attack(){
         yield return new WaitForSeconds(0);

@@ -37,6 +37,6 @@ Material:
     - _NoiseScale: 50
     - _NoiseStrength: 1
     m_Colors:
-    - _Color: {r: 2.0236006, g: 2.0236006, b: 2.0236006, a: 1}
+    - _Color: {r: 1.988018, g: 1.988018, b: 1.988018, a: 1}
     - _EdgeColor: {r: 0.0009765625, g: 0.0009765625, b: 0.0009765625, a: 1}
   m_BuildTextureStacks: []

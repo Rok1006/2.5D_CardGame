@@ -29,7 +29,8 @@ public class EnemyBoard : MonoBehaviour
             whatIsOnBoard = null;
         }
         
-        whatIsOnBoard.GetComponent<CardLayers>().ChangeLayers(rowNum);
-
+        if(whatIsOnBoard!=null){
+            whatIsOnBoard.GetComponent<CardLayers>().ChangeLayers(rowNum);
+        }
     }
 }
