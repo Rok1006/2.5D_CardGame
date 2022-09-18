@@ -32,6 +32,8 @@ public class PlayerSkill : MonoBehaviour
 
             if (name == "Nyanslot")
             {
+                var cat = gameObject.GetComponent<DragonDudVFX>();
+                cat.currentState = DragonDudVFX.AbilityState.CATMODE;
                 var enemyDetect = gameObject.GetComponent<DragonDudVFX>();
                 if (row3[0].GetComponent<EnemyBoard>().whatIsOnBoard != null)
                 {
@@ -70,6 +72,18 @@ public class PlayerSkill : MonoBehaviour
 
                 }
             }
+            if (name == "BlowBerry")
+            {
+                var vfx = gameObject.GetComponent<BombGuyVFX>().enemy;
+                if (row3[0].GetComponent<EnemyBoard>().whatIsOnBoard != null && row3[1].GetComponent<EnemyBoard>().whatIsOnBoard != null && row3[2].GetComponent<EnemyBoard>().whatIsOnBoard != null)
+                {
+                    vfx.Add(row3[0].GetComponent<EnemyBoard>().whatIsOnBoard.gameObject);
+                    vfx.Add(row3[1].GetComponent<EnemyBoard>().whatIsOnBoard.gameObject);
+                    vfx.Add(row3[2].GetComponent<EnemyBoard>().whatIsOnBoard.gameObject);
+                }
+                gameObject.GetComponent<BombGuyVFX>().StartCoroutine("Attack");
+
+            }
 
 
 
@@ -104,8 +118,24 @@ public class PlayerSkill : MonoBehaviour
 
         if(isOnAttack2 == true)
         {
+
+            if (name == "BlowBerry")
+            {
+                var vfx = gameObject.GetComponent<BombGuyVFX>().enemy;
+                if (row3[1].GetComponent<EnemyBoard>().whatIsOnBoard != null && row3[2].GetComponent<EnemyBoard>().whatIsOnBoard != null && row3[3].GetComponent<EnemyBoard>().whatIsOnBoard != null)
+                {
+                    vfx.Add(row3[1].GetComponent<EnemyBoard>().whatIsOnBoard.gameObject);
+                    vfx.Add(row3[2].GetComponent<EnemyBoard>().whatIsOnBoard.gameObject);
+                    vfx.Add(row3[3].GetComponent<EnemyBoard>().whatIsOnBoard.gameObject);
+                }
+
+                gameObject.GetComponent<BombGuyVFX>().StartCoroutine("Attack");
+
+            }
             if (name == "Nyanslot")
             {
+                var cat = gameObject.GetComponent<DragonDudVFX>();
+                cat.currentState = DragonDudVFX.AbilityState.CATMODE;
                 var enemyDetect = gameObject.GetComponent<DragonDudVFX>();
                 if (row3[2].GetComponent<EnemyBoard>().whatIsOnBoard != null)
                 {
@@ -138,9 +168,9 @@ public class PlayerSkill : MonoBehaviour
                     {
 
                        
-                        var cat = gameObject.GetComponent<DragonDudVFX>();
-                        cat.currentState = DragonDudVFX.AbilityState.CATMODE;
-                        cat.StartCoroutine("Attack");
+                        var cat2 = gameObject.GetComponent<DragonDudVFX>();
+                        cat2.currentState = DragonDudVFX.AbilityState.CATMODE;
+                        cat2.StartCoroutine("Attack");
                         //NyanslotCounter++;
                     }
 

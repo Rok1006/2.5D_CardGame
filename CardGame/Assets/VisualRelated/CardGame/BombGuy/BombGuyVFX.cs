@@ -49,6 +49,7 @@ public class BombGuyVFX : MonoBehaviour
         ec = effectCircle.GetComponent<Animator>();
     }
     public void DetectSparks(){
+
         if(enemy.Count>0){ //put it in a way that it reassign new enemy's efect
         enemySparks.Clear();
         enemySparks.TrimExcess();
@@ -73,7 +74,7 @@ public class BombGuyVFX : MonoBehaviour
 //---------------------------------
         switch(currentState){
             case AbilityState.MAIN:  //Main
-            if(berry.Count>0&&enemy.Count>0){
+            if(berry.Count > 0 && enemy.Count > 0){
                 for(int i = 0; i<berry.Count;i++){ //try use while
                     if(berry[i]!=null && berry[i].transform.position==enemy[i].transform.position){
                         //enemy[i].GetComponent<SpriteRenderer>().color = Color.green;
@@ -83,12 +84,21 @@ public class BombGuyVFX : MonoBehaviour
                         //continue;
                     }
                 }    
-                if(berry[2]!=null&&berry[2].transform.position==enemy[2].transform.position){
-                    Debug.Log("Done");
-                    Invoke("ResetAttack",.1f);
-                    Invoke("OffHitEffect",1f);
-                    break;
-                }    
+
+                if(berry[2] != null)
+                {
+                        Debug.Log(berry[2].transform.position - enemy[2].transform.position);
+
+                      //  if (berry[2].transform.position == enemy[2].transform.position)
+                      if(0.2 >= Vector3.Distance(berry[2].transform.position , enemy[2].transform.position))
+                        {
+                            Debug.Log("Done");
+                            Invoke("ResetAttack", 0.1f);
+                            Invoke("OffHitEffect", 1f);
+                            break;
+                        }
+                }
+                
             }
             //Anim
             ec.SetTrigger("Main");
@@ -133,10 +143,10 @@ public class BombGuyVFX : MonoBehaviour
         sc._force = force;
     }
     void ResetAttack(){
-        // berry.Clear();
-        // berry.TrimExcess();
-        // enemy.Clear();
-        // enemy.TrimExcess();
+         berry.Clear();
+         berry.TrimExcess();
+         enemy.Clear();
+         enemy.TrimExcess();
     }
     void OffHitEffect(){
         enemySparks[0].SetActive(false);
