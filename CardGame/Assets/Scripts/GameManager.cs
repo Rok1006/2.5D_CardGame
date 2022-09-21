@@ -7,6 +7,7 @@ using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
+    public bool init = true;
     public GameObject[] players;
     public GameObject[] playerBoard;
     public static int gameState;
@@ -20,7 +21,8 @@ public class GameManager : MonoBehaviour
     public bool canEnemyAttack;
     public List<GameObject> enemy = new List<GameObject>();
     public GameObject itemSpanwer;
-   
+    public GameObject randomPrefab;
+    private float initTimer = 2f;
     private float timer = 0.2f;
 
     private bool enemyAttackDone = false;
@@ -50,6 +52,22 @@ public class GameManager : MonoBehaviour
 
         if (gameState == 1 && enemyTurn == true)
         {
+            if(init == true)
+            {
+                for(int i = 0; i < 4; i++)
+                {
+                    Instantiate(randomPrefab, row1[i].transform.position + new Vector3(0, 1.6f, 0), randomPrefab.transform.rotation);
+                }
+                for (int i = 0; i < 4; i++)
+                {
+                    Instantiate(randomPrefab, row2[i].transform.position + new Vector3(0, 1.6f, 0), randomPrefab.transform.rotation);
+                }
+                for (int i = 0; i < 4; i++)
+                {
+                    Instantiate(randomPrefab, row3[i].transform.position + new Vector3(0, 1.6f, 0), randomPrefab.transform.rotation);
+                }
+                init = false;
+            }
             //enemy attack -> advance -> spawn
             CanEnemyAttack();
             if (canEnemyAttack == true)
@@ -159,7 +177,7 @@ public class GameManager : MonoBehaviour
     }
     private void SpawnCard()
     {
-        Debug.Log(spawnerLoc.Count + "list");
+       
         var random = Random.Range(1, 4);
         for (int i = 0; i < random; i++)
         {
@@ -184,9 +202,12 @@ public class GameManager : MonoBehaviour
 
 
         }
-        for (int j = 0; j < spawnerLoc.Count; j++)
+        for (int j = 0; j < 4; j++)
         {
-            Instantiate(itemSpanwer, spawnerLoc[j].transform.position + new Vector3(0, 1.6f, 0), itemSpanwer.transform.rotation);
+            if (row1[j].GetComponent<EnemyBoard>().whatIsOnBoard == null)
+            {
+                Instantiate(itemSpanwer, spawnerLoc[j].transform.position + new Vector3(0, 1.6f, 0), itemSpanwer.transform.rotation);
+            }
         }
         counter = 3;
         spawnerLoc = referenceSpawner.ToList();
