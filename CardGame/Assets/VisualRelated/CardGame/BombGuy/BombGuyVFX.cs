@@ -79,7 +79,7 @@ public class BombGuyVFX : MonoBehaviour
                     if(berry[i]!=null && berry[i].transform.position==enemy[i].transform.position){
                         //enemy[i].GetComponent<SpriteRenderer>().color = Color.green;
                         enemySparks[i].SetActive(true);
-                        enemy[i].GetComponent<Animator>().SetTrigger("normal");
+                        //enemy[i].GetComponent<Animator>().SetTrigger("normal");
                         enemy[i].GetComponent<Animator>().SetTrigger("stun");
                         //continue;
                     }
@@ -93,8 +93,10 @@ public class BombGuyVFX : MonoBehaviour
                       if(0.2 >= Vector3.Distance(berry[2].transform.position , enemy[2].transform.position))
                         {
                             Debug.Log("Done");
-                            Invoke("ResetAttack", 0.1f);
+                            // enemy[2].GetComponent<Animator>().SetTrigger("normal");
+                            // enemy[2].GetComponent<Animator>().SetTrigger("stun");
                             Invoke("OffHitEffect", 1f);
+                            // Invoke("ResetAttack", 0.1f);
                             break;
                         }
                 }
@@ -121,13 +123,14 @@ public class BombGuyVFX : MonoBehaviour
     IEnumerator Attack(){
         yield return new WaitForSeconds(0);
         if(currentState == AbilityState.MAIN&&enemy.Count>0){
+            DetectSparks();
             BerryCreate(smallBerry, enemy[0]);
             yield return new WaitForSeconds(.1f);
             BerryCreate(smallBerry, enemy[1]);
             yield return new WaitForSeconds(.2f);
             BerryCreate(smallBerry, enemy[2]);
             check = true;
-        }else if(currentState == AbilityState.PASSIVE){ //DragonMode-----------------
+        }else if(currentState == AbilityState.PASSIVE){ 
             GameObject s = Instantiate(bigBerry, passiveEmitPt.transform.position, Quaternion.identity);
             yield return new WaitForSeconds(.2f);
             s.GetComponent<Animator>().SetTrigger("eaten");
@@ -143,22 +146,24 @@ public class BombGuyVFX : MonoBehaviour
         sc._force = force;
     }
     void ResetAttack(){
-         berry.Clear();
-         berry.TrimExcess();
-         enemy.Clear();
-         enemy.TrimExcess();
+        enemySparks.Clear();
+        enemySparks.TrimExcess();
+        enemy.Clear();
+        enemy.TrimExcess();
+        berry.Clear();
+        berry.TrimExcess();
     }
     void OffHitEffect(){
         enemySparks[0].SetActive(false);
         enemySparks[1].SetActive(false);
         enemySparks[2].SetActive(false);
+        enemy[0].GetComponent<Animator>().SetTrigger("normal");
+        enemy[1].GetComponent<Animator>().SetTrigger("normal");
+        enemy[2].GetComponent<Animator>().SetTrigger("normal");
         // enemy[0].GetComponent<Animator>().SetBool("stun",false);
         // enemy[1].GetComponent<Animator>().SetBool("stun",false);
         // enemy[2].GetComponent<Animator>().SetBool("stun",false);
-        // enemySparks.Clear();
-        // enemySparks.TrimExcess();
-        // berry.Clear();
-        // berry.TrimExcess();
+        Invoke("ResetAttack", 0.1f);
     }
     void OffTrail(){
         trail.SetActive(false);
