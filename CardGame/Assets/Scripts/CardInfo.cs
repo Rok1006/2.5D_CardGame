@@ -13,5 +13,6 @@ public class CardInfo : ScriptableObject
     public int maxHp;
     public int minAttack;
     public int maxAttack;
+    
 
 }
