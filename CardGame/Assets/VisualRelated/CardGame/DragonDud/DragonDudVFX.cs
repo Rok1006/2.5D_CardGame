@@ -13,7 +13,7 @@ Conditions:
 if the card in front is gone already: 
 
 */
-public class DragonDudVFX : MonoBehaviour
+public class DragonDudVFX : VFXBase
 {
     public enum AbilityState{CATMODE, DRAGONMODE, PASSIVE};
     public AbilityState currentState = AbilityState.CATMODE;

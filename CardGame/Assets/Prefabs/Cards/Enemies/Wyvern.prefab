@@ -514,6 +514,9 @@ MonoBehaviour:
   health: 0
   enemyName: {fileID: 5743036284229091853}
   attack: {fileID: 5743036284680820681}
+  movementPattern:
+  - {fileID: 11400000, guid: af2ea03b0a84de94a805d3a4105cddff, type: 2}
+  grid: {fileID: 0}
 --- !u!1 &5743036284229091855
 GameObject:
   m_ObjectHideFlags: 0

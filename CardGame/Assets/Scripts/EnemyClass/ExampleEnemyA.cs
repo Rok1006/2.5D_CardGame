@@ -29,7 +29,10 @@ public class ExampleEnemyA : EnemyBase
     {
         throw new System.NotImplementedException();
     }
-
+    public override List<GameObject> EvaluateDestination()
+    {
+        throw new System.NotImplementedException();
+    }
     // Start is called before the first frame update
     protected override void Start()
     {

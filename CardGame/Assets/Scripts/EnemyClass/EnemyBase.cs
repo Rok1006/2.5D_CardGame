@@ -15,8 +15,14 @@ public abstract class EnemyBase : MonoBehaviour
 
     public TextMeshProUGUI enemyName;
     public TextMeshProUGUI attack;
+    public List<EnemyMovement> movementPattern;
+
+    public Grid grid;
+    private Vector3 position;
+    public Vector3 Position { get { return position; } set { position = value; } }
     public abstract Task Move();
     public abstract Task Attack();
+    public abstract List<GameObject> EvaluateDestination();
 
     public abstract void MoveComplete();
 
@@ -31,6 +37,7 @@ public abstract class EnemyBase : MonoBehaviour
     {
         Config();
     }
+    
 
     // Update is called once per frame
     void Update()

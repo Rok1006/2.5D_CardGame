@@ -10,9 +10,18 @@ public class ExampleEnemyB : EnemyBase
         throw new System.NotImplementedException();
     }
 
+    public override List<GameObject> EvaluateDestination()
+    {
+        var destination = this.movementPattern[0].Movement(this.grid.row, this.grid.column);
+
+      
+
+        return destination;
+    }
+
     public override async Task Move()
     {
-        
+        EvaluateDestination();
         await Task.Delay(3000);
         Debug.Log("moved");
         

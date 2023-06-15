@@ -126,8 +126,8 @@ public class GridManagerPlus : MonoBehaviour
         {
             var enemy = Instantiate(enemies[1], smt.transform.position , enemies[1].transform.rotation);
             var grid = smt.GetComponent<Grid>();
-            grid.isOccupied = true;
             grid.thingHold = enemy;
+            grid.UpdateGrid();
             Debug.Log("grid:" + grid.row + " " + grid.column);
         }
     }
