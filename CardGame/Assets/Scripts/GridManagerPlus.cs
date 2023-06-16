@@ -39,6 +39,10 @@ public class GridManagerPlus : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.B))
         {
+            InitialSpawnEnemy();
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
             SpawnEnemy();
         }
     }
@@ -53,9 +57,9 @@ public class GridManagerPlus : MonoBehaviour
             {
                 Vector3 position = new Vector3(z * cellSize, 0f, x * -cellSize);
                 GameObject element = Instantiate(ground, transform.position + position, Quaternion.identity, transform);
-                grid[x, z] = element;
-                grid[x, z].AddComponent<Grid>();
-                var gridelement = grid[x, z].GetComponent<Grid>();
+                grid[z,x] = element;
+                grid[z,x].AddComponent<Grid>();
+                var gridelement = grid[z, x].GetComponent<Grid>();
                 gridelement.row = z;
                 gridelement.column = x;
             }
@@ -119,7 +123,32 @@ public class GridManagerPlus : MonoBehaviour
         return list;
     }
 
-    public void SpawnEnemy()
+    public List<GameObject> PickRandomFirstRowElement(int amount)
+    {
+        var firstRowElements = new List<GameObject>();
+        for (int i = 0; i < 4; i++)
+        {
+            firstRowElements.Add(grid[i,0]);
+            Debug.Log(grid[i, 0].GetComponent<Grid>().row + " " + grid[i, 0].GetComponent<Grid>().column);
+        }
+
+        if(amount < firstRowElements.Count)
+        {
+            int num = firstRowElements.Count - amount;
+            
+            for(int i = 0; i < num; i++)
+            {
+                firstRowElements.RemoveAt(Random.Range(0, firstRowElements.Count));
+            }
+
+            
+        }
+
+        return firstRowElements;
+
+    }
+
+    public void InitialSpawnEnemy()
     {
         var list = PickRandomGridElement(3);
         foreach(GameObject smt in list)
@@ -129,6 +158,18 @@ public class GridManagerPlus : MonoBehaviour
             grid.thingHold = enemy;
             grid.UpdateGrid();
             Debug.Log("grid:" + grid.row + " " + grid.column);
+        }
+    }
+    public void SpawnEnemy()
+    {
+        var list =  PickRandomFirstRowElement(2);
+
+        foreach(GameObject smt in list)
+        {
+            var enemy = Instantiate(enemies[1], smt.transform.position, enemies[1].transform.rotation);
+            var grid = smt.GetComponent<Grid>();
+            grid.thingHold = enemy;
+            grid.UpdateGrid();
         }
     }
 

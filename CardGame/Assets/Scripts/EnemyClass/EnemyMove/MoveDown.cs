@@ -14,7 +14,7 @@ public class MoveDown : EnemyMovement
         {
             var list = new List<GameObject>();
             list.Add(GridManagerPlus.instance.grid[row, column + random]);
-            Debug.Log(row + " " + column + random);
+            Debug.Log(row + " " + (column + random));
             return list;
 
         }
