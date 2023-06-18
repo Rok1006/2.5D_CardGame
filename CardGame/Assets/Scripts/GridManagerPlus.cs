@@ -37,14 +37,7 @@ public class GridManagerPlus : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            InitialSpawnEnemy();
-        }
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            SpawnEnemy();
-        }
+        
     }
 
     private void CreateGrid()

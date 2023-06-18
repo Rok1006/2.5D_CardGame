@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 public class GameManagerPlus : MonoBehaviour
 {
-    bool isPlayerturn;
-    bool isEnemyturn;
+    public bool isPlayerturn;
+    public bool isEnemyturn;
     public  GridManagerPlus manager;
 
 
@@ -16,17 +16,39 @@ public class GameManagerPlus : MonoBehaviour
     void Start()
     {
         manager = GridManagerPlus.instance;
+        isPlayerturn = true;
+        isEnemyturn = false;
+        manager.InitialSpawnEnemy();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.D))
+        
+        if(isEnemyturn == true)
         {
-           enemies =  TurnManager.FillQueue(manager.queue);
 
-            BeginTask();
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                manager.SpawnEnemy();
+            }
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+               enemies =  TurnManager.FillQueue(manager.queue);
+
+                BeginTask();
+            }
         }
+        if(isPlayerturn == true)
+        {
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                isPlayerturn = false;
+                isEnemyturn = true;
+
+            }
+        }
+        
     }
 
     public async void BeginTask()
@@ -43,5 +65,7 @@ public class GameManagerPlus : MonoBehaviour
 
         
         Debug.Log("finall");
+        isEnemyturn = false;
+        isPlayerturn = true;
     }
 }
