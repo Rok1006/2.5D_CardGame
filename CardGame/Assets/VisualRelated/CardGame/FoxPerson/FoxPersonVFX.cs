@@ -9,10 +9,9 @@ Passive:take random enemy(1) hp, distribute it to one of the teammate(more aggre
 Note:
 - need to add first row enemy into the enemy list
 */
-public class FoxPersonVFX : MonoBehaviour
+public class FoxPersonVFX : VFXBase
 {
-    public enum AbilityState{MAIN, PASSIVE};
-    public AbilityState currentState = AbilityState.MAIN;
+    
     [Header("Detect")]
     public List<GameObject> enemy = new List<GameObject>();
     public List<GameObject> gdPt = new List<GameObject>();
@@ -27,7 +26,6 @@ public class FoxPersonVFX : MonoBehaviour
     [SerializeField] private GameObject effectCircle;
     Animator ec;
     // public GameObject theCharacter; //passive
-    public List<GameObject> playerCharacter = new List<GameObject>();
 
     [Header("Values")]
     [SerializeField]private int effectPos = 0; //0
@@ -69,19 +67,20 @@ public class FoxPersonVFX : MonoBehaviour
         }
     }
     
-    IEnumerator Attack(){
+    public IEnumerator Attack(GameObject player){
         yield return new WaitForSeconds(0);
         if(currentState == AbilityState.MAIN){
-            DetectPlayerGdPt();
+            //DetectPlayerGdPt();
             MagicCircleCreate(foxMagicCircle, foxGroundPt,5.5f);
             //Debug.Log("hi");//issue: why so many instanciated
             yield return new WaitForSeconds(.5f);
             MagicCircleCreate(otherMagicCircle, gdPt[0],4.5f);
             MagicCircleCreate(otherMagicCircle, gdPt[1],4.5f);
-            Invoke("ResetAttack",1f);
+            yield return new WaitForSeconds(1f);
+            ResetAttack(player);
         }else if(currentState == AbilityState.PASSIVE){
             DetectEnemyGdPt();
-            RandomPlayer();
+            RandomPlayer(1);
             MagicCircleCreate(foxMagicCircle, foxGroundPt,3f);
             yield return new WaitForSeconds(.5f);
             MagicCircleCreate(enemyMagicCircle, gdPt[0],2f);
@@ -91,7 +90,8 @@ public class FoxPersonVFX : MonoBehaviour
             sc._shootSpeed = shootSpeed;
             sc._force = force;
             sc.target = target;
-            Invoke("ResetAttack",.5f);
+             yield return new WaitForSeconds(0.5f);
+            ResetAttack(player);
 
         }
     }
@@ -107,12 +107,7 @@ public class FoxPersonVFX : MonoBehaviour
         theEnemy = enemy[r];
        // }
     }
-    void RandomPlayer(){ //get random 1 enemy groundpt
-        if(playerCharacter.Count>0){ //put it in a way that it reassign new enemy's efect
-            int r = Random.Range(0,playerCharacter.Count);
-            target = playerCharacter[r];
-        }
-    }
+    
     void DetectPlayerGdPt(){ //get random two player character gdpt
         if(playerCharacter.Count>0){ //put it in a way that it reassign new enemy's efect
             List<int> number = new List<int>();
@@ -132,12 +127,13 @@ public class FoxPersonVFX : MonoBehaviour
             gdPt.Add(playerCharacter[r2].transform.GetChild(effectPos).gameObject);
         }
     }
-    void ResetAttack(){
+    void ResetAttack(GameObject player){
         Debug.Log("reset time");
         gdPt.Clear();
         gdPt.TrimExcess();
         enemy.Clear();
         enemy.TrimExcess();
+        player.GetComponent<PlayerBase>().IsAttacking = false;
         //playerCharacter
     }
 }

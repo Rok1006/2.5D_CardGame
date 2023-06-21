@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class VFXBase : MonoBehaviour
 {
+    public enum AbilityState { MAIN, PASSIVE };
+    public AbilityState currentState = AbilityState.MAIN;
+    public static List<GameObject> playerCharacter = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +17,30 @@ public class VFXBase : MonoBehaviour
     void Update()
     {
         
+    }
+    //This class should contain all the helper method that you need for VFX stuff
+
+    public static List<GameObject> RandomPlayer(int amount)
+    {
+        //returns certain amount of player gameobject
+        var temp = new List<GameObject>();
+        for(int i = 0; i < playerCharacter.Count; i++)
+        {
+            temp.Add(playerCharacter[i]);
+        }
+        var list = new List<GameObject>();
+        if (playerCharacter.Count > 0)
+        { //put it in a way that it reassign new enemy's efect
+            for(int i = 0; i < amount; i++)
+            {
+                var random = Random.Range(0, playerCharacter.Count);
+                list.Add(temp[Random.Range(0,random)]);
+                temp.RemoveAt(random);
+
+            }
+        }
+
+        return list;
+
     }
 }

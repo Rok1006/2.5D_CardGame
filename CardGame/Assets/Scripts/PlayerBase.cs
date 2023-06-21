@@ -9,6 +9,8 @@ public abstract class PlayerBase : MonoBehaviour
     public int mana;
     public int damage;
     public VFXBase vfx;
+    private bool isAttacking = false;
+    public bool IsAttacking { get; set; }
 
 
 

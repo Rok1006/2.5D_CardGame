@@ -15,8 +15,8 @@ public class ExampleEnemyB : EnemyBase
     {
         var destination = this.movementPattern[0].Movement(this.grid.row, this.grid.column);
 
-        
 
+       
         return destination;
     }
 
