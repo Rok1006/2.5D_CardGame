@@ -3,26 +3,24 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class PateCatl : PlayerBase
+public class TaurinusBlowberry : PlayerBase
 {
-    
     public override async Task Attack()
     {
         isAttacking = true;
-        vfx.GetComponent<FoxPersonVFX>().currentState = FoxPersonVFX.AbilityState.MAIN;
-        StartCoroutine(vfx.GetComponent<FoxPersonVFX>().Attack(this.gameObject));
-        while(isAttacking != false)
+        vfx.GetComponent<BombGuyVFX>().currentState = BombGuyVFX.AbilityState.MAIN;
+        vfx.GetComponent<BombGuyVFX>().host = this.gameObject;
+        StartCoroutine(vfx.GetComponent<BombGuyVFX>().Attack(this.gameObject));
+        while (isAttacking != false)
         {
             Debug.Log(gameObject.name + " " + "attacking");
             await Task.Yield();
         }
         await Move();
-        
     }
 
     public override Task Move()
     {
-        Debug.Log("meow");
         throw new System.NotImplementedException();
     }
 
@@ -39,7 +37,8 @@ public class PateCatl : PlayerBase
     // Start is called before the first frame update
     public override void Start()
     {
-        vfx = this.GetComponent<FoxPersonVFX>();
+        vfx = this.GetComponent<BombGuyVFX>();
+        vfx.host = this.gameObject;
     }
 
     // Update is called once per frame

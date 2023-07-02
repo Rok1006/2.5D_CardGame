@@ -5,12 +5,14 @@ using System.Threading.Tasks;
 
 public abstract class PlayerBase : MonoBehaviour
 {
+
+    public Stat stat;
     public int health;
     public int mana;
     public int damage;
     public VFXBase vfx;
-    private bool isAttacking = false;
-    public bool IsAttacking { get; set; }
+    public bool isAttacking = false;
+    
 
 
 

@@ -13,10 +13,10 @@ Passive: heal (buff + attack) himself a bit by eating the blueberry
 Note:
 Need in other script add all detected enemy into the enemy list
 */
-public class BombGuyVFX : MonoBehaviour
+public class BombGuyVFX : VFXBase
 {
-    public enum AbilityState{MAIN, PASSIVE};
-    public AbilityState currentState = AbilityState.MAIN;
+   // public enum AbilityState{MAIN, PASSIVE};
+    //public AbilityState currentState = AbilityState.MAIN;
     [Header("Detect")]
     public List<GameObject> enemy = new List<GameObject>();
     public List<GameObject> berry = new List<GameObject>();
@@ -66,6 +66,9 @@ public class BombGuyVFX : MonoBehaviour
 
     void Update()
     {
+        //trial
+
+       
         //Dev shit
         if(Input.GetKeyDown(KeyCode.Space)){
             DetectSparks();
@@ -85,20 +88,20 @@ public class BombGuyVFX : MonoBehaviour
                     }
                 }    
 
-                if(berry[2] != null)
+                if(berry[2] == null)
                 {
                         Debug.Log(berry[2].transform.position - enemy[2].transform.position);
 
                       //  if (berry[2].transform.position == enemy[2].transform.position)
-                      if(0.2 >= Vector3.Distance(berry[2].transform.position , enemy[2].transform.position))
-                        {
+                     // if(0.2 >= Vector3.Distance(berry[2].transform.position , enemy[2].transform.position))
+                        //{
                             Debug.Log("Done");
                             // enemy[2].GetComponent<Animator>().SetTrigger("normal");
                             // enemy[2].GetComponent<Animator>().SetTrigger("stun");
                             Invoke("OffHitEffect", 1f);
                             // Invoke("ResetAttack", 0.1f);
                             break;
-                        }
+                      //  }
                 }
                 
             }
@@ -120,15 +123,15 @@ public class BombGuyVFX : MonoBehaviour
             ec.SetBool("Main", false);
         }
     }
-    IEnumerator Attack(){
+    public IEnumerator Attack(GameObject player){
         yield return new WaitForSeconds(0);
         if(currentState == AbilityState.MAIN&&enemy.Count>0){
-            DetectSparks();
-            BerryCreate(smallBerry, enemy[0]);
+            //DetectSparks();
+            BerryCreate(smallBerry, GridManagerPlus.instance.grid[3,3]);
             yield return new WaitForSeconds(.1f);
-            BerryCreate(smallBerry, enemy[1]);
+            BerryCreate(smallBerry, GridManagerPlus.instance.grid[2, 2]);
             yield return new WaitForSeconds(.2f);
-            BerryCreate(smallBerry, enemy[2]);
+            BerryCreate(smallBerry, GridManagerPlus.instance.grid[1, 1]);
             check = true;
         }else if(currentState == AbilityState.PASSIVE){ 
             GameObject s = Instantiate(bigBerry, passiveEmitPt.transform.position, Quaternion.identity);
@@ -152,6 +155,8 @@ public class BombGuyVFX : MonoBehaviour
         enemy.TrimExcess();
         berry.Clear();
         berry.TrimExcess();
+        host.GetComponent<PlayerBase>().isAttacking = false;
+
     }
     void OffHitEffect(){
         enemySparks[0].SetActive(false);

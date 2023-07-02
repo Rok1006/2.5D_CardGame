@@ -7,10 +7,11 @@ public class VFXBase : MonoBehaviour
     public enum AbilityState { MAIN, PASSIVE };
     public AbilityState currentState = AbilityState.MAIN;
     public static List<GameObject> playerCharacter = new List<GameObject>();
+    public GameObject host;
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame
@@ -20,6 +21,7 @@ public class VFXBase : MonoBehaviour
     }
     //This class should contain all the helper method that you need for VFX stuff
 
+    
     public static List<GameObject> RandomPlayer(int amount)
     {
         //returns certain amount of player gameobject
@@ -41,6 +43,25 @@ public class VFXBase : MonoBehaviour
         }
 
         return list;
+
+    }
+
+    public static List<GameObject> DetectPlayerGroundPoint(int amount)
+    {
+        List<GameObject> list = new List<GameObject>();
+        var temp = RandomPlayer(amount);
+        if(playerCharacter.Count > 0)
+        {
+            for(int i = 0; i < amount; i++)
+            {
+                
+            }
+        }
+        return null;
+    }
+
+    public virtual void ResetAttack(GameObject player)
+    {
 
     }
 }

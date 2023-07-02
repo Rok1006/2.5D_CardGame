@@ -127,13 +127,13 @@ public class FoxPersonVFX : VFXBase
             gdPt.Add(playerCharacter[r2].transform.GetChild(effectPos).gameObject);
         }
     }
-    void ResetAttack(GameObject player){
+    public override void ResetAttack(GameObject player){
         Debug.Log("reset time");
         gdPt.Clear();
         gdPt.TrimExcess();
         enemy.Clear();
         enemy.TrimExcess();
-        player.GetComponent<PlayerBase>().IsAttacking = false;
+        player.GetComponent<PlayerBase>().isAttacking = false;
         //playerCharacter
     }
 }
