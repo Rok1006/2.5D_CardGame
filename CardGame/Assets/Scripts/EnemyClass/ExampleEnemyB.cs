@@ -11,9 +11,9 @@ public class ExampleEnemyB : EnemyBase
         throw new System.NotImplementedException();
     }
 
-    public override List<GameObject> EvaluateDestination()
+    public override List<Vector3> EvaluateDestination()
     {
-        var destination = this.movementPattern[0].Movement(this.grid.row, this.grid.column);
+        var destination = this.movementPattern[0].Movement(this.grid.row, this.grid.column,this.gameObject);
 
 
        
@@ -25,11 +25,11 @@ public class ExampleEnemyB : EnemyBase
         var options = EvaluateDestination();
         if (options.Count != 0)
         {
-            this.transform.DOMove(options[0].transform.position, 1f).OnComplete(() =>
+            this.transform.DOMove(options[0], 0.3f).OnComplete(() =>
             {
                 Debug.Log("moved");
             });
-            await Task.Delay(3000);
+            await Task.Delay(1000);
             
         }
     }

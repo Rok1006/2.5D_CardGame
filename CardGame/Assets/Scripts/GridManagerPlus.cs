@@ -8,9 +8,11 @@ public class GridManagerPlus : MonoBehaviour
     public GameObject ground;
     public int gridSize = 4;
     public float cellSize = 2f;
+    public Vector3 offset;
     //change this
     public Queue<GameObject> queue = new Queue<GameObject>();
 
+    public GameObject[] playerGrid;
     public GameObject[,] grid;
     public Grid[,] enemyGrid;
 
@@ -31,14 +33,17 @@ public class GridManagerPlus : MonoBehaviour
 
     private void Start()
     {
+            
              CreateGrid();
+             
              enemyGrid = new Grid[gridSize, gridSize];
     }
 
     private void Update()
     {
-        
+       
     }
+   
 
     private void CreateGrid()
     {
@@ -52,6 +57,7 @@ public class GridManagerPlus : MonoBehaviour
                 GameObject element = Instantiate(ground, transform.position + position, Quaternion.identity, transform);
                 grid[z,x] = element;
                 grid[z,x].AddComponent<Grid>();
+                grid[z, x].GetComponent<MeshRenderer>().enabled = false;
                 var gridelement = grid[z, x].GetComponent<Grid>();
                 gridelement.row = z;
                 gridelement.column = x;
@@ -61,7 +67,7 @@ public class GridManagerPlus : MonoBehaviour
         
     }
 
-    private void EstablishQueue()
+    public void EstablishQueue()
     {
         if (grid.GetLength(0) > 0)
         {
@@ -146,7 +152,7 @@ public class GridManagerPlus : MonoBehaviour
         var list = PickRandomGridElement(3);
         foreach(GameObject smt in list)
         {
-            var enemy = Instantiate(enemies[1], smt.transform.position , enemies[1].transform.rotation);
+            var enemy = Instantiate(enemies[1], smt.transform.position + offset , enemies[1].transform.rotation);
             var grid = smt.GetComponent<Grid>();
             grid.thingHold = enemy;
             grid.UpdateGrid();
@@ -159,7 +165,7 @@ public class GridManagerPlus : MonoBehaviour
 
         foreach(GameObject smt in list)
         {
-            var enemy = Instantiate(enemies[1], smt.transform.position, enemies[1].transform.rotation);
+            var enemy = Instantiate(enemies[1], smt.transform.position + offset, enemies[1].transform.rotation);
             var grid = smt.GetComponent<Grid>();
             grid.thingHold = enemy;
             grid.UpdateGrid();

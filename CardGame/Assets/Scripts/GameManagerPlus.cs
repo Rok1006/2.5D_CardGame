@@ -34,9 +34,15 @@ public class GameManagerPlus : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.D))
             {
+               if(enemies.Count != 0)
+                {
+                    enemies.Clear();
+                }
                enemies =  TurnManager.FillQueue(manager.queue);
 
                 BeginTask();
+                manager.EstablishQueue();
+                
             }
         }
         if(isPlayerturn == true)

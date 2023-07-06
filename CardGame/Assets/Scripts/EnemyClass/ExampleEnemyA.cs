@@ -29,7 +29,7 @@ public class ExampleEnemyA : EnemyBase
     {
         throw new System.NotImplementedException();
     }
-    public override List<GameObject> EvaluateDestination()
+    public override List<Vector3> EvaluateDestination()
     {
         throw new System.NotImplementedException();
     }

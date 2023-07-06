@@ -20,7 +20,7 @@ public class TurnManager : MonoBehaviour
             }
             else
             {
-                queue.Dequeue();
+               queue.Dequeue();
             }
         }
        

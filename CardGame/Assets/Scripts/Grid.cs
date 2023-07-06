@@ -26,7 +26,30 @@ public class Grid :MonoBehaviour
         }
     }
 
-
-
    
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "EnemyCard")
+        {
+            if(collision.gameObject.tag == "EnemyCard")
+            {
+                collision.gameObject.GetComponent<EnemyBase>().grid = this;
+            }
+            thingHold = collision.gameObject;
+            isOccupied = true;
+        }
+    }
+   
+    private void OnTriggerExit(Collider collision)
+    {
+        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "EnemyCard")
+        {
+            thingHold = null;
+            isOccupied = false;
+        }
+    }
+
+
+
+
 }

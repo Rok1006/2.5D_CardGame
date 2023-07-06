@@ -22,7 +22,7 @@ public abstract class EnemyBase : MonoBehaviour
     public Vector3 Position { get { return position; } set { position = value; } }
     public abstract Task Move();
     public abstract Task Attack();
-    public abstract List<GameObject> EvaluateDestination();
+    public abstract List<Vector3> EvaluateDestination();
 
     public abstract void MoveComplete();
 

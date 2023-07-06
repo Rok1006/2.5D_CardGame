@@ -401,6 +401,7 @@ GameObject:
   - component: {fileID: 6551070116101563162}
   - component: {fileID: 3476213976382295297}
   - component: {fileID: 8208247268205565860}
+  - component: {fileID: -4929576729693991477}
   m_Layer: 0
   m_Name: Wyvern
   m_TagString: EnemyCard
@@ -451,7 +452,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5743036284228039105}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 4.7762322, y: 7.4629283, z: 0.15710935}
@@ -517,6 +518,19 @@ MonoBehaviour:
   movementPattern:
   - {fileID: 11400000, guid: af2ea03b0a84de94a805d3a4105cddff, type: 2}
   grid: {fileID: 0}
+--- !u!114 &-4929576729693991477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5743036284228039105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94d78c503a081524c98cbf400780b8bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  virtualCamera: {fileID: 0}
 --- !u!1 &5743036284229091855
 GameObject:
   m_ObjectHideFlags: 0

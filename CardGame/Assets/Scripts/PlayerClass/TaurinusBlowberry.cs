@@ -6,7 +6,7 @@ using UnityEngine;
 public class TaurinusBlowberry : PlayerBase
 {
     public override async Task Attack()
-    {
+    {   
         isAttacking = true;
         vfx.GetComponent<BombGuyVFX>().currentState = BombGuyVFX.AbilityState.MAIN;
         vfx.GetComponent<BombGuyVFX>().host = this.gameObject;
