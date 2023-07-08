@@ -18,7 +18,7 @@ public class GameManagerPlus : MonoBehaviour
         manager = GridManagerPlus.instance;
         isPlayerturn = true;
         isEnemyturn = false;
-        manager.InitialSpawnEnemy();
+        
     }
 
     // Update is called once per frame

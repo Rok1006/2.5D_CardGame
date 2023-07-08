@@ -19,9 +19,9 @@ public class EnemySpawner : MonoBehaviour
         SpawnModifier modifier = new SpawnModifier();
 
         // Customize the spawn modifier values based on your desired randomness
-        modifier.spawnRate = Random.Range(0.8f, 1.2f);
-        modifier.enhanceEnemy = Random.Range(0.8f, 1.2f);
-        modifier.randomEvents = Random.Range(0.8f, 1.2f);
+        modifier.spawnRate = Random.Range(1f, 2f);
+        modifier.enhanceEnemy = Random.Range(1f, 2f);
+        modifier.randomEvents = Random.Range(1f, 2f);
 
         return modifier;
     }
@@ -52,6 +52,10 @@ public class EnemySpawner : MonoBehaviour
             var grid = smt.GetComponent<Grid>();
             grid.thingHold = enemy;
             grid.UpdateGrid();
+            enemy.GetComponent<EnemyBase>().mod = spawnModifier;
+            
+
+            
         }
         /*
         for (int i = 0; i < stage.enemiesToSpawn.Length; i++)
@@ -70,6 +74,7 @@ public class EnemySpawner : MonoBehaviour
 
         */
         // Start the next stage after all enemies are spawned
+        yield return null;
         StartNextStage();
     }
 }

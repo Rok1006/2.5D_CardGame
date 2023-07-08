@@ -401,7 +401,6 @@ GameObject:
   - component: {fileID: 6551070116101563162}
   - component: {fileID: 3476213976382295297}
   - component: {fileID: 8208247268205565860}
-  - component: {fileID: -4929576729693991477}
   m_Layer: 0
   m_Name: Wyvern
   m_TagString: EnemyCard
@@ -418,7 +417,7 @@ Transform:
   m_GameObject: {fileID: 5743036284228039105}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 5439474214086097016}
   - {fileID: 4945086418987547336}
@@ -510,6 +509,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48603875c7748ce4195257fb248a0e41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  appearPrefab: {fileID: 3617594021801474913, guid: d965e644356308d4eba9a804c59753ac, type: 3}
+  attackPrefab: {fileID: 0}
+  deathPrefab: {fileID: 0}
   cardInfo: {fileID: 11400000, guid: 415a1cf3ab480474dbdfb412b8e631d8, type: 2}
   enemySprite: {fileID: 5743036285706315482}
   health: 0
@@ -518,19 +520,6 @@ MonoBehaviour:
   movementPattern:
   - {fileID: 11400000, guid: af2ea03b0a84de94a805d3a4105cddff, type: 2}
   grid: {fileID: 0}
---- !u!114 &-4929576729693991477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5743036284228039105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94d78c503a081524c98cbf400780b8bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  virtualCamera: {fileID: 0}
 --- !u!1 &5743036284229091855
 GameObject:
   m_ObjectHideFlags: 0

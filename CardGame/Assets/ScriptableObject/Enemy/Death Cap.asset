@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a5b1a9044d9d840a298cb30f6c6d45, type: 3}
   m_Name: Death Cap
   m_EditorClassIdentifier: 
-  cardImage: {fileID: -4976842335371898792, guid: a3e3cd0c85b89462d9f1c731d6c3f425, type: 3}
+  cardImage: {fileID: -1726337231120828170, guid: a3e3cd0c85b89462d9f1c731d6c3f425, type: 3}
   name: Death Cap
   minHp: 6
   maxHp: 7

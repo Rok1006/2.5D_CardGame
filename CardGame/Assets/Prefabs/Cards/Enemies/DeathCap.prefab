@@ -417,7 +417,7 @@ Transform:
   m_GameObject: {fileID: 5743036284228039105}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 5439474214086097016}
   - {fileID: 4945086418987547336}
@@ -509,11 +509,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ce948515f22bc845bfecdf9122789e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  appearPrefab: {fileID: 7691669979300970187, guid: 270303702e197c9488a85c30e8ab4058, type: 3}
+  attackPrefab: {fileID: 0}
+  deathPrefab: {fileID: 0}
   cardInfo: {fileID: 11400000, guid: e0db5dc0d0c6301438db8d3bc111edc9, type: 2}
   enemySprite: {fileID: 5743036285706315482}
   health: 0
   enemyName: {fileID: 5743036284229091853}
   attack: {fileID: 5743036284680820681}
+  movementPattern: []
+  grid: {fileID: 0}
   projectile: {fileID: 3260202012729091980, guid: 761aee0392c7f564ebf9efd36d5d16b9, type: 3}
 --- !u!1 &5743036284229091855
 GameObject:

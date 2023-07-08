@@ -10,21 +10,35 @@ public class Interaction : MonoBehaviour
     {
         virtualCamera = GameObject.Find("vcam").GetComponent<CinemachineVirtualCamera>();
     }
-
-    private void OnMouseDown()
+    private void Update()
     {
-        // Zoom in on the clicked card
-        ZoomInOnCard();
+        if (Input.GetMouseButtonDown(1))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
 
-        // Hide other cards
-       // HideOtherCards();
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.transform.gameObject.tag == "EnemyCard")
+                {
+                    ZoomInOnCard(hit.transform.gameObject);
+                }
+            }
+        }
+    }
+    public void ZoomOutOnCard()
+    {
+        virtualCamera.Priority = 10;
     }
 
-    private void ZoomInOnCard()
+   
+
+    private void ZoomInOnCard(GameObject card)
     {
-        virtualCamera.transform.position = this.transform.position;
+        virtualCamera.transform.position = card.transform.position + new Vector3(0,0,-2);
         virtualCamera.Priority = 15;
     }
+  
 
     private void HideOtherCards()
     {
