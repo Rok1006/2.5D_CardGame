@@ -11,7 +11,7 @@ public abstract class EnemyBase : MonoBehaviour
     public GameObject appearPrefab;
     public GameObject attackPrefab;
     public GameObject deathPrefab;
-
+    public GameObject indicator;
 
     public delegate void onMoveComplete();
     public event onMoveComplete moveComplete;
@@ -23,6 +23,7 @@ public abstract class EnemyBase : MonoBehaviour
     public TextMeshProUGUI enemyName;
     public TextMeshProUGUI attack;
     public List<EnemyMovement> movementPattern;
+    public List<AttackPattern> attackPattern;
     public SpawnModifier mod;
 
     public Grid grid;

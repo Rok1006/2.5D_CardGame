@@ -6,9 +6,15 @@ using DG.Tweening;
 
 public class ExampleEnemyB : EnemyBase
 {
-    public override Task Attack()
+    public override async Task Attack()
     {
-        throw new System.NotImplementedException();
+        var options = this.attackPattern[0].GetElement(this.grid.row , this.grid.column, GridManagerPlus.instance.grid);
+        if (options != null)
+        {
+            Instantiate(indicator, options.transform.position, indicator.transform.rotation);
+            await Task.Delay(1000);
+
+        }
     }
 
     public override List<Vector3> EvaluateDestination()
@@ -16,7 +22,7 @@ public class ExampleEnemyB : EnemyBase
         var destination = this.movementPattern[0].Movement(this.grid.row, this.grid.column,this.gameObject);
 
 
-       
+        Debug.Log(destination[0]);
         return destination;
     }
 
@@ -25,7 +31,7 @@ public class ExampleEnemyB : EnemyBase
         var options = EvaluateDestination();
         if (options.Count != 0)
         {
-            this.transform.DOMove(options[0], 0.3f).OnComplete(() =>
+            this.transform.DOMove(options[0], 0.3f).SetEase(Ease.InOutSine).OnComplete(() =>
             {
                 Debug.Log("moved");
             });

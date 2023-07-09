@@ -402,7 +402,7 @@ GameObject:
   - component: {fileID: 3476213976382295297}
   - component: {fileID: 8208247268205565860}
   m_Layer: 0
-  m_Name: Wyvern
+  m_Name: Overlord
   m_TagString: EnemyCard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -509,19 +509,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48603875c7748ce4195257fb248a0e41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  appearPrefab: {fileID: 3617594021801474913, guid: d965e644356308d4eba9a804c59753ac, type: 3}
+  appearPrefab: {fileID: 6953137006660926858, guid: 5452a8020c581234e94b95d49b92f693, type: 3}
   attackPrefab: {fileID: 0}
   deathPrefab: {fileID: 0}
-  indicator: {fileID: 6985248622522416894, guid: cb1b59d9d7ad0a64faed6de731427e4e, type: 3}
-  cardInfo: {fileID: 11400000, guid: 415a1cf3ab480474dbdfb412b8e631d8, type: 2}
+  indicator: {fileID: 0}
+  cardInfo: {fileID: 11400000, guid: acba15cb096b45545824d036d2b620fe, type: 2}
   enemySprite: {fileID: 5743036285706315482}
   health: 0
   enemyName: {fileID: 5743036284229091853}
   attack: {fileID: 5743036284680820681}
   movementPattern:
-  - {fileID: 11400000, guid: af2ea03b0a84de94a805d3a4105cddff, type: 2}
-  attackPattern:
-  - {fileID: 11400000, guid: 89204767e9c50d3458176432b84f00f6, type: 2}
+  - {fileID: 11400000, guid: 28ac1cbf00e94b341bdf4a5fe574f2db, type: 2}
+  attackPattern: []
   grid: {fileID: 0}
 --- !u!1 &5743036284229091855
 GameObject:

@@ -47,7 +47,7 @@ public class GridManagerPlus : MonoBehaviour
 
     private void CreateGrid()
     {
-        grid = new GameObject[gridSize, gridSize];
+        grid = new GameObject[gridSize, 5];
 
         for (int x = 0; x < gridSize; x++)
         {
@@ -57,11 +57,16 @@ public class GridManagerPlus : MonoBehaviour
                 GameObject element = Instantiate(ground, transform.position + position, Quaternion.identity, transform);
                 grid[z,x] = element;
                 grid[z,x].AddComponent<Grid>();
-                grid[z, x].GetComponent<MeshRenderer>().enabled = false;
+                //grid[z, x].GetComponent<MeshRenderer>().enabled = false;
                 var gridelement = grid[z, x].GetComponent<Grid>();
                 gridelement.row = z;
                 gridelement.column = x;
+                
             }
+        }
+        for(int i = 0; i < 4; i++)
+        {
+            //tbd
         }
         EstablishQueue();
         

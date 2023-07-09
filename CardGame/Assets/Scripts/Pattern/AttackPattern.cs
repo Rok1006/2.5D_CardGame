@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackPattern : ScriptableObject
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+public abstract class AttackPattern : ScriptableObject
+{
+    public bool isEnemy;
+    public bool isPlayer;
+    public int amount;
+
+    public abstract GameObject GetElement(int startX, int startY, GameObject[,] grid);
 }
+
