@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: New Stage
   m_EditorClassIdentifier: 
   enemiesToSpawn:
-  - {fileID: 5743036284228039105, guid: 193799bad7a1bd04aa295c47243e3209, type: 3}
+  - {fileID: 5743036284228039105, guid: c3964ca646f34ad478fccb19889c2e81, type: 3}
   - {fileID: 5743036284228039105, guid: 2fb9c34fd8b05d94ebde99c300b2cdcc, type: 3}
-  - {fileID: 5743036284228039105, guid: ba9b39d54aaf4dd46be09904d898d504, type: 3}

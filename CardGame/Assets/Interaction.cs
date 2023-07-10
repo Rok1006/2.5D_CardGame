@@ -62,7 +62,7 @@ public class Interaction : MonoBehaviour
 
     private void ZoomInOnCard(GameObject card)
     {
-        virtualCamera.transform.position = card.transform.position + new Vector3(0,0,-2);
+        virtualCamera.transform.position = card.transform.position + new Vector3(0,0,-4);
         virtualCamera.Priority = 15;
     }
   
