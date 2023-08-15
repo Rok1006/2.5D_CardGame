@@ -65,7 +65,7 @@ public class GameManagerPlus : MonoBehaviour
             if (enemy.GetComponent<EnemyBase>() != null)
             {
                 await enemy.GetComponent<EnemyBase>().Move();
-                //await enemy.GetComponent<EnemyBase>().Attack();
+                await enemy.GetComponent<EnemyBase>().Attack();
                 
             }
         }

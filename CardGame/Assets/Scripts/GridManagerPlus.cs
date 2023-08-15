@@ -132,25 +132,39 @@ public class GridManagerPlus : MonoBehaviour
         var firstRowElements = new List<GameObject>();
         for (int i = 0; i < 4; i++)
         {
-            firstRowElements.Add(grid[i,0]);
-            Debug.Log(grid[i, 0].GetComponent<Grid>().row + " " + grid[i, 0].GetComponent<Grid>().column);
-        }
-
-        if(amount < firstRowElements.Count)
-        {
-            int num = firstRowElements.Count - amount;
-            
-            for(int i = 0; i < num; i++)
+            if(grid[i,0].GetComponent<Grid>().isOccupied == false)
             {
-                firstRowElements.RemoveAt(Random.Range(0, firstRowElements.Count));
+                firstRowElements.Add(grid[i, 0]);
+            }
+            
+            //Debug.Log(grid[i, 0].GetComponent<Grid>().row + " " + grid[i, 0].GetComponent<Grid>().column);
+        }
+        List<GameObject> pickedElements = new List<GameObject>();
+        if (firstRowElements.Count >= amount)
+        {
+
+            
+            if (amount <= firstRowElements.Count)
+            {
+                System.Random random = new System.Random();
+
+                for (int i = 0; i < amount; i++)
+                {
+                    int randomIndex = random.Next(0, firstRowElements.Count);
+                    pickedElements.Add(firstRowElements[randomIndex]);
+                    firstRowElements.RemoveAt(randomIndex);
+                }
             }
 
+        }
+        else
+        {
             
         }
 
-        return firstRowElements;
-
+        return pickedElements;
     }
+
 
     public void InitialSpawnEnemy()
     {
@@ -166,10 +180,12 @@ public class GridManagerPlus : MonoBehaviour
     }
     public void SpawnEnemy()
     {
+        
         var list =  PickRandomFirstRowElement(2);
 
         foreach(GameObject smt in list)
         {
+            Debug.Log("meow");
             var enemy = Instantiate(enemies[1], smt.transform.position + offset, enemies[1].transform.rotation);
             var grid = smt.GetComponent<Grid>();
             grid.thingHold = enemy;

@@ -42,10 +42,12 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator SpawnEnemies(StageData stage)
     {
+        
         var list = GridManagerPlus.instance.PickRandomFirstRowElement(2);
 
         foreach (GameObject smt in list)
         {
+            Debug.Log("dfffff");
             var offset = GridManagerPlus.instance.offset;
             var random = Random.Range(0, stages[currentStageIndex].enemiesToSpawn.Length);
             var enemy = Instantiate(stages[currentStageIndex].enemiesToSpawn[random], smt.transform.position + offset, stages[currentStageIndex].enemiesToSpawn[random].transform.rotation);

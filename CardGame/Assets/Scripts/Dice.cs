@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class Dice : MonoBehaviour
 {
+    private bool init;
     private Rigidbody rb;
+    public GameObject[] position;
+    
+    public Material lit;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,10 +19,31 @@ public class Dice : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(CheckObjectHasStopped() == true)
+        if(CheckObjectHasStopped() == true && init == false)
         {
+            init = true;
+            float highestY = float.MinValue;
+            GameObject highestFace = null;
 
+            foreach (GameObject face in position)
+            {
+                float currentY = face.transform.position.y;
+
+                if (currentY > highestY)
+                {
+                    highestY = currentY;
+                    highestFace = face;
+                }
+            }
+            Debug.Log(highestFace.name);
+            HighlightFace(highestFace);
         }
+    }
+    void HighlightFace(GameObject highestFace)
+    {
+        var face = highestFace.transform.parent;
+        Debug.Log(face.name);
+        face.gameObject.GetComponent <MeshRenderer>().material = lit;
     }
 
     public bool CheckObjectHasStopped()

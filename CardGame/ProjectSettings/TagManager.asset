@@ -8,6 +8,7 @@ TagManager:
   - EnemyCard
   - BombGuy
   - ItemCard
+  - Board
   layers:
   - Default
   - TransparentFX

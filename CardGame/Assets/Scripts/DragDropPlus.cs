@@ -17,22 +17,7 @@ public class DragDropPlus : MonoBehaviour
 
     void Update()
     {
-        if (isfloat)
-        {
-            if (objectB == null)
-            {
-                Sequence sequence = DOTween.Sequence();
-                sequence.Append(objectA.transform.DOMoveY(transform.position.y + floatingHeight, floatDuration / 2).SetEase(Ease.OutQuad));
-                sequence.Play();
-            }
-            else
-            {
-                Sequence sequence = DOTween.Sequence();
-                sequence.Append(objectB.transform.DOMoveY(transform.position.y + floatingHeight, floatDuration / 2).SetEase(Ease.OutQuad));
-                sequence.OnComplete(() => { isfloat = false; });
-                sequence.Play();
-            }
-        }
+        
 
         if (Input.GetMouseButtonDown(0) && !inProcess)
         {
@@ -50,7 +35,7 @@ public class DragDropPlus : MonoBehaviour
                         isfloat = true;
                     }
                 }
-                else if (objectB == null && hit.transform.gameObject != objectA)
+                else if (objectB == null && hit.transform.gameObject != objectA && isfloat == false)
                 {
                     if (hit.transform.gameObject.tag == "Player")
                     {
@@ -59,6 +44,25 @@ public class DragDropPlus : MonoBehaviour
                         isfloat = true;
                     }
                 }
+            }
+        }
+        if (isfloat == true)
+        {
+            if (objectB == null)
+            {
+                Sequence sequence = DOTween.Sequence();
+                sequence.Append(objectA.transform.DOMoveY(transform.position.y + floatingHeight, floatDuration / 2).SetEase(Ease.OutQuad));
+                sequence.OnComplete(() => { isfloat = false; });
+                sequence.Play();
+            }
+            else
+            {
+                Sequence sequence = DOTween.Sequence();
+                Debug.Log("running");
+                sequence.Append(objectB.transform.DOMoveY(transform.position.y + floatingHeight, floatDuration / 2).SetEase(Ease.OutQuad));
+                sequence.OnComplete(() => { isfloat = false; Debug.Log("done"); });
+                sequence.Play();
+
             }
         }
     }
@@ -78,7 +82,7 @@ public class DragDropPlus : MonoBehaviour
 
             Sequence sequence = DOTween.Sequence();
             sequence.Append(objectA.transform.DOMove(positionB, 0.2f).SetEase(Ease.OutQuad));
-            sequence.Join(objectB.transform.DOMove(positionA, 0.2f).SetEase(Ease.OutQuad));
+            sequence.Append(objectB.transform.DOMove(positionA, 0.2f).SetEase(Ease.OutQuad));
 
             yield return sequence.WaitForCompletion();
         }

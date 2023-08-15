@@ -11,6 +11,7 @@ public class Grid :MonoBehaviour
 
     public void UpdateGrid()
     {
+        /*
         if(thingHold != null && thingHold.GetComponent<EnemyBase>())
         {
             this.isOccupied = true;
@@ -24,6 +25,7 @@ public class Grid :MonoBehaviour
             this.isOccupied = false;
             thingHold = null;
         }
+        */
     }
 
    

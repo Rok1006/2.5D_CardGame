@@ -82,7 +82,7 @@ public abstract class EnemyBase : MonoBehaviour
         
         while (duration > 0)
         {
-            Debug.Log(duration);
+            
             duration -= Time.deltaTime;
             if (tick == false && duration < 0.5f)
             {
@@ -112,6 +112,27 @@ public abstract class EnemyBase : MonoBehaviour
         });
 
         await taskCompletionSource.Task;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Ground")
+        {
+            var ground = other.gameObject.GetComponent<Grid>();
+            ground.isOccupied = true;
+            grid = ground;
+            Position = ground.transform.position;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Ground")
+        {
+            var ground = other.gameObject.GetComponent<Grid>();
+            ground.isOccupied = false;
+            grid = null;
+            Position = Vector3.zero;
+        }
     }
 
 }
