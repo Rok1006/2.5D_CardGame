@@ -13,18 +13,44 @@ public class MoveDiagonal : EnemyMovement
     public override List<Vector3> Movement(int row, int column, GameObject host)
     {
         var random = Random.Range(min, max + 1);
-        if (column < 3 && row < 3 && mix)
+        if(column < 3)
         {
             bool direction = Random.value > 0.5 ? true : false;
             //direction true = right, direction false = left
             var list = new List<Vector3>();
             if (direction)
             {
-                list.Add(GridManagerPlus.instance.grid[row + random, column + random].transform.position + offset);
+                if((row+random >= 0 && row+random <= 3) && (column + random >= 0 && column + random <= 3))
+                {
+
+                    list.Add(GridManagerPlus.instance.grid[row + random, column + random].transform.position + offset);
+                }
+                else if((row - random >= 0 && row - random <= 3) && (column + random >= 0 && column + random <= 3))
+                {
+                    list.Add(GridManagerPlus.instance.grid[row - random, column + random].transform.position + offset);
+                }
+                else
+                {
+                    return null;
+                }
+
+                
             }
             else
             {
-                list.Add(GridManagerPlus.instance.grid[row - random, column + random].transform.position + offset);
+                if ((row - random >= 0 && row - random <= 3) && (column + random >= 0 && column + random <= 3))
+                {
+                    list.Add(GridManagerPlus.instance.grid[row - random, column + random].transform.position + offset);
+                }
+                else if ((row + random >= 0 && row + random <= 3) && (column + random >= 0 && column + random <= 3))
+                {
+
+                    list.Add(GridManagerPlus.instance.grid[row + random, column + random].transform.position + offset);
+                }
+                else
+                {
+                    return null;
+                }
             }
 
             return list;

@@ -15,7 +15,7 @@ public static class DamageCalculation
         float damageMod = isCrit ? host.criticalMultiplier : 1f;
 
         damage = host.baseDamage * damageMod * ElementalMultiplier(host.element.ToString(), guest.element.ToString());
-
+       
         // Apply any additional modifiers or formulas here
         // For example, you could add critical hit chances, elemental bonuses, etc.
         Debug.Log(damage);

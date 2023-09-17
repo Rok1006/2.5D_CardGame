@@ -15,7 +15,14 @@ public class VerticalPattern : AttackPattern, IAttack
             // Check if the previous row exists within the grid
             if (nextY >= 0)
             {
-                return grid[startX, nextY];
+                if(grid[startX, nextY].GetComponent<Grid>().isOccupied == true)
+                {
+                    if(grid[startX, nextY].GetComponent<Grid>().thingHold.gameObject.tag == "Player")
+                    {
+                        return grid[startX, nextY];
+                    }
+                }
+                return null;
             }
         }
         if (isPlayer == true)

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Threading.Tasks;
+using UnityEngine.SceneManagement;
 
 public class GameManagerPlus : MonoBehaviour
 {
@@ -10,11 +11,14 @@ public class GameManagerPlus : MonoBehaviour
     public  GridManagerPlus manager;
 
 
+    
+
     public List<GameObject> enemies;
 
     // Start is called before the first frame update
     void Start()
     {
+        
         manager = GridManagerPlus.instance;
         isPlayerturn = true;
         isEnemyturn = false;
@@ -24,7 +28,10 @@ public class GameManagerPlus : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            SceneManager.LoadScene("JoonTest");
+        }
         if(isEnemyturn == true)
         {
 
@@ -42,6 +49,7 @@ public class GameManagerPlus : MonoBehaviour
 
                 BeginTask();
                 manager.EstablishQueue();
+
                 
             }
         }

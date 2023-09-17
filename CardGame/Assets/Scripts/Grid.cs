@@ -8,6 +8,12 @@ public class Grid :MonoBehaviour
     public GameObject thingHold;
     public int row;
     public int column;
+    public bool isPlayerGround;
+
+    private void Start()
+    {
+        
+    }
 
     public void UpdateGrid()
     {

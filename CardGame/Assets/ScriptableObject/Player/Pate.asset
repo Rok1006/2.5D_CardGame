@@ -12,8 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c66599eb67baf7d44a2dc06098c8f98a, type: 3}
   m_Name: Pate
   m_EditorClassIdentifier: 
-  element: 2
+  cardImage: {fileID: 0}
+  name: 
+  minHp: 0
+  maxHp: 0
+  minAttack: 0
+  maxAttack: 0
   baseDamage: 5
   defense: 2
   criticalChance: 0.5
   criticalMultiplier: 1.3
+  element: 0

@@ -2,15 +2,16 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: HEalBall
-  m_Shader: {fileID: -6465566751694194690, guid: 0c31386592ce24252b30500cb30d0a8b,
-    type: 3}
-  m_ShaderKeywords: _EMISSION
+  m_Shader: {fileID: -6465566751694194690, guid: 0c31386592ce24252b30500cb30d0a8b, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _EMISSION
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -48,6 +49,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - BOOLEAN_B07730B7: 0
     - _AlphaClip: 0
@@ -84,6 +86,7 @@ Material:
     - _MinMax1: {r: 100.5, g: 2, b: 0, a: 0}
     - _MinMax2: {r: 126.1, g: 1, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+  m_BuildTextureStacks: []
 --- !u!114 &7835878456197855593
 MonoBehaviour:
   m_ObjectHideFlags: 11
@@ -96,4 +99,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 1
+  version: 5

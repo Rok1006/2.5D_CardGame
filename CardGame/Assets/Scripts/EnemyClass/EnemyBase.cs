@@ -12,11 +12,12 @@ public abstract class EnemyBase : MonoBehaviour
     public GameObject attackPrefab;
     public GameObject deathPrefab;
     public GameObject indicator;
+    public GameObject DamagePrefab;
 
     public delegate void onMoveComplete();
     public event onMoveComplete moveComplete;
 
-    public CardInfo cardInfo;
+    public Stat stat;
     public SpriteRenderer enemySprite;
     public int health;
 
@@ -26,6 +27,10 @@ public abstract class EnemyBase : MonoBehaviour
     public List<AttackPattern> attackPattern;
     public SpawnModifier mod;
 
+    public delegate void MonsterDeathDelegate(EnemyBase enemy);
+    public event MonsterDeathDelegate onMonsterDeath;
+
+    
     public Grid grid;
     private Vector3 position;
     public Vector3 Position { get { return position; } set { position = value; } }
@@ -44,17 +49,17 @@ public abstract class EnemyBase : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        enemySprite.sprite = cardInfo.cardImage;
+        enemySprite.sprite = stat.cardImage;
         if (mod != null)
         {
-            health = Mathf.RoundToInt(mod.enhanceEnemy * Random.Range(cardInfo.minHp, cardInfo.maxHp + 1));
+            health = Mathf.RoundToInt(mod.enhanceEnemy * Random.Range(stat.minHp, stat.maxHp + 1));
         }
         else
         {
-            health = Random.Range(cardInfo.minHp, cardInfo.maxHp + 1);
+            health = Random.Range(stat.minHp, stat.maxHp + 1);
         }
 
-        enemyName.text = cardInfo.name.ToString();
+        enemyName.text = stat.name.ToString();
         attack.text = this.health.ToString();
         
         StartCoroutine("Config");
@@ -65,6 +70,12 @@ public abstract class EnemyBase : MonoBehaviour
     void Update()
     {
 
+    }
+    
+    public int Calculation(Stat guest)
+    {
+        return (int)DamageCalculation.CalculateDamage(this.stat, guest);
+        
     }
 
 
@@ -134,5 +145,12 @@ public abstract class EnemyBase : MonoBehaviour
             Position = Vector3.zero;
         }
     }
+    public async Task Die()
+    {
+        onMonsterDeath?.Invoke(this);
+        Destroy(this.gameObject);
+        await Task.Yield();
+    }
+   
 
 }

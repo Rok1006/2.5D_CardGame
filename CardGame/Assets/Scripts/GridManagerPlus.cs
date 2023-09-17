@@ -64,7 +64,12 @@ public class GridManagerPlus : MonoBehaviour
                 
             }
         }
-        for(int i = 0; i < 4; i++)
+        grid[0, 4] = GameObject.Find("PlayerGrid").transform.GetChild(0).gameObject;
+        grid[1, 4] = GameObject.Find("PlayerGrid").transform.GetChild(1).gameObject;
+        grid[2, 4] = GameObject.Find("PlayerGrid").transform.GetChild(2).gameObject;
+        grid[3, 4] = GameObject.Find("PlayerGrid").transform.GetChild(3).gameObject;
+
+        for (int i = 0; i < 4; i++)
         {
             //tbd
         }

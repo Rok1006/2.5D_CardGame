@@ -10,10 +10,33 @@ public class ExampleEnemyB : EnemyBase
     {
         var options = this.attackPattern[0].GetElement(this.grid.row , this.grid.column, GridManagerPlus.instance.grid);
         if (options != null)
+            
         {
-            Instantiate(indicator, options.transform.position, indicator.transform.rotation);
+            
+            var damage = Calculation(options.GetComponent<Grid>().thingHold.GetComponent<PlayerBase>().stat);
+            var damageVFX = Instantiate(DamagePrefab, options.transform.position + new Vector3(0, 2, 0), Quaternion.identity);
+            float timer = 0;
+            EventHandler.Instance.onEnemyAttack.Invoke(new DamageFeedback(options.transform.position + new Vector3(0, 4, 0), damage));
+            while (damageVFX != null)
+            {
+                timer += Time.deltaTime;
+                if(timer >= 0.5)
+                {
+                    break;
+                }
+                await Task.Yield();
+            }
+            
+
+            
+            //EventHandler.Instance.onEnemyDeath.Invoke(new DamageFeedback(options.transform.position + new Vector3(0, 4, 0) , 10));
             await Task.Delay(1000);
 
+
+        }
+        else
+        {
+            await Task.Yield();
         }
     }
 

@@ -5,6 +5,7 @@ using Cinemachine;
 public class Interaction : MonoBehaviour
 {
     public CinemachineVirtualCamera virtualCamera;
+    public CinemachineVirtualCamera cardCamera;
     public float sensitivity = 2f;
     public float rotationSmoothness = 5f;
     private Quaternion rot;
@@ -33,9 +34,13 @@ public class Interaction : MonoBehaviour
             {
                 if (hit.transform.gameObject.tag == "EnemyCard")
                 {
-                    ZoomInOnCard(hit.transform.gameObject);
+                    ZoomInOnCard("virtualCamera",hit.transform.gameObject);
                 }
             }
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ZoomInOnCard("cardCamera", null);
         }
 
         if (virtualCamera.Priority == 15)
@@ -60,10 +65,18 @@ public class Interaction : MonoBehaviour
 
    
 
-    private void ZoomInOnCard(GameObject card)
+    private void ZoomInOnCard(string name, GameObject card)
     {
-        virtualCamera.transform.position = card.transform.position + new Vector3(0,0,-4);
-        virtualCamera.Priority = 15;
+        switch(name){
+            case "cardCamera":
+                cardCamera.Priority = 15;
+                break;
+            case "virtualCamera":
+                virtualCamera.transform.position = card.transform.position + new Vector3(0, 0, -4);
+                virtualCamera.Priority = 15;
+                break;
+        }
+        
     }
   
 
