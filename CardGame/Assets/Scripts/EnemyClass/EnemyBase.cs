@@ -151,6 +151,11 @@ public abstract class EnemyBase : MonoBehaviour
         Destroy(this.gameObject);
         await Task.Yield();
     }
+
+    public async Task TakeDamage()
+    {
+
+    }
    
 
 }

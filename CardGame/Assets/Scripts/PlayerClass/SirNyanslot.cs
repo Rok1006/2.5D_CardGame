@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 public class SirNyanslot : PlayerBase
 {
-    
+    private int turnCount = 0;
+
     
     public override Task Attack()
     {

@@ -86,9 +86,7 @@ public class DragonDudVFX : VFXBase
 
     void Update()
     {//Dev shit
-        if(Input.GetKeyDown(KeyCode.Space)){
-            StartCoroutine("Attack"); 
-        }
+       
 //---------------------------------
         switch(currentState){
             case AbilityState.CATMODE:  //Main: CAT MODE

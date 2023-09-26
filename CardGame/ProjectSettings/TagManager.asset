@@ -9,6 +9,7 @@ TagManager:
   - BombGuy
   - ItemCard
   - Board
+  - DirectionCard
   layers:
   - Default
   - TransparentFX

@@ -6,6 +6,7 @@ public class Interaction : MonoBehaviour
 {
     public CinemachineVirtualCamera virtualCamera;
     public CinemachineVirtualCamera cardCamera;
+    public CinemachineVirtualCamera mainCamera;
     public float sensitivity = 2f;
     public float rotationSmoothness = 5f;
     private Quaternion rot;
@@ -29,32 +30,44 @@ public class Interaction : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
+            int layermask = ~LayerMask.GetMask("Ground");
 
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit , Mathf.Infinity , layermask))
             {
                 if (hit.transform.gameObject.tag == "EnemyCard")
                 {
                     ZoomInOnCard("virtualCamera",hit.transform.gameObject);
                 }
             }
-        }
+        }/*
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            ZoomInOnCard("cardCamera", null);
+            if (CinemachineCore.Instance.GetActiveBrain(0).ActiveVirtualCamera.Equals(mainCamera))
+            {
+                cardCamera.gameObject.SetActive(true);
+                 ZoomInOnCard("cardCamera", null);
+            }
+            else
+            {
+                if (CinemachineCore.Instance.GetActiveBrain(0).ActiveVirtualCamera.Equals(cardCamera))
+                {
+                    cardCamera.gameObject.SetActive(false);
+                }
+            }
+            
         }
-
+        */
         if (virtualCamera.Priority == 15)
         {
-            
-                rotationY += Input.GetAxis("Mouse X") * sensitivity;
-                rotationX += Input.GetAxis("Mouse Y") * -1 * sensitivity;
-                rotationX = Mathf.Clamp(rotationX, -10, 10);
-            rotationY = Mathf.Clamp(rotationY, -10, 10);   // to stop the player from looking above/below 90
+            float targetRotationY = rotationY + Input.GetAxis("Mouse X") * sensitivity;
+            float targetRotationX = rotationX + Input.GetAxis("Mouse Y") * -1 * sensitivity;
+            targetRotationX = Mathf.Clamp(targetRotationX, -20, 20);
+            targetRotationY = Mathf.Clamp(targetRotationY, -20, 20);
 
-            virtualCamera.transform.localEulerAngles = new Vector3(rotationX, rotationY, 0);
-                //var targetRotation = Quaternion.Euler(rotationX, rotationY, 0);
-                //virtualCamera.transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime);
-            
+            Quaternion targetRotation = Quaternion.Euler(targetRotationX, targetRotationY, 0);
+
+            // Use Quaternion.Lerp for smooth rotation
+            virtualCamera.transform.rotation = Quaternion.Lerp(virtualCamera.transform.rotation, targetRotation, 0.8f * Time.deltaTime);
         }
     }
     public void ZoomOutOnCard()
@@ -72,7 +85,8 @@ public class Interaction : MonoBehaviour
                 cardCamera.Priority = 15;
                 break;
             case "virtualCamera":
-                virtualCamera.transform.position = card.transform.position + new Vector3(0, 0, -4);
+                virtualCamera.transform.position = card.transform.position + new Vector3(0, 0.8f, -4);
+                
                 virtualCamera.Priority = 15;
                 break;
         }

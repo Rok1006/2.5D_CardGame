@@ -22,12 +22,19 @@ public class MoveDiagonal : EnemyMovement
             {
                 if((row+random >= 0 && row+random <= 3) && (column + random >= 0 && column + random <= 3))
                 {
-
-                    list.Add(GridManagerPlus.instance.grid[row + random, column + random].transform.position + offset);
+                    if(Validate(row+random , column + random) == false)
+                    {
+                        list.Add(GridManagerPlus.instance.grid[row + random, column + random].transform.position + offset);
+                    }   
+                    
                 }
                 else if((row - random >= 0 && row - random <= 3) && (column + random >= 0 && column + random <= 3))
                 {
-                    list.Add(GridManagerPlus.instance.grid[row - random, column + random].transform.position + offset);
+                    if (Validate(row - random, column + random) == false)
+                    {
+                        list.Add(GridManagerPlus.instance.grid[row - random, column + random].transform.position + offset);
+                    }
+                   
                 }
                 else
                 {
@@ -40,12 +47,18 @@ public class MoveDiagonal : EnemyMovement
             {
                 if ((row - random >= 0 && row - random <= 3) && (column + random >= 0 && column + random <= 3))
                 {
-                    list.Add(GridManagerPlus.instance.grid[row - random, column + random].transform.position + offset);
+                    if (Validate(row - random, column + random) == false)
+                    {
+                        list.Add(GridManagerPlus.instance.grid[row - random, column + random].transform.position + offset);
+                    }
                 }
                 else if ((row + random >= 0 && row + random <= 3) && (column + random >= 0 && column + random <= 3))
                 {
 
-                    list.Add(GridManagerPlus.instance.grid[row + random, column + random].transform.position + offset);
+                    if (Validate(row + random, column + random) == false)
+                    {
+                        list.Add(GridManagerPlus.instance.grid[row + random, column + random].transform.position + offset);
+                    }
                 }
                 else
                 {

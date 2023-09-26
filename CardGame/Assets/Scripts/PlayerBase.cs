@@ -12,6 +12,11 @@ public abstract class PlayerBase : MonoBehaviour
     public int damage;
     public VFXBase vfx;
     public bool isAttacking = false;
+    public List<AttackPattern> attackPattern;
+
+    private List<GameObject> targets;
+    public Grid grid;
+    protected GameObject[,] board = GridManagerPlus.instance.grid;
     
 
 

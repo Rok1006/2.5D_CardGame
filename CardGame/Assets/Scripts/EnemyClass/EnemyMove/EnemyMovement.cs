@@ -9,4 +9,12 @@ public abstract class EnemyMovement : ScriptableObject
     
     public abstract List<Vector3> Movement(int row, int column,GameObject host);
 
+    public bool Validate(int row, int column)
+    {
+
+        
+        return GridManagerPlus.instance.grid[row, column].gameObject.GetComponent<Grid>().isOccupied;
+
+    }
+
 }

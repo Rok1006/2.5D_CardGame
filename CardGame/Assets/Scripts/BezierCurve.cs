@@ -8,6 +8,9 @@ public class BezierCurve : MonoBehaviour
     public Transform endPoint;
     public int numberOfSpheres = 10;
     public float curveHeight = 5.0f;
+    public GameObject prefab;
+    private bool showSphere = false;
+    private List<GameObject> spheres = new List<GameObject>();
 
     private void Start()
     {
@@ -15,7 +18,62 @@ public class BezierCurve : MonoBehaviour
         {
             float t = i / (float)numberOfSpheres;
             Vector3 position = CalculateBezierPoint(t, startPoint.position, endPoint.position, curveHeight);
-            InstantiateSphere(position);
+            GameObject sphere = InstantiateSphere(position);
+            sphere.GetComponent<SphereCollider>().enabled = false;
+            spheres.Add(sphere);
+            sphere.SetActive(false);
+        }
+    }
+    public void InitializeSphere()
+    {
+        foreach(GameObject go in spheres)
+        {
+            go.SetActive(true);
+            showSphere = true;
+        }
+    }
+    public void HideSphere()
+    {
+        foreach (GameObject go in spheres)
+        {
+            go.SetActive(false);
+            showSphere = false;
+        }
+    }
+
+    private GameObject InstantiateSphere(Vector3 position)
+    {
+        GameObject sphere = Instantiate(prefab);
+        sphere.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+        sphere.transform.position = position;
+        Debug.Log("d");
+        return sphere;
+    }
+
+    private void Update()
+    {
+        if(showSphere)
+        {
+
+          UpdateSpheresPosition();
+        }
+    }
+
+    private void UpdateSpheresPosition()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            Vector3 mousePosition = hit.point;
+
+            for (int i = 0; i < spheres.Count; i++)
+            {
+                float t = i / (float)numberOfSpheres;
+                Vector3 position = CalculateBezierPoint(t, startPoint.position, mousePosition, curveHeight);
+                spheres[i].transform.position = position;
+            }
         }
     }
 
@@ -30,11 +88,5 @@ public class BezierCurve : MonoBehaviour
         p += tt * p2;
 
         return p;
-    }
-
-    private void InstantiateSphere(Vector3 position)
-    {
-        GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        sphere.transform.position = position;
     }
 }

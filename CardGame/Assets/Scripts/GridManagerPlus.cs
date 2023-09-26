@@ -37,6 +37,8 @@ public class GridManagerPlus : MonoBehaviour
              CreateGrid();
              
              enemyGrid = new Grid[gridSize, gridSize];
+
+        
     }
 
     private void Update()

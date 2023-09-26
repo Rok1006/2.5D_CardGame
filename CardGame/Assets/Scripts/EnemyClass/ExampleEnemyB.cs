@@ -54,7 +54,7 @@ public class ExampleEnemyB : EnemyBase
         var options = EvaluateDestination();
         if (options.Count != 0)
         {
-            this.transform.DOMove(options[0], 0.3f).SetEase(Ease.InOutSine).OnComplete(() =>
+            this.transform.DOMove(options[0], 0.25f).SetEase(Ease.Flash).OnComplete(() =>
             {
                 Debug.Log("moved");
             });

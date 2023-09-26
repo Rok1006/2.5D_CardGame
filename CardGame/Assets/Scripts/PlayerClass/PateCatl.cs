@@ -9,13 +9,18 @@ public class PateCatl : PlayerBase
     public override async Task Attack()
     {
         isAttacking = true;
-        vfx.GetComponent<FoxPersonVFX>().currentState = FoxPersonVFX.AbilityState.MAIN;
-        StartCoroutine(vfx.GetComponent<FoxPersonVFX>().Attack(this.gameObject));
-        while(isAttacking != false)
+        var options = attackPattern[0].GetElement(grid.row , grid.column , board);
+        if(options != null)
         {
-            Debug.Log(gameObject.name + " " + "attacking");
-            await Task.Yield();
+            vfx.GetComponent<FoxPersonVFX>().currentState = FoxPersonVFX.AbilityState.MAIN;
+            StartCoroutine(vfx.GetComponent<FoxPersonVFX>().Attack(this.gameObject));
+            while (isAttacking != false)
+            {
+                Debug.Log(gameObject.name + " " + "attacking");
+                await Task.Yield();
+            }
         }
+        
         await Move();
         
     }
@@ -45,9 +50,6 @@ public class PateCatl : PlayerBase
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Attack();
-        }
+       
     }
 }

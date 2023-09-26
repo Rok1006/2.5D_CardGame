@@ -10,6 +10,9 @@ public class EventHandler : MonoBehaviour
     public UnityEvent<DamageFeedback> onEnemyAttack;
     public UnityEvent<EnemyBase> onEnemyDeath;
     public UnityEvent<EnemyBase> onEnemySpawn;
+    public UnityEvent onCardUsed;
+    public UnityEvent OnTurnFinished;
+    public UnityEvent OnTurnStart;
 
     private void Awake()
     {

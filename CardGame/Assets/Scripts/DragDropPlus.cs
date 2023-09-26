@@ -14,18 +14,85 @@ public class DragDropPlus : MonoBehaviour
     public float floatingHeight = 1f; // The height at which the object will float
     public float floatDuration = 2f; // The duration of each floating cycle
     public float bounceHeight = 0.2f; // The height of the bounce
+    private bool isInSequenceA;
+    private bool isInSequenceB;
+    [SerializeField]
+    private BezierCurve indicator;
 
+    //card hover things
+    private Vector3 originalPos;
+    private bool isOver = false;
+    
+    private Tween moveTween;
+    public Vector3 ogPos;
+    private GameObject currentCard;
+    
     void Update()
     {
         
-
+        //CheckCardHover();
         if (Input.GetMouseButtonDown(0) && !inProcess)
         {
+            
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
+            int layermask = ~LayerMask.GetMask("Ground");
 
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit,Mathf.Infinity,layermask))
             {
+                if (hit.collider.gameObject.tag == "DirectionCard")
+                {
+                    Debug.Log("hi direction");
+                    if (isOver == false)
+                    {
+                        indicator.InitializeSphere();
+                        currentCard = hit.collider.gameObject;
+                        isOver = true;
+                        originalPos = hit.collider.gameObject.transform.position;
+                        //Debug.Log(originalPos.position);
+                        if (isOver)
+                        {
+                            moveTween = hit.collider.transform.DOMove(hit.collider.transform.position + hit.collider.transform.up * 1, 0.4f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
+                        }
+                        //StartCoroutine("HighlightCard");
+                    }
+                    else
+                    {
+                        if(currentCard != null)
+                        {
+                            if (hit.collider.gameObject.Equals(currentCard))
+                            {
+                                if (moveTween != null)
+                                {
+                                    // Kill the stored moveTween
+                                    moveTween.Kill();
+                                    moveTween = null; // Set the moveTween instance to null
+                                }
+                                indicator.HideSphere();
+                                //Debug.Log(originalPos.position);
+                                hit.collider.transform.DOMove(originalPos, 0.4f).SetEase(Ease.InOutSine).OnComplete(() =>
+                                {
+                                    isOver = false;
+                                });
+                            }
+                            else
+                            {
+                                moveTween.Kill();
+                                moveTween = null;
+                                indicator.HideSphere();
+                                currentCard.transform.DOMove(originalPos, 0.2f).SetEase(Ease.InOutSine).OnComplete(() =>
+                                {
+                                    currentCard = hit.collider.gameObject;
+                                    isOver = false;
+                                });
+                                originalPos = hit.collider.transform.position;
+                                
+                            }
+                        }
+                        
+                    }
+                }
+                
                 if (objectA == null)
                 {
                     if (hit.transform.gameObject.tag == "Player")
@@ -48,28 +115,42 @@ public class DragDropPlus : MonoBehaviour
         }
         if (isfloat == true)
         {
-            if (objectB == null)
+            if (objectB == null && isInSequenceA == false)
             {
+                isInSequenceA = true;
                 Sequence sequence = DOTween.Sequence();
+                
                 sequence.Append(objectA.transform.DOMoveY(transform.position.y + floatingHeight, floatDuration / 2).SetEase(Ease.OutQuad));
-                sequence.OnComplete(() => { isfloat = false; });
+                sequence.OnComplete(() => { isfloat = false; isInSequenceA = false; sequence.Kill(); });
                 sequence.Play();
             }
-            else
+            else if(isInSequenceB == false && objectB != null)
             {
+                isInSequenceB = true;
                 Sequence sequence = DOTween.Sequence();
                 Debug.Log("running");
                 sequence.Append(objectB.transform.DOMoveY(transform.position.y + floatingHeight, floatDuration / 2).SetEase(Ease.OutQuad));
-                sequence.OnComplete(() => { isfloat = false; Debug.Log("done"); });
+                sequence.OnComplete(() => { isfloat = false; Debug.Log("done"); isInSequenceB = false; sequence.Kill(); });
                 sequence.Play();
 
             }
         }
     }
-
+   
     public void CallSwap()
     {
         StartCoroutine("SwapPositions");
+    }
+
+    private void ResetCards()
+    {
+        List<Tween> activeTweens = DOTween.PlayingTweens();
+
+        foreach(Tween tween in activeTweens)
+        {
+            GameObject tweenObject = tween.target as GameObject;
+
+        }
     }
 
     IEnumerator SwapPositions()

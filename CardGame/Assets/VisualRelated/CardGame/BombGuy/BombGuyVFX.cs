@@ -70,10 +70,7 @@ public class BombGuyVFX : VFXBase
 
        
         //Dev shit
-        if(Input.GetKeyDown(KeyCode.Space)){
-            DetectSparks();
-            StartCoroutine("Attack"); 
-        }
+        
 //---------------------------------
         switch(currentState){
             case AbilityState.MAIN:  //Main

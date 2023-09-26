@@ -46,9 +46,7 @@ public class FoxPersonVFX : VFXBase
     void Update()
     {
         //Dev shit
-        if(Input.GetKeyDown(KeyCode.Space)){
-              StartCoroutine("Attack"); 
-        }
+        
 //---------------------------------
         switch(currentState){
             case AbilityState.MAIN:  //Main

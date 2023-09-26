@@ -75,10 +75,7 @@ public class BirdManVFX : MonoBehaviour
 
     void Update()
     {
-        //Dev shit
-        if(Input.GetKeyDown(KeyCode.Space)){
-            StartCoroutine("Attack"); 
-        }
+        
         switch(currentState){
             case AbilityState.MAIN:  //Main
                 if(move){

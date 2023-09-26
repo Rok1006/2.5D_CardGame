@@ -9,7 +9,7 @@ public class GameManagerPlus : MonoBehaviour
     public bool isPlayerturn;
     public bool isEnemyturn;
     public  GridManagerPlus manager;
-
+    private bool CardDrawn = false;
 
     
 
@@ -22,6 +22,7 @@ public class GameManagerPlus : MonoBehaviour
         manager = GridManagerPlus.instance;
         isPlayerturn = true;
         isEnemyturn = false;
+        PlayerTurn();
         
     }
 
@@ -32,37 +33,28 @@ public class GameManagerPlus : MonoBehaviour
         {
             SceneManager.LoadScene("JoonTest");
         }
-        if(isEnemyturn == true)
-        {
-
-            if (Input.GetKeyDown(KeyCode.C))
-            {
-                manager.SpawnEnemy();
-            }
-            if (Input.GetKeyDown(KeyCode.D))
-            {
-               if(enemies.Count != 0)
-                {
-                    enemies.Clear();
-                }
-               enemies =  TurnManager.FillQueue(manager.queue);
-
-                BeginTask();
-                manager.EstablishQueue();
-
-                
-            }
-        }
-        if(isPlayerturn == true)
-        {
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                isPlayerturn = false;
-                isEnemyturn = true;
-
-            }
-        }
+       
+       
         
+    }
+    private void EnemyTurn()
+    {
+        
+        if (enemies.Count != 0)
+        {
+            enemies.Clear();
+        }
+        enemies = TurnManager.FillQueue(manager.queue);
+
+        BeginTask();
+        manager.EstablishQueue();
+
+    }
+    private void PlayerTurn()
+    {
+        EventHandler.Instance.OnTurnStart.Invoke();
+        Debug.Log("hi");
+          
     }
 
     public async void BeginTask()
@@ -77,10 +69,23 @@ public class GameManagerPlus : MonoBehaviour
                 
             }
         }
+        manager.SpawnEnemy();
 
-        
         Debug.Log("finall");
-        isEnemyturn = false;
-        isPlayerturn = true;
+        SwitchTurn();
+    }
+    public void SwitchTurn()
+    {
+        isPlayerturn = !isPlayerturn;
+        isEnemyturn = !isEnemyturn;
+
+        if (isPlayerturn)
+        {
+            PlayerTurn();
+        }
+        if (isEnemyturn)
+        {
+            EnemyTurn();
+        }
     }
 }
