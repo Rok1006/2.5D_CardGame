@@ -8,7 +8,7 @@ public class RandomPattern : AttackPattern
     public bool isAllRandom;
     public int numbers;
 
-    public override List<GameObject> DebugAttack(int startX, int startY, GameObject[,] grid)
+    public override List<GameObject> DebugAttack(int startX, int startY, ref GameObject[,] grid)
     {
         List<GameObject> result = new List<GameObject>();
 
@@ -42,25 +42,28 @@ public class RandomPattern : AttackPattern
         return result;
     }
 
-    public override List<GameObject> GetElement(int startX, int startY, GameObject[,] grid)
+    public override List<GameObject> GetElement(int startX, int startY, ref GameObject[,] grid)
     {
+       
         options.Clear();
+       
         int gridRows = grid.GetLength(0); // Get the number of rows in the grid
+     
         int gridCols = grid.GetLength(1); // Get the number of columns in the grid
-
+       
         for (int i = 0; i < numbers; i++)
         {
             if (isRowRandom)
             {
                 int randomRow = Random.Range(0, gridRows);
                 int randomCol = Random.Range(0, gridCols);
-                options.Add(grid[randomRow, randomCol]);
+                options.Add(grid[1, randomCol]);
             }
             else if (isColumnRandom)
             {
                 int randomRow = Random.Range(0, gridRows);
                 int randomCol = Random.Range(0, gridCols);
-                options.Add(grid[randomRow, randomCol]);
+                options.Add(grid[randomRow, 4]);
             }
             else if (isAllRandom)
             {
@@ -70,7 +73,7 @@ public class RandomPattern : AttackPattern
                 options.Add(grid[rowIndex, colIndex]);
             }
         }
-        Debug.Log(options.Count);
+        Debug.Log(options.Count + "options Count");
         return options;
     }
 }

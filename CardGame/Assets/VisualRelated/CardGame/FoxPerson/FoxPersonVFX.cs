@@ -12,9 +12,7 @@ Note:
 public class FoxPersonVFX : VFXBase
 {
     
-    [Header("Detect")]
-    public List<GameObject> enemy = new List<GameObject>();
-    public List<GameObject> gdPt = new List<GameObject>();
+    
     [Header("OBJ")]
     public GameObject foxGroundPt; //plz create a ground pt for all cards
     [SerializeField]private GameObject foxMagicCircle;
@@ -56,6 +54,7 @@ public class FoxPersonVFX : VFXBase
                 ec.SetTrigger("Passive");
             break;
         }
+        /*
          if(this.gameObject.GetComponent<PlayerSkill>().isOnAttack1||this.gameObject.GetComponent<PlayerSkill>().isOnAttack2){
             ec.SetBool("Main", true);
             ec.SetBool("Passive", false);
@@ -63,9 +62,10 @@ public class FoxPersonVFX : VFXBase
             ec.SetBool("Passive", true);
             ec.SetBool("Main", false);
         }
+        */
     }
     
-    public IEnumerator Attack(GameObject player){
+    public override IEnumerator Attack(GameObject player){
         yield return new WaitForSeconds(0);
         if(currentState == AbilityState.MAIN){
             //DetectPlayerGdPt();

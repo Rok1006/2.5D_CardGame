@@ -8,9 +8,9 @@ public class ExampleEnemyB : EnemyBase
 {
     public override async Task Attack()
     {
-        var options = this.attackPattern[0].GetElement(this.grid.row , this.grid.column, GridManagerPlus.instance.grid);
+        var options = this.attackPattern[0].GetElement(this.grid.row , this.grid.column, ref GridManagerPlus.instance.grid);
+        Debug.Log(options.Count);
         if (options.Count != 0)
-            
         {
             
             var damage = Calculation(options[0].GetComponent<Grid>().thingHold.GetComponent<PlayerBase>().stat);

@@ -5,32 +5,26 @@ using UnityEngine;
 
 public class PateCatl : PlayerBase
 {
-    
+    public PateCatl instance;
+    public void Awake()
+    {
+        if(instance == null)
+        {
+
+            instance = this;
+        }
+       
+    }
     public override async Task Attack()
     {
-        isAttacking = true;
-        var options = attackPattern[0].GetElement(grid.row , grid.column , board);
-        if(options != null)
-        {
-            vfx.GetComponent<FoxPersonVFX>().currentState = FoxPersonVFX.AbilityState.MAIN;
-            StartCoroutine(vfx.GetComponent<FoxPersonVFX>().Attack(this.gameObject));
-            while (isAttacking != false)
-            {
-                Debug.Log(gameObject.name + " " + "attacking");
-                await Task.Yield();
-            }
-        }
-        
-        
-        await Move();
+        _ = base.Attack();
+
+
+        await Task.Yield();
         
     }
 
-    public override Task Move()
-    {
-        Debug.Log("meow");
-        throw new System.NotImplementedException();
-    }
+ 
 
     public override Task OnDrag()
     {
@@ -45,6 +39,7 @@ public class PateCatl : PlayerBase
     // Start is called before the first frame update
     public override void Start()
     {
+        base.Start();
         vfx = this.GetComponent<FoxPersonVFX>();
     }
 

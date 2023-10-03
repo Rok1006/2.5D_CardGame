@@ -13,10 +13,7 @@ public class SirNyanslot : PlayerBase
         return null;
     }
 
-    public override Task Move()
-    {
-        return null;
-    }
+    
 
     public override Task OnDrag()
     {

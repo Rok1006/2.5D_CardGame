@@ -35,14 +35,14 @@ public class Dice : MonoBehaviour
                     highestFace = face;
                 }
             }
-            Debug.Log(highestFace.name);
+           
             HighlightFace(highestFace);
         }
     }
     void HighlightFace(GameObject highestFace)
     {
         var face = highestFace.transform.parent;
-        Debug.Log(face.name);
+        
         face.gameObject.GetComponent <MeshRenderer>().material = lit;
     }
 

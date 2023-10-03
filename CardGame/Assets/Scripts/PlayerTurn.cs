@@ -28,7 +28,7 @@ public class PlayerTurn : MonoBehaviour
             {
                 playerList = gameManager.ReturnPlayer();
                 
-                PlayerSkill(playerList, counter);
+                //PlayerSkill(playerList, counter);
                 counter++;
                 timer = 3;
 
@@ -47,7 +47,7 @@ public class PlayerTurn : MonoBehaviour
         }
     }
 
-
+    /*
     private void PlayerSkill(List<GameObject> list , int number)
     {
 
@@ -69,4 +69,5 @@ public class PlayerTurn : MonoBehaviour
             playerList.Clear();
         }
     }
+    */
 }

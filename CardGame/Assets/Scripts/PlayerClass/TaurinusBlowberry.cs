@@ -16,13 +16,10 @@ public class TaurinusBlowberry : PlayerBase
             Debug.Log(gameObject.name + " " + "attacking");
             await Task.Yield();
         }
-        await Move();
+        await Task.Yield();
     }
 
-    public override Task Move()
-    {
-        throw new System.NotImplementedException();
-    }
+    
 
     public override Task OnDrag()
     {

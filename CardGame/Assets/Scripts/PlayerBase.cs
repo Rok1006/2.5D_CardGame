@@ -14,11 +14,12 @@ public abstract class PlayerBase : MonoBehaviour
     public bool isAttacking = false;
     public List<AttackPattern> attackPattern;
     public GameObject indicator;
+    public GameObject indicator2;
     protected List<GameObject> options = new List<GameObject>();
 
     private List<GameObject> targets;
     public Grid grid;
-    protected GameObject[,] board = GridManagerPlus.instance.grid;
+    protected GameObject[,] board;
     
 
 
@@ -29,6 +30,9 @@ public abstract class PlayerBase : MonoBehaviour
     public virtual void Start()
     {
         board = GridManagerPlus.instance.grid;
+        Debug.Log("asfd");
+        Debug.Log(board.GetLength(0));
+        vfx = this.gameObject.GetComponent<VFXBase>();
     }
 
     // Update is called once per frame
@@ -38,17 +42,56 @@ public abstract class PlayerBase : MonoBehaviour
         {
             DebugAttackPattern();
         }
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            _= Attack();
+        }
     }
     public abstract Task OnDrag();
 
 
 
-    public abstract Task Move();
+    
 
 
 
 
-    public abstract Task Attack();
+    public virtual async Task Attack()
+    {
+        isAttacking = true;
+        int amount = 0;
+        options.Clear();
+        
+        foreach (AttackPattern pattern in attackPattern)
+        {
+            amount += pattern.amount;
+            
+            var elements = pattern.GetElement(grid.row, grid.column, ref board);
+            Debug.Log(elements.Count);
+            foreach (var element in elements)
+            {
+                options.Add(element);
+                Instantiate(indicator2, element.transform.position, Quaternion.identity);
+                vfx.target.Add(element);
+            }
+            
+
+        }
+        if (options != null)
+        {
+            vfx.currentState = VFXBase.AbilityState.MAIN;
+            StartCoroutine(vfx.Attack(this.gameObject));
+            while (isAttacking != false)
+            {
+                Debug.Log(gameObject.name + " " + "attacking");
+                await Task.Yield();
+            }
+        }
+
+
+        await Task.Yield();
+    }
+        
 
     public abstract Task Passive();
     
@@ -69,12 +112,13 @@ public abstract class PlayerBase : MonoBehaviour
         Debug.Log(this.gameObject.name);
         foreach(AttackPattern pattern in attackPattern)
         {
-            var potential = pattern.DebugAttack(this.grid.row, this.grid.column, GridManagerPlus.instance.grid);
+            var potential = pattern.DebugAttack(this.grid.row, this.grid.column, ref GridManagerPlus.instance.grid);
            
             foreach(var element in potential)
             {
                 options.Add(element);
                 Instantiate(indicator, element.transform.position , Quaternion.identity);
+                options.Clear();
             }
         }
         

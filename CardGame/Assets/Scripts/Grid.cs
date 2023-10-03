@@ -9,6 +9,8 @@ public class Grid :MonoBehaviour
     public int row;
     public int column;
     public bool isPlayerGround;
+    public bool isMain;
+    public bool isPassive;
 
     private void Start()
     {

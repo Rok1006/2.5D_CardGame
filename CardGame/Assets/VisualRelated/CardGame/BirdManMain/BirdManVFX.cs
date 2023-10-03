@@ -100,6 +100,7 @@ public class BirdManVFX : MonoBehaviour
                 ec.SetTrigger("Passive");
             break;
         } 
+        /*
          if(this.gameObject.GetComponent<PlayerSkill>().isOnAttack1||this.gameObject.GetComponent<PlayerSkill>().isOnAttack2){
             ec.SetBool("Main", true);
             ec.SetBool("Passive", false);
@@ -107,6 +108,7 @@ public class BirdManVFX : MonoBehaviour
             ec.SetBool("Passive", true);
             ec.SetBool("Main", false);
         }
+        */
     }
 
     void Move(){

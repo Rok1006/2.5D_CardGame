@@ -12,6 +12,7 @@ public class MoveDiagonal : EnemyMovement
 
     public override List<Vector3> Movement(int row, int column, GameObject host)
     {
+        
         var random = Random.Range(min, max + 1);
         if(column < 3)
         {
@@ -38,7 +39,7 @@ public class MoveDiagonal : EnemyMovement
                 }
                 else
                 {
-                    return null;
+                    return list;
                 }
 
                 
@@ -62,7 +63,7 @@ public class MoveDiagonal : EnemyMovement
                 }
                 else
                 {
-                    return null;
+                    return list;
                 }
             }
 

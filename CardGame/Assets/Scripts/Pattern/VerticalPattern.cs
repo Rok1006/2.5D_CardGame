@@ -5,13 +5,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Attack", menuName = "Attack/VerticalSingle")]
 public class VerticalPattern : AttackPattern
 {
-    public override List<GameObject> DebugAttack(int startX, int startY, GameObject[,] grid)
+    public override List<GameObject> DebugAttack(int startX, int startY, ref GameObject[,] grid)
     {
         return null;
     }
 
-    public override List<GameObject> GetElement(int startX, int startY, GameObject[,] grid)
+    public override List<GameObject> GetElement(int startX, int startY, ref GameObject[,] grid)
     {
+        Debug.Log("huh");
         options.Clear();
         if (isEnemy == true)
         {
@@ -26,10 +27,11 @@ public class VerticalPattern : AttackPattern
                     if(grid[startX, nextY].GetComponent<Grid>().thingHold.gameObject.tag == "Player")
                     {
                         options.Add(grid[startX, nextY]);
+                       
                         return options;
                     }
                 }
-                return null;
+                return options;
             }
         }
         if (isPlayer == true)
@@ -44,6 +46,6 @@ public class VerticalPattern : AttackPattern
         }
 
         // Return an invalid value or handle the out-of-bounds case as desired
-        return null;
+        return options;
     }
 }

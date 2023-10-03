@@ -112,6 +112,7 @@ public class BombGuyVFX : VFXBase
             ec.SetTrigger("Passive");
             break;
         } 
+        /*
         if(this.gameObject.GetComponent<PlayerSkill>().isOnAttack1||this.gameObject.GetComponent<PlayerSkill>().isOnAttack2){
             ec.SetBool("Main", true);
             ec.SetBool("Passive", false);
@@ -119,8 +120,9 @@ public class BombGuyVFX : VFXBase
             ec.SetBool("Passive", true);
             ec.SetBool("Main", false);
         }
+        */
     }
-    public IEnumerator Attack(GameObject player){
+    public override IEnumerator Attack(GameObject player){
         yield return new WaitForSeconds(0);
         if(currentState == AbilityState.MAIN&&enemy.Count>0){
             //DetectSparks();

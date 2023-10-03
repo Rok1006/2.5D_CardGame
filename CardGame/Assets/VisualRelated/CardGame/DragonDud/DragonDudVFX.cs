@@ -125,6 +125,7 @@ public class DragonDudVFX : VFXBase
                 ec.SetTrigger("Passive");
             break;
         }
+        /*
          if(this.gameObject.GetComponent<PlayerSkill>().isOnAttack1||this.gameObject.GetComponent<PlayerSkill>().isOnAttack2){
             ec.SetBool("Main", true);
             ec.SetBool("Passive", false);
@@ -132,9 +133,10 @@ public class DragonDudVFX : VFXBase
             ec.SetBool("Passive", true);
             ec.SetBool("Main", false);
         }
+        */
     }
 
-    IEnumerator Attack(){
+    public override IEnumerator Attack(GameObject player){
         if(currentState == AbilityState.CATMODE){//CatMODE---------------- refine these part
             ResetAttack();
             yield return new WaitForSeconds(0);
@@ -190,4 +192,6 @@ public class DragonDudVFX : VFXBase
         lightDust.SetActive(false);
         Invoke("ResetPassive",1f);
     }
+
+   
 }

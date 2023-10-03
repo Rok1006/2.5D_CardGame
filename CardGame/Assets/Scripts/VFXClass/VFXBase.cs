@@ -2,8 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VFXBase : MonoBehaviour
+public abstract class VFXBase : MonoBehaviour
 {
+    
+    protected List<GameObject> enemy = new List<GameObject>();
+    protected List<GameObject> gdPt = new List<GameObject>();
+    public List<GameObject> target = new List<GameObject>();
+
     public enum AbilityState { MAIN, PASSIVE };
     public AbilityState currentState = AbilityState.MAIN;
     public static List<GameObject> playerCharacter = new List<GameObject>();
@@ -20,7 +25,8 @@ public class VFXBase : MonoBehaviour
         
     }
     //This class should contain all the helper method that you need for VFX stuff
-
+    
+    
     
     public static List<GameObject> RandomPlayer(int amount)
     {
@@ -64,4 +70,6 @@ public class VFXBase : MonoBehaviour
     {
 
     }
+    public abstract IEnumerator Attack(GameObject player);
+    
 }

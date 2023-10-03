@@ -46,7 +46,7 @@ public class BezierCurve : MonoBehaviour
         GameObject sphere = Instantiate(prefab);
         sphere.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
         sphere.transform.position = position;
-        Debug.Log("d");
+        
         return sphere;
     }
 
