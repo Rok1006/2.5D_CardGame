@@ -25,10 +25,18 @@ public class PlayerCards : MonoBehaviour
     {
         
     }
+   
 
     IEnumerator HighlightCard()
     {
         
         yield return null;
+    }
+
+    public IEnumerator DestroyCard()
+    {
+        Tween tweening = this.gameObject.transform.DOScale(Vector3.zero, 0.3f).SetEase(Ease.InSine).OnComplete(() => { Destroy(this.gameObject); }) ;
+
+        yield return tweening.WaitForCompletion();
     }
 }

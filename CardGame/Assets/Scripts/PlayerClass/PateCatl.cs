@@ -21,6 +21,7 @@ public class PateCatl : PlayerBase
             }
         }
         
+        
         await Move();
         
     }
@@ -48,8 +49,5 @@ public class PateCatl : PlayerBase
     }
 
     // Update is called once per frame
-    void Update()
-    {
-       
-    }
+    
 }

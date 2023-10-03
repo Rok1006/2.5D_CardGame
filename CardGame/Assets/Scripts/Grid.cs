@@ -43,6 +43,10 @@ public class Grid :MonoBehaviour
             {
                 collision.gameObject.GetComponent<EnemyBase>().grid = this;
             }
+            if(collision.gameObject.tag == "Player")
+            {
+                collision.gameObject.GetComponent<PlayerBase>().grid = this;
+            }
             thingHold = collision.gameObject;
             isOccupied = true;
         }

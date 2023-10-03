@@ -1614,8 +1614,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64448cf690176424194e554def7bd6f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackPattern: []
-  ogPos: {x: 0, y: 0, z: 0}
+  attackPattern:
+  - {fileID: 11400000, guid: f108a492f261fa440ac4d0dcbd4f5e59, type: 2}
 --- !u!65 &6478999817462139095
 BoxCollider:
   m_ObjectHideFlags: 0

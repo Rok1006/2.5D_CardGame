@@ -183,8 +183,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64448cf690176424194e554def7bd6f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackPattern: []
-  ogPos: {x: 0, y: 0, z: 0}
+  attackPattern:
+  - {fileID: 11400000, guid: 0db683aa91583fa458eb95b3cc51f6e5, type: 2}
 --- !u!65 &3067044287281390221
 BoxCollider:
   m_ObjectHideFlags: 0

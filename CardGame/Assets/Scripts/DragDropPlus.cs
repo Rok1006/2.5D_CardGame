@@ -16,6 +16,7 @@ public class DragDropPlus : MonoBehaviour
     public float bounceHeight = 0.2f; // The height of the bounce
     private bool isInSequenceA;
     private bool isInSequenceB;
+    public PlayerCards playerCard;
     [SerializeField]
     private BezierCurve indicator;
 
@@ -29,7 +30,29 @@ public class DragDropPlus : MonoBehaviour
     
     void Update()
     {
-        
+        if(Input.GetMouseButtonDown(0) && playerCard != null)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            int layermask = ~LayerMask.GetMask("Ground");
+
+            if(Physics.Raycast(ray, out hit, Mathf.Infinity, layermask))
+            {
+                if(hit.collider.gameObject.tag == "Player")
+                {
+                    Debug.Log("found");
+                    var player = hit.collider.gameObject.GetComponent<PlayerBase>();
+                    foreach(var attackPattern in playerCard.attackPattern)
+                    {
+                        player.attackPattern.Add(attackPattern);
+                    }
+                }
+            }
+            indicator.HideSphere();
+            playerCard.StartCoroutine("DestroyCard");
+
+        }
+      
         //CheckCardHover();
         if (Input.GetMouseButtonDown(0) && !inProcess)
         {
@@ -42,7 +65,7 @@ public class DragDropPlus : MonoBehaviour
             {
                 if (hit.collider.gameObject.tag == "DirectionCard")
                 {
-                    Debug.Log("hi direction");
+                    playerCard = hit.collider.gameObject.GetComponent<PlayerCards>();
                     if (isOver == false)
                     {
                         indicator.InitializeSphere();
@@ -136,6 +159,8 @@ public class DragDropPlus : MonoBehaviour
             }
         }
     }
+
+ 
    
     public void CallSwap()
     {

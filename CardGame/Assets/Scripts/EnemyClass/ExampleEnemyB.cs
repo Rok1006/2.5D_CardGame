@@ -9,14 +9,14 @@ public class ExampleEnemyB : EnemyBase
     public override async Task Attack()
     {
         var options = this.attackPattern[0].GetElement(this.grid.row , this.grid.column, GridManagerPlus.instance.grid);
-        if (options != null)
+        if (options.Count != 0)
             
         {
             
-            var damage = Calculation(options.GetComponent<Grid>().thingHold.GetComponent<PlayerBase>().stat);
-            var damageVFX = Instantiate(DamagePrefab, options.transform.position + new Vector3(0, 2, 0), Quaternion.identity);
+            var damage = Calculation(options[0].GetComponent<Grid>().thingHold.GetComponent<PlayerBase>().stat);
+            var damageVFX = Instantiate(DamagePrefab, options[0].transform.position + new Vector3(0, 2, 0), Quaternion.identity);
             float timer = 0;
-            EventHandler.Instance.onEnemyAttack.Invoke(new DamageFeedback(options.transform.position + new Vector3(0, 4, 0), damage));
+            EventHandler.Instance.onEnemyAttack.Invoke(new DamageFeedback(options[0].transform.position + new Vector3(0, 4, 0), damage));
             while (damageVFX != null)
             {
                 timer += Time.deltaTime;

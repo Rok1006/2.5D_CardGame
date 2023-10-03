@@ -4,5 +4,6 @@ using UnityEngine;
 
 public interface IAttack
 {
-    GameObject GetElement(int startX, int startY, GameObject[,] grid);
+    List<GameObject> GetElement(int startX, int startY, GameObject[,] grid);
+  
 }

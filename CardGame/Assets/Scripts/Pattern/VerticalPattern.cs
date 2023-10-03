@@ -3,10 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Attack", menuName = "Attack/VerticalSingle")]
-public class VerticalPattern : AttackPattern, IAttack
+public class VerticalPattern : AttackPattern
 {
-    public override GameObject GetElement(int startX, int startY, GameObject[,] grid)
+    public override List<GameObject> DebugAttack(int startX, int startY, GameObject[,] grid)
     {
+        return null;
+    }
+
+    public override List<GameObject> GetElement(int startX, int startY, GameObject[,] grid)
+    {
+        options.Clear();
         if (isEnemy == true)
         {
 
@@ -19,7 +25,8 @@ public class VerticalPattern : AttackPattern, IAttack
                 {
                     if(grid[startX, nextY].GetComponent<Grid>().thingHold.gameObject.tag == "Player")
                     {
-                        return grid[startX, nextY];
+                        options.Add(grid[startX, nextY]);
+                        return options;
                     }
                 }
                 return null;
@@ -31,7 +38,8 @@ public class VerticalPattern : AttackPattern, IAttack
 
             if (nextY >= 0)
             {
-                return grid[startX, nextY];
+                options.Add(grid[startX, nextY]);
+                return options;
             }
         }
 
