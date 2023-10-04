@@ -6,6 +6,12 @@ using UnityEngine;
 public class PateCatl : PlayerBase
 {
     public PateCatl instance;
+    private float heal = 3;
+    private int healAmount = 1;
+    public GameObject healCircle;
+    public List<GameObject> list = new List<GameObject>();
+    public GameObject vfxx;
+
     public void Awake()
     {
         if(instance == null)
@@ -43,6 +49,27 @@ public class PateCatl : PlayerBase
         vfx = this.GetComponent<FoxPersonVFX>();
     }
 
+    public override async Task ProcessAttack()
+    {
+        Debug.Log("processing");
+        gm.PickRandomPlayers(ref list, healAmount, true);
+        
+        foreach(var character in list)
+        {
+            vfxx = Instantiate(healCircle, character.transform.position , healCircle.transform.rotation) as GameObject;
+           // DamageCalculation.Heal(this.stat , character.GetComponent<Grid>().thingHold.GetComponent<PlayerBase>().stat);
+        }
+        while(vfxx != null)
+        {
+            Debug.Log("am i stuck here");
+            await Task.Yield();
+        }
+        isAttacking = false;
+        Debug.Log("done cat");
+        await Task.Yield();
+        
+    }
+
     // Update is called once per frame
-    
+
 }

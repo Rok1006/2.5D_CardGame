@@ -31,6 +31,11 @@ public class TaurinusBlowberry : PlayerBase
         throw new System.NotImplementedException();
     }
 
+    public override Task ProcessAttack()
+    {
+        throw new System.NotImplementedException();
+    }
+
     // Start is called before the first frame update
     public override void Start()
     {

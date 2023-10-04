@@ -58,5 +58,9 @@ public static class DamageCalculation
         return elementalMultiplier;
 
     }
+    public static void Heal(Stat host, Stat guest)
+    {
+        Debug.Log(guest.name + "healing");
+    }
 
 }

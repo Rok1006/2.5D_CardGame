@@ -19,10 +19,19 @@ public class SirNyanslot : PlayerBase
     {
         return null;
     }
-
+    public override void OnTurnEnd()
+    {
+        base.OnTurnEnd();
+        turnCount++;
+    }
     public override Task Passive()
     {
         return null;
+    }
+
+    public override Task ProcessAttack()
+    {
+        throw new System.NotImplementedException();
     }
 
     // Start is called before the first frame update

@@ -20,6 +20,7 @@ public abstract class PlayerBase : MonoBehaviour
     private List<GameObject> targets;
     public Grid grid;
     protected GameObject[,] board;
+    protected GridManagerPlus gm;
     
 
 
@@ -29,10 +30,11 @@ public abstract class PlayerBase : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
+        gm = GridManagerPlus.instance;
         board = GridManagerPlus.instance.grid;
-        Debug.Log("asfd");
-        Debug.Log(board.GetLength(0));
         vfx = this.gameObject.GetComponent<VFXBase>();
+        EventHandler.Instance.OnTurnStart.AddListener(OnTurnStart);
+        EventHandler.Instance.OnTurnFinished.AddListener(OnTurnEnd);
     }
 
     // Update is called once per frame
@@ -77,20 +79,34 @@ public abstract class PlayerBase : MonoBehaviour
             
 
         }
+        await ProcessAttack();
         if (options != null)
         {
-            vfx.currentState = VFXBase.AbilityState.MAIN;
-            StartCoroutine(vfx.Attack(this.gameObject));
+            //vfx.currentState = VFXBase.AbilityState.MAIN;
+            //StartCoroutine(vfx.Attack(this.gameObject));
             while (isAttacking != false)
             {
-                Debug.Log(gameObject.name + " " + "attacking");
+                
                 await Task.Yield();
             }
         }
-
+        Debug.Log("task finished");
 
         await Task.Yield();
     }
+    public abstract Task ProcessAttack();
+    
+
+    
+    public virtual void OnTurnStart()
+    {
+
+    }
+    public virtual void OnTurnEnd()
+    {
+
+    }
+    
         
 
     public abstract Task Passive();

@@ -133,6 +133,41 @@ public class GridManagerPlus : MonoBehaviour
 
         return list;
     }
+    public List<GameObject> PickRandomPlayers(ref List<GameObject> list, int amount , bool distinct)
+    {
+       
+        
+            if (distinct)
+            {
+                for(int j = 0; j < playerGrid.Length; j++)
+                {
+                    list.Add(playerGrid[j]);
+                    Debug.Log("hi");
+                    
+
+                }
+                ShuffleList(list);
+                for(int j = 0; j < 4-amount; j++)
+                {
+                    list.RemoveAt(0);
+                    Debug.Log("removing");
+                }
+                return list;
+
+            }
+            else
+            {
+
+                for (int j = 0; j < amount; j++)
+                {
+                    var random = Random.Range(0, 4);
+                    list.Add(playerGrid[random]);
+                }
+                return list;
+            }
+        
+        
+    }
 
     public List<GameObject> PickRandomFirstRowElement(int amount)
     {
@@ -198,6 +233,23 @@ public class GridManagerPlus : MonoBehaviour
             grid.thingHold = enemy;
             grid.UpdateGrid();
         }
+    }
+    private List<T> ShuffleList<T>(List<T> list)
+    {
+        int random1, random2;
+        T temp;
+
+        for (int i = 0; i < list.Count; ++i)
+        {
+            random1 = Random.Range(0, list.Count);
+            random2 = Random.Range(0, list.Count);
+
+            temp = list[random1];
+            list[random1] = list[random2];
+            list[random2] = temp;
+        }
+
+        return list;
     }
 
 }
